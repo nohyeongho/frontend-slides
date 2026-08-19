@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1. Support Package 진행 현황 | 현장 반응 및 요구 사항</title>
+  
+  <!-- 웹 폰트 로드: Pretendard 폰트 최우선 적용 -->
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  
+  <style>
+    /* ==========================================================================
+       [Design OS & Pretendard Typography System]
+       - 16:9 슬라이드 정중앙 정렬 및 5:5 완벽 대칭 레이아웃
+       - 도넛 차트 그래픽 + 긍정 요소 vs 개선 과제 구조적 분석
+       - 선명한 딥 블랙(#0F172A, #1E293B) 텍스트 및 프리미엄 하이라이트
+       ========================================================================== */
+    :root {
+      /* 색상 토큰 */
+      --bg-canvas: #f1f5f9;
+      --bg-slide: #ffffff;
+      --bg-card: #f8fafc;
+      --bg-card-subtle: #f1f5f9;
+      
+      --text-heading: #0f172a;               /* 메인/섹션 제목 (선명한 딥 블랙) */
+      --text-body: #1e293b;                  /* 선명하고 또렷한 본문 블랙 */
+      --text-muted: #475569;                 /* 보조 설명 텍스트 */
+      --text-subtle: #64748b;                /* 메타 및 태그 텍스트 */
+      
+      --border-subtle: #e2e8f0;              /* 카드 및 섹션 구분선 */
+      --border-card: #cbd5e1;                /* 주요 테두리 */
+      
+      /* 포인트 색상 */
+      --color-positive: #15803d;             /* 긍정 요소 그린 */
+      --color-positive-bg: #ecfdf5;          /* 긍정 연배경 */
+      --color-positive-border: #a7f3d0;      /* 긍정 테두리 */
+      
+      --color-negative: #b91c1c;             /* 개선 과제 강조 레드/버건디 */
+      --color-negative-bg: #fef2f2;          /* 개선 연배경 */
+      
+      --color-accent-blue: #1d4ed8;          /* 코퍼레이트 블루 */
+      --color-accent-magenta: #be185d;       /* 보라/핑크 강조 */
+      
+      /* 그림자 토큰 */
+      --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
+      --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
+      --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+      
+      /* 타이포그래피 */
+      --font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    }
+
+    /* 초기화 */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: var(--font-family);
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-canvas);
+      color: var(--text-body);
+      font-weight: 400;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+      line-height: 1.45;
+      letter-spacing: -0.015em;
+    }
+
+    /* 상단 유틸리티 툴바 */
+    .toolbar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 10px;
+      align-items: center;
+      width: 100%;
+      max-width: 1440px;
+      justify-content: flex-end;
+    }
+
+    .btn-tool {
+      background-color: #ffffff;
+      color: var(--text-body);
+      border: 1px solid var(--border-subtle);
+      padding: 7px 14px;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 6px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.2s ease;
+    }
+
+    .btn-tool:hover {
+      background-color: var(--bg-card);
+      border-color: var(--color-accent-blue);
+      color: var(--color-accent-blue);
+    }
+
+    /* ==========================================================================
+       [16:9 비율 슬라이드 메인 컨테이너]
+       ========================================================================== */
+    .slide-wrapper {
+      width: 100%;
+      max-width: 1440px;
+      aspect-ratio: 16 / 9;
+      background-color: var(--bg-slide);
+      box-shadow: var(--shadow-lg);
+      border-radius: 8px;
+      padding: 24px 36px 22px 36px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      margin: 0 auto;
+    }
+
+    /* --------------------------------------------------------------------------
+       [상단 헤더 영역]
+       -------------------------------------------------------------------------- */
+    .slide-header {
+      border-bottom: 2px solid #0f172a;
+      padding-bottom: 8px;
+      margin-bottom: 10px;
+    }
+
+    .header-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+    }
+
+    .slide-main-title {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.03em;
+    }
+
+    .slide-sub-category {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+
+    .header-desc-row {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+      line-height: 1.35;
+    }
+
+    /* --------------------------------------------------------------------------
+       [중앙 본문 메인 레이아웃: 좌우 50% vs 50% 2단 분할]
+       -------------------------------------------------------------------------- */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 24px;
+      flex: 1;
+      align-items: stretch;
+      min-height: 0;
+    }
+
+    /* --------------------------------------------------------------------------
+       [공통 섹션 헤더: 뱃지 + 설문문항]
+       -------------------------------------------------------------------------- */
+    .section-banner-wrap {
+      margin-bottom: 10px;
+    }
+
+    .badge-tag {
+      display: inline-block;
+      font-size: 12.5px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 4px;
+      margin-bottom: 6px;
+      letter-spacing: -0.01em;
+    }
+
+    .badge-positive {
+      background-color: #15803d;
+      color: #ffffff;
+    }
+
+    .badge-negative {
+      background-color: #334155;
+      color: #ffffff;
+    }
+
+    .survey-question-row {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      font-size: 13.5px;
+      color: var(--text-heading);
+    }
+
+    .survey-q-label {
+      font-weight: 800;
+      color: var(--text-heading);
+      white-space: nowrap;
+    }
+
+    .survey-q-text {
+      font-weight: 700;
+      color: var(--text-heading);
+    }
+
+    /* --------------------------------------------------------------------------
+       [좌측 패널: 긍정 요소 (도넛 그래픽 + 4개 콜아웃 카드)]
+       -------------------------------------------------------------------------- */
+    .left-panel {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .positive-body-layout {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 14px;
+      flex: 1;
+      align-items: center;
+    }
+
+    /* 도넛 차트 컨테이너 */
+    .donut-visual-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      height: 100%;
+    }
+
+    /* 4대 긍정 요인 카드 리스트 */
+    .positive-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .positive-item-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+      position: relative;
+    }
+
+    .positive-item-card:hover {
+      border-color: #86efac;
+      background-color: #fcfdfd;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin-bottom: 2px;
+    }
+
+    .check-icon-sq {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      background-color: #1e293b;
+      color: #ffffff;
+      border-radius: 3px;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .card-tag-sub {
+      font-size: 11px;
+      font-weight: 600;
+      color: #15803d;
+      margin-left: 4px;
+    }
+
+    .card-bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 20px;
+    }
+
+    .card-bullet-list li {
+      font-size: 12px;
+      color: var(--text-body);
+      line-height: 1.35;
+      position: relative;
+    }
+
+    .card-bullet-list li::before {
+      content: "▫";
+      position: absolute;
+      left: -14px;
+      top: -1px;
+      font-size: 11px;
+      color: #475569;
+      font-weight: bold;
+    }
+
+    .card-bullet-list strong.pink {
+      color: #db2777;
+      font-weight: 700;
+    }
+
+    .card-bullet-list strong.dark {
+      color: #0f172a;
+      font-weight: 700;
+    }
+
+    /* --------------------------------------------------------------------------
+       [우측 패널: 개선 과제 (라운드 컨테이너 + 5대 개선 리스트)]
+       -------------------------------------------------------------------------- */
+    .right-panel {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .improvement-container-box {
+      background-color: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 12px;
+      padding: 14px 18px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: var(--shadow-sm);
+      gap: 8px;
+    }
+
+    .improvement-item {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .imp-header-row {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-heading);
+    }
+
+    .imp-check-circle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 17px;
+      height: 17px;
+      background-color: #0f172a;
+      color: #ffffff;
+      border-radius: 50%;
+      font-size: 10px;
+      flex-shrink: 0;
+    }
+
+    .imp-bullet-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      padding-left: 24px;
+    }
+
+    .imp-bullet-list li {
+      font-size: 12px;
+      color: var(--text-body);
+      line-height: 1.35;
+      position: relative;
+    }
+
+    .imp-bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: -12px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .imp-bullet-list strong.pink {
+      color: #db2777;
+      font-weight: 700;
+    }
+
+    .imp-bullet-list strong.red {
+      color: #dc2626;
+      font-weight: 700;
+    }
+
+    /* --------------------------------------------------------------------------
+       [인쇄 및 반응형 미디어 쿼리]
+       -------------------------------------------------------------------------- */
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .toolbar {
+        display: none !important;
+      }
+      .slide-wrapper {
+        box-shadow: none;
+        border: none;
+        max-width: 100%;
+        width: 100vw;
+        height: 100vh;
+        aspect-ratio: auto;
+        border-radius: 0;
+        padding: 20px 30px;
+      }
+      @page {
+        size: landscape;
+        margin: 0;
+      }
+    }
+
+    @media (max-width: 1100px) {
+      .slide-wrapper {
+        aspect-ratio: auto;
+        height: auto;
+      }
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 상단 액션 툴바 -->
+  <aside class="toolbar" aria-label="보고서 도구 모음">
+    <a href="support-package-survey-report.svg" download="Support_Package_Survey_Report.svg" class="btn-tool" style="text-decoration: none;" title="16:9 고해상도 벡터 SVG 파일을 다운로드합니다">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <span>SVG 벡터 다운로드</span>
+    </a>
+    <button class="btn-tool" onclick="window.print()" title="PDF로 저장하거나 인쇄합니다">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <span>PDF / 인쇄 출력</span>
+    </button>
+    <button class="btn-tool" onclick="toggleFullScreen()" title="화면에 슬라이드를 꽉 차게 띄웁니다">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+      <span>전체화면 발표 모드</span>
+    </button>
+  </aside>
+
+  <!-- 16:9 슬라이드 메인 프레임 -->
+  <main class="slide-wrapper" id="slide">
+    
+    <!-- 1. 상단 슬라이드 헤더 -->
+    <header class="slide-header">
+      <div class="header-top-row">
+        <h1 class="slide-main-title">1. Support Package 진행 현황</h1>
+        <div class="slide-sub-category">현장 반응 및 요구 사항</div>
+      </div>
+      <div class="header-desc-row">
+        Support Package 주요 기능에 대한 활용 경험 및 만족 요인을 분석하고, 향후 고도화 방향 수립에 활용하고자 함.
+      </div>
+    </header>
+
+    <!-- 2. 중앙 메인 본문: 좌(긍정 요소) vs 우(개선 과제) 5:5 대칭 -->
+    <section class="main-grid" aria-label="설문 분석 상세">
+      
+      <!-- ====================================================================
+           [좌측 영역] 긍정 요소
+           ==================================================================== -->
+      <article class="left-panel">
+        
+        <!-- 상단 설문 타이틀 -->
+        <div class="section-banner-wrap">
+          <span class="badge-tag badge-positive">긍정 요소</span>
+          <div class="survey-question-row">
+            <span class="survey-q-label">설문문항</span>
+            <span class="survey-q-text">• Support Pack. 주요 기능 중 수리 업무 지원 효과가 높은 기능</span>
+          </div>
+        </div>
+
+        <!-- 본문: 도넛 그래픽 + 4개 카드 -->
+        <div class="positive-body-layout">
+          
+          <!-- 좌측 도넛 차트 그래픽 -->
+          <div class="donut-visual-container">
+            <svg viewBox="0 0 180 320" width="100%" height="100%">
+              <!-- 도넛 호 세그먼트들 -->
+              <!-- Segment 1: 상단 -->
+              <path d="M 30,70 A 70,70 0 0,1 90,20 L 90,50 A 40,40 0 0,0 50,80 Z" fill="#94A3B8" />
+              <!-- Segment 2: 중상단 -->
+              <path d="M 30,75 A 70,70 0 0,0 20,150 L 50,150 A 40,40 0 0,1 55,85 Z" fill="#64748B" />
+              <!-- Segment 3: 중하단 -->
+              <path d="M 20,155 A 70,70 0 0,0 45,230 L 70,210 A 40,40 0 0,1 50,155 Z" fill="#94A3B8" />
+              <!-- Segment 4: 하단 -->
+              <path d="M 50,235 A 70,70 0 0,0 110,270 L 105,240 A 40,40 0 0,1 75,215 Z" fill="#CBD5E1" />
+
+              <!-- 도넛 내부 포인트 원 -->
+              <circle cx="58" cy="80" r="3" fill="#15803d" />
+              <circle cx="36" cy="148" r="3" fill="#15803d" />
+              <circle cx="52" cy="210" r="3" fill="#15803d" />
+              <circle cx="85" cy="245" r="3" fill="#15803d" />
+
+              <!-- 점선 연결선 (Leader Lines) -->
+              <!-- Line 1 -->
+              <polyline points="58,80 120,40 160,40" fill="none" stroke="#15803d" stroke-width="1.2" stroke-dasharray="3,3" />
+              <circle cx="160" cy="40" r="3" fill="#15803d" />
+
+              <!-- Line 2 -->
+              <polyline points="36,148 120,120 160,120" fill="none" stroke="#15803d" stroke-width="1.2" stroke-dasharray="3,3" />
+              <circle cx="160" cy="120" r="3" fill="#15803d" />
+
+              <!-- Line 3 -->
+              <polyline points="52,210 120,200 160,200" fill="none" stroke="#15803d" stroke-width="1.2" stroke-dasharray="3,3" />
+              <circle cx="160" cy="200" r="3" fill="#15803d" />
+
+              <!-- Line 4 -->
+              <polyline points="85,245 120,270 160,270" fill="none" stroke="#15803d" stroke-width="1.2" stroke-dasharray="3,3" />
+              <circle cx="160" cy="270" r="3" fill="#15803d" />
+            </svg>
+          </div>
+
+          <!-- 우측 4개 핵심 카드 -->
+          <div class="positive-cards-list">
+            
+            <!-- 카드 1: 통계정보, 부품Top10, 부품주문 -->
+            <div class="positive-item-card">
+              <div class="card-title-row">
+                <span class="check-icon-sq">✔</span>
+                <span>통계정보, 부품Top10, 부품주문</span>
+              </div>
+              <ul class="card-bullet-list">
+                <li>기술정보와 부품 <strong class="pink">사용 이력을 통해 수리 방향</strong>을 신속하게 판단 가능</li>
+                <li>유사 수리 사례 및 통계 조회를 통해 문제 해결 역량 향상</li>
+                <li><strong class="pink">여러 부품을 한 번에 주문 목록</strong>에 담을 수 있어 업무 편의성 증대</li>
+              </ul>
+            </div>
+
+            <!-- 카드 2: Contents -->
+            <div class="positive-item-card">
+              <div class="card-title-row">
+                <span class="check-icon-sq">✔</span>
+                <span>Contents</span>
+                <span class="card-tag-sub">기술정보, 서비스매뉴얼, 설명서, 분해도, 스펙, 결선도, 스스로해결</span>
+              </div>
+              <ul class="card-bullet-list">
+                <li><strong class="pink">관련 정보를 하나의 화면</strong>에서 통합 제공</li>
+                <li>기술정보, 매뉴얼, 설명서 등 다양한 자료를 즉시 확인 가능</li>
+                <li>핵심 정보가 요약 제공되어 <strong class="pink">현장 검색 시간 감소</strong></li>
+              </ul>
+            </div>
+
+            <!-- 카드 3: Videos -->
+            <div class="positive-item-card">
+              <div class="card-title-row">
+                <span class="check-icon-sq">✔</span>
+                <span>Videos</span>
+                <span class="card-tag-sub">배움마당, YouTube 영상</span>
+              </div>
+              <ul class="card-bullet-list">
+                <li>영상 기반의 시각적 가이드를 제공하여 <strong class="pink">저빈도·난수리 제품의 수리에 도움</strong></li>
+                <li><strong class="pink">이미지가 아닌 실제 영상</strong>을 통해 점검 방법을 <strong class="dark">알수있어 도움</strong></li>
+              </ul>
+            </div>
+
+            <!-- 카드 4: AI 브리핑, LGSC 상세정보 -->
+            <div class="positive-item-card">
+              <div class="card-title-row">
+                <span class="check-icon-sq">✔</span>
+                <span>AI 브리핑, LGSC 상세정보</span>
+              </div>
+              <ul class="card-bullet-list">
+                <li>AI가 핵심 이슈와 우선 확인 항목을 요약 제공하여 신속한 문제 진단 지원</li>
+                <li>제품 이력, 기술정보, 수리사례를 한 화면에서 확인할 수 있어 편리</li>
+              </ul>
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- ====================================================================
+           [우측 영역] 개선 과제
+           ==================================================================== -->
+      <article class="right-panel">
+        
+        <!-- 상단 설문 타이틀 -->
+        <div class="section-banner-wrap">
+          <span class="badge-tag badge-negative">개선 과제</span>
+          <div class="survey-question-row">
+            <span class="survey-q-label">설문문항</span>
+            <span class="survey-q-text">• Support Pack. 신규 기능에 대한 현장 사용 불편 사항 및 개선 의견</span>
+          </div>
+        </div>
+
+        <!-- 둥근 모서리 통합 컨테이너 박스 -->
+        <div class="improvement-container-box">
+          
+          <!-- 1. 통계정보, 부품Top10, 부품주문 -->
+          <div class="improvement-item">
+            <div class="imp-header-row">
+              <span class="imp-check-circle">✔</span>
+              <span>통계정보, 부품Top10, 부품주문</span>
+            </div>
+            <ul class="imp-bullet-list">
+              <li>부품 목록에서 표시되어 규격을 구분하기 어려우므로, RING(4/3)처럼 <strong class="pink">부품규격을 함께 표시</strong></li>
+              <li><strong class="pink">난수리 사례에서 사용한 부품 통계</strong>를 제공하면 어려운 수리를 해결하는 데 도움이 될 것 같다</li>
+            </ul>
+          </div>
+
+          <!-- 2. Contents -->
+          <div class="improvement-item">
+            <div class="imp-header-row">
+              <span class="imp-check-circle">✔</span>
+              <span>Contents</span>
+            </div>
+            <ul class="imp-bullet-list">
+              <li>기술정보는 그림으로 이해하기 어려우므로 <strong class="pink">실제 사진 등록을 요청합니다.</strong></li>
+              <li>현장 활용도가 높은 콘텐츠 중심의 정보 제공 강화 필요</li>
+            </ul>
+          </div>
+
+          <!-- 3. Videos -->
+          <div class="improvement-item">
+            <div class="imp-header-row">
+              <span class="imp-check-circle">✔</span>
+              <span>Videos</span>
+            </div>
+            <ul class="imp-bullet-list">
+              <li>다양한 고장 증상과 수리 사례를 보강하고, <strong class="pink">시스템에어컨 시운전 및 제품별 테스트 영상을 확대</strong></li>
+              <li>SM이 사전 준비 없이 현장에서 수리 및 제품 분해·조립이 가능하도록 콘텐츠 지속 업데이트</li>
+            </ul>
+          </div>
+
+          <!-- 4. AI브리핑 -->
+          <div class="improvement-item">
+            <div class="imp-header-row">
+              <span class="imp-check-circle">✔</span>
+              <span>AI브리핑</span>
+            </div>
+            <ul class="imp-bullet-list">
+              <li>포털 검색처럼 쉽고, 자유로운 대화 방식으로 <strong class="pink">연속 질문할 수 있도록 검색 기능을 개선</strong></li>
+              <li>일부 증상은 관련 정보가 없거나 데이터 부족 안내가 표시됩니다. <strong class="pink">다양한 수리 사례와 증상 데이터가 지속적으로 반영</strong></li>
+            </ul>
+          </div>
+
+          <!-- 5. Qbot -->
+          <div class="improvement-item">
+            <div class="imp-header-row">
+              <span class="imp-check-circle">✔</span>
+              <span>Qbot</span>
+            </div>
+            <ul class="imp-bullet-list">
+              <li>부품 사진과 고장 소리를 분석하고, <strong class="pink">난수리 사례 및 실제 사용 부품 통계를 제공</strong>하여 현장 수리 판단을 지원</li>
+              <li>노하우나 정보등을 댓글형태로 달거나 의견 추가할수 있는 기능이있으면 좋을것 같음.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </article>
+
+    </section>
+
+  </main>
+
+  <!-- 프레젠테이션 모드 전체화면 스크립트 -->
+  <script>
+    function toggleFullScreen() {
+      const slide = document.getElementById('slide');
+      if (!document.fullscreenElement) {
+        if (slide.requestFullscreen) {
+          slide.requestFullscreen();
+        } else if (slide.webkitRequestFullscreen) {
+          slide.webkitRequestFullscreen();
+        } else if (slide.msRequestFullscreen) {
+          slide.msRequestFullscreen();
+        }
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+  </script>
+</body>
+</html>
