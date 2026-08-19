@@ -85,12 +85,13 @@ if __name__ == "__main__":
 
     slides = extract_pptx(input_file, output_dir)
 
-    # Write extracted data as JSON
+    # Write extracted data as JSON (UTF-8 인코딩을 명시하여 한글 깨짐 방지)
     output_path = os.path.join(output_dir, "extracted-slides.json")
-    with open(output_path, "w") as f:
-        json.dump(slides, f, indent=2)
+    with open(output_path, "w", encoding="utf-8") as f:
+        json.dump(slides, f, indent=2, ensure_ascii=False)
 
     print(f"Extracted {len(slides)} slides to {output_path}")
     for s in slides:
         img_count = len(s["images"])
-        print(f"  Slide {s['number']}: {s['title'] or '(no title)'} — {img_count} image(s)")
+        title = s['title'] or '(no title)'
+        print(f"  Slide {s['number']}: {title} - {img_count} image(s)")

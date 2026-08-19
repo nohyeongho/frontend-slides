@@ -1,0 +1,341 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs>
+    <!-- 구글 폰트 임포트 -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&amp;family=Noto+Sans+KR:wght@400;600;700;900&amp;family=JetBrains+Mono:wght@600;800&amp;display=swap');
+
+      .font-kr { font-family: 'Noto Sans KR', 'Plus Jakarta Sans', sans-serif; }
+      .font-mono { font-family: 'JetBrains Mono', monospace; }
+      
+      .title-bold { font-weight: 900; }
+      .text-bold { font-weight: 700; }
+      .text-medium { font-weight: 600; }
+      .text-regular { font-weight: 400; }
+    </style>
+
+    <!-- 그라디언트 정의 -->
+    <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F4F5F8" />
+      <stop offset="100%" stop-color="#E9ECF2" />
+    </linearGradient>
+
+    <linearGradient id="luna-bar-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#A50034" />
+      <stop offset="100%" stop-color="#D60044" />
+    </linearGradient>
+
+    <linearGradient id="action-box-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D111A" />
+      <stop offset="100%" stop-color="#1A1C23" />
+    </linearGradient>
+
+    <!-- 카드 그림자 필터 -->
+    <filter id="card-shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.06" />
+    </filter>
+    
+    <filter id="badge-shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="3" stdDeviation="4" flood-color="#A50034" flood-opacity="0.3" />
+    </filter>
+
+    <!-- 배경 그리드 패턴 -->
+    <pattern id="grid-pattern" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#000000" stroke-width="1" stroke-opacity="0.025" />
+    </pattern>
+  </defs>
+
+  <!-- ====================================================================
+       1. 슬라이드 배경 & 그리드 패턴
+       ==================================================================== -->
+  <rect width="1920" height="1080" fill="url(#bg-grad)" />
+  <rect width="1920" height="1080" fill="url(#grid-pattern)" />
+
+  <!-- 배경 은은한 방사형 빛 효과 -->
+  <circle cx="100" cy="100" r="400" fill="#A50034" fill-opacity="0.03" />
+  <circle cx="1820" cy="980" r="500" fill="#0284C7" fill-opacity="0.03" />
+
+  <!-- ====================================================================
+       2. 상단 헤더 영역 (LG 브랜드, 보고서 타이틀, 핵심 KPI 카드 3종)
+       ==================================================================== -->
+  <g transform="translate(64, 48)">
+    <!-- 상단 메타 바 -->
+    <rect x="0" y="0" width="130" height="32" rx="6" fill="#A50034" filter="url(#badge-shadow)" />
+    <text x="65" y="21" fill="#FFFFFF" font-size="13" font-weight="800" text-anchor="middle" class="font-kr" letter-spacing="1">LG AI STRATEGY</text>
+    <text x="146" y="21" fill="#64748B" font-size="14" font-weight="600" class="font-kr">AX 혁신 전략 보고 • Executive Summary</text>
+    
+    <text x="1792" y="21" fill="#64748B" font-size="14" font-weight="600" text-anchor="end" class="font-kr">작성 기준: 2026.Q3 글로벌 AI 인프라 단가</text>
+    <line x1="0" y1="44" x2="1792" y2="44" stroke="#CBD5E1" stroke-width="1.5" stroke-opacity="0.7" />
+
+    <!-- 메인 타이틀 & KPI 스트립 -->
+    <g transform="translate(0, 68)">
+      <text x="0" y="44" fill="#11141A" font-size="38" font-weight="900" class="font-kr" letter-spacing="-1">
+        GPT-4.1 vs GPT-5.6 Luna <tspan fill="#A50034">비용·성능 종합 비교</tspan> 및 도입 전략
+      </text>
+
+      <!-- KPI 1: 토큰 운영비용 절감 -->
+      <g transform="translate(1080, 0)">
+        <rect x="0" y="0" width="220" height="66" rx="12" fill="#FFF1F2" stroke="#FDA4AF" stroke-width="1" />
+        <text x="18" y="24" fill="#9F1239" font-size="11" font-weight="700" class="font-kr">토큰 운영비용 절감</text>
+        <text x="18" y="52" fill="#A50034" font-size="24" font-weight="800" class="font-mono">-80.0%</text>
+      </g>
+
+      <!-- KPI 2: 응답 처리 속도 -->
+      <g transform="translate(1316, 0)">
+        <rect x="0" y="0" width="220" height="66" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#card-shadow)" />
+        <text x="18" y="24" fill="#64748B" font-size="11" font-weight="700" class="font-kr">응답 처리 속도 향상</text>
+        <text x="18" y="52" fill="#11141A" font-size="24" font-weight="800" class="font-mono">2.8x <tspan font-size="14" font-weight="600" fill="#64748B" class="font-kr">향상</tspan></text>
+      </g>
+
+      <!-- KPI 3: 연간 예상 절감액 -->
+      <g transform="translate(1552, 0)">
+        <rect x="0" y="0" width="240" height="66" rx="12" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#card-shadow)" />
+        <text x="18" y="24" fill="#64748B" font-size="11" font-weight="700" class="font-kr">연간 예상 절감액 (월10억토큰)</text>
+        <text x="18" y="52" fill="#11141A" font-size="24" font-weight="800" class="font-mono">₩4.8억 <tspan font-size="14" font-weight="600" fill="#64748B" class="font-kr">절감</tspan></text>
+      </g>
+    </g>
+  </g>
+
+  <!-- ====================================================================
+       3. 메인 3개 열 대시보드 (카드 1 / 카드 2 / 카드 3)
+       ==================================================================== -->
+  <g transform="translate(64, 210)">
+    
+    <!-- ─────────────────────────────────────────────────────────────────
+         [패널 1] 토큰 단가 상세 비교 & 비용 시각화 그래프 바
+         ───────────────────────────────────────────────────────────────── -->
+    <g transform="translate(0, 0)">
+      <rect x="0" y="0" width="576" height="740" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#card-shadow)" />
+      
+      <!-- 카드 헤더 -->
+      <circle cx="28" cy="36" r="5" fill="#A50034" />
+      <text x="44" y="42" fill="#11141A" font-size="19" font-weight="800" class="font-kr">토큰 비용 상세 비교 &amp; 절감 분석</text>
+      <rect x="440" y="22" width="112" height="26" rx="4" fill="#F1F5F9" />
+      <text x="496" y="39" fill="#64748B" font-size="12" font-weight="700" text-anchor="middle" class="font-mono">단위: 1M Tokens ($)</text>
+      <line x1="24" y1="62" x2="552" y2="62" stroke="#F1F5F9" stroke-width="1.5" />
+
+      <!-- 테이블 헤더 -->
+      <g transform="translate(24, 76)">
+        <rect x="0" y="0" width="528" height="32" fill="#F8FAFC" rx="6" />
+        <text x="14" y="21" fill="#64748B" font-size="13" font-weight="700" class="font-kr">구분</text>
+        <text x="180" y="21" fill="#64748B" font-size="13" font-weight="700" class="font-kr">GPT-4.1 (기존)</text>
+        <text x="320" y="21" fill="#A50034" font-size="13" font-weight="700" class="font-kr">GPT-5.6 Luna</text>
+        <text x="450" y="21" fill="#059669" font-size="13" font-weight="700" class="font-kr">절감률</text>
+
+        <!-- 행 1: 입력 (Input) -->
+        <g transform="translate(0, 42)">
+          <text x="14" y="24" fill="#1E293B" font-size="15" font-weight="700" class="font-kr">📥 입력 (Input)</text>
+          <text x="180" y="24" fill="#334155" font-size="17" font-weight="700" class="font-mono">$2.50</text>
+          <text x="320" y="24" fill="#A50034" font-size="18" font-weight="800" class="font-mono">$0.50</text>
+          <rect x="444" y="6" width="70" height="24" rx="4" fill="#ECFDF5" />
+          <text x="479" y="22" fill="#059669" font-size="13" font-weight="800" text-anchor="middle" class="font-mono">▼ 80%</text>
+          <line x1="0" y1="36" x2="528" y2="36" stroke="#F1F5F9" stroke-width="1" />
+        </g>
+
+        <!-- 행 2: 출력 (Output) -->
+        <g transform="translate(0, 84)">
+          <text x="14" y="24" fill="#1E293B" font-size="15" font-weight="700" class="font-kr">📤 출력 (Output)</text>
+          <text x="180" y="24" fill="#334155" font-size="17" font-weight="700" class="font-mono">$10.00</text>
+          <text x="320" y="24" fill="#A50034" font-size="18" font-weight="800" class="font-mono">$2.00</text>
+          <rect x="444" y="6" width="70" height="24" rx="4" fill="#ECFDF5" />
+          <text x="479" y="22" fill="#059669" font-size="13" font-weight="800" text-anchor="middle" class="font-mono">▼ 80%</text>
+          <line x1="0" y1="36" x2="528" y2="36" stroke="#F1F5F9" stroke-width="1" />
+        </g>
+
+        <!-- 행 3: 캐시 입력 (Cached) -->
+        <g transform="translate(0, 126)">
+          <text x="14" y="24" fill="#1E293B" font-size="15" font-weight="700" class="font-kr">⚡ 캐시 입력 (Cached)</text>
+          <text x="180" y="24" fill="#334155" font-size="17" font-weight="700" class="font-mono">$1.25</text>
+          <text x="320" y="24" fill="#A50034" font-size="18" font-weight="800" class="font-mono">$0.25</text>
+          <rect x="444" y="6" width="70" height="24" rx="4" fill="#ECFDF5" />
+          <text x="479" y="22" fill="#059669" font-size="13" font-weight="800" text-anchor="middle" class="font-mono">▼ 80%</text>
+        </g>
+      </g>
+
+      <!-- 시각화 비교 바 그래프 컨테이너 -->
+      <g transform="translate(24, 280)">
+        <rect x="0" y="0" width="528" height="230" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+        <text x="16" y="28" fill="#1E293B" font-size="14" font-weight="800" class="font-kr">📊 1,000만 토큰 처리 시 실제 발생 비용 비교 (Output 기준)</text>
+
+        <!-- GPT-4.1 바 -->
+        <g transform="translate(16, 50)">
+          <text x="0" y="16" fill="#475569" font-size="13" font-weight="700" class="font-kr">GPT-4.1 (기존)</text>
+          <text x="496" y="16" fill="#475569" font-size="14" font-weight="800" text-anchor="end" class="font-mono">$100.00 (기준 100%)</text>
+          <rect x="0" y="24" width="496" height="32" rx="6" fill="#475569" />
+          <text x="484" y="45" fill="#FFFFFF" font-size="13" font-weight="800" text-anchor="end" class="font-mono">100% ($100)</text>
+        </g>
+
+        <!-- GPT-5.6 Luna 바 -->
+        <g transform="translate(16, 130)">
+          <text x="0" y="16" fill="#A50034" font-size="13" font-weight="800" class="font-kr">GPT-5.6 Luna (신규)</text>
+          <text x="496" y="16" fill="#A50034" font-size="14" font-weight="800" text-anchor="end" class="font-mono">$20.00 (80% 절감 ✨)</text>
+          <rect x="0" y="24" width="496" height="32" rx="6" fill="#E2E8F0" />
+          <rect x="0" y="24" width="100" height="32" rx="6" fill="url(#luna-bar-grad)" filter="url(#badge-shadow)" />
+          <text x="88" y="45" fill="#FFFFFF" font-size="13" font-weight="800" text-anchor="end" class="font-mono">20%</text>
+        </g>
+      </g>
+
+      <!-- 하단 요약 가이드 박스 -->
+      <g transform="translate(24, 535)">
+        <rect x="0" y="0" width="528" height="88" rx="10" fill="#FFF1F2" stroke="#FECDD3" stroke-width="1" />
+        <text x="16" y="28" fill="#9F1239" font-size="13" font-weight="800" class="font-kr">💡 비용 효율성 인사이트</text>
+        <text x="16" y="52" fill="#4C0519" font-size="13" font-weight="500" class="font-kr">동일한 AI 운영 예산 집행 시, Luna 모델을 활용하면 <tspan font-weight="800">5배 더 많은 데이터와 사용자 요청</tspan>을</text>
+        <text x="16" y="72" fill="#4C0519" font-size="13" font-weight="500" class="font-kr">여유 있게 처리할 수 있어 전사 AX 서비스 확산에 이상적입니다.</text>
+      </g>
+
+      <!-- 카드 푸터 -->
+      <line x1="24" y1="645" x2="552" y2="645" stroke="#F1F5F9" stroke-width="1" />
+      <text x="24" y="675" fill="#94A3B8" font-size="12" class="font-kr">※ 1토큰은 영문 약 0.75단어, 한글 약 0.6글자에 해당합니다.</text>
+    </g>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         [패널 2] 성능 벤치마크 & 처리 역량 비교
+         ───────────────────────────────────────────────────────────────── -->
+    <g transform="translate(608, 0)">
+      <rect x="0" y="0" width="576" height="740" rx="18" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1" filter="url(#card-shadow)" />
+      
+      <!-- 카드 헤더 -->
+      <circle cx="28" cy="36" r="5" fill="#0284C7" />
+      <text x="44" y="42" fill="#11141A" font-size="19" font-weight="800" class="font-kr">성능 벤치마크 &amp; 처리 역량 비교</text>
+      <rect x="424" y="22" width="128" height="26" rx="4" fill="#F1F5F9" />
+      <text x="488" y="39" fill="#64748B" font-size="12" font-weight="700" text-anchor="middle" class="font-mono">Benchmark &amp; TPS</text>
+      <line x1="24" y1="62" x2="552" y2="62" stroke="#F1F5F9" stroke-width="1.5" />
+
+      <!-- 4대 벤치마크 미니 카드 그리드 (2x2) -->
+      <g transform="translate(24, 80)">
+        
+        <!-- 미니 카드 1: 응답 속도 (TPS) -->
+        <g transform="translate(0, 0)">
+          <rect x="0" y="0" width="254" height="104" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+          <text x="14" y="24" fill="#64748B" font-size="13" font-weight="700" class="font-kr">응답 생성 속도 (TPS)</text>
+          <text x="240" y="24" fill="#A50034" font-size="13" font-weight="800" text-anchor="end" class="font-mono">⚡ 2.8x</text>
+          <text x="14" y="62" fill="#A50034" font-size="28" font-weight="800" class="font-mono">145 <tspan font-size="14" fill="#64748B" font-weight="600">tps</tspan></text>
+          <text x="14" y="88" fill="#64748B" font-size="12" class="font-kr">GPT-4.1: 52 tps (약 2.8배 고속)</text>
+        </g>
+
+        <!-- 미니 카드 2: 복합 추론 (MMLU) -->
+        <g transform="translate(274, 0)">
+          <rect x="0" y="0" width="254" height="104" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+          <text x="14" y="24" fill="#64748B" font-size="13" font-weight="700" class="font-kr">복합 지식 추론 (MMLU)</text>
+          <text x="240" y="24" fill="#059669" font-size="13" font-weight="800" text-anchor="end" class="font-kr">🎯 대등</text>
+          <text x="14" y="62" fill="#1E293B" font-size="28" font-weight="800" class="font-mono">89.4%</text>
+          <text x="14" y="88" fill="#64748B" font-size="12" class="font-kr">GPT-4.1: 90.2% (오차범위 내 대등)</text>
+        </g>
+
+        <!-- 미니 카드 3: 코딩 및 자동화 (HumanEval) -->
+        <g transform="translate(0, 118)">
+          <rect x="0" y="0" width="254" height="104" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+          <text x="14" y="24" fill="#64748B" font-size="13" font-weight="700" class="font-kr">코딩 및 로직 (HumanEval)</text>
+          <text x="240" y="24" fill="#0284C7" font-size="13" font-weight="800" text-anchor="end" class="font-kr">💻 우수</text>
+          <text x="14" y="62" fill="#1E293B" font-size="28" font-weight="800" class="font-mono">88.1%</text>
+          <text x="14" y="88" fill="#64748B" font-size="12" class="font-kr">GPT-4.1: 89.5% (실무 개발 충족)</text>
+        </g>
+
+        <!-- 미니 카드 4: 가성비 ROI 지수 -->
+        <g transform="translate(274, 118)">
+          <rect x="0" y="0" width="254" height="104" rx="10" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+          <text x="14" y="24" fill="#64748B" font-size="13" font-weight="700" class="font-kr">비용 대비 성능비 (ROI)</text>
+          <text x="240" y="24" fill="#A50034" font-size="13" font-weight="800" text-anchor="end" class="font-kr">🏆 4.9x</text>
+          <text x="14" y="62" fill="#A50034" font-size="28" font-weight="800" class="font-mono">492 <tspan font-size="14" fill="#64748B" font-weight="600">pt</tspan></text>
+          <text x="14" y="88" fill="#64748B" font-size="12" class="font-kr">GPT-4.1: 100 pt (가성비 4.9배)</text>
+        </g>
+      </g>
+
+      <!-- 상세 프로그레스 비교 바 -->
+      <g transform="translate(24, 330)">
+        <rect x="0" y="0" width="528" height="180" rx="12" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1" />
+        
+        <!-- 프로그레스 1: 초당 처리량 (Throughput) -->
+        <g transform="translate(16, 20)">
+          <text x="0" y="16" fill="#334155" font-size="13" font-weight="700" class="font-kr">실시간 동시 처리량 (Throughput)</text>
+          <text x="496" y="16" fill="#A50034" font-size="13" font-weight="800" text-anchor="end" class="font-mono">Luna 280% vs 4.1 100%</text>
+          <rect x="0" y="26" width="496" height="12" rx="6" fill="#E2E8F0" />
+          <rect x="0" y="26" width="496" height="12" rx="6" fill="#A50034" />
+        </g>
+
+        <!-- 프로그레스 2: 컨텍스트 정확도 -->
+        <g transform="translate(16, 95)">
+          <text x="0" y="16" fill="#334155" font-size="13" font-weight="700" class="font-kr">문서 정보 추출 및 컨텍스트 정확도</text>
+          <text x="496" y="16" fill="#0284C7" font-size="13" font-weight="800" text-anchor="end" class="font-mono">Luna 98.2% vs 4.1 98.6%</text>
+          <rect x="0" y="26" width="496" height="12" rx="6" fill="#E2E8F0" />
+          <rect x="0" y="26" width="487" height="12" rx="6" fill="#0284C7" />
+        </g>
+      </g>
+
+      <!-- 인사이트 코멘트 박스 -->
+      <g transform="translate(24, 535)">
+        <rect x="0" y="0" width="528" height="88" rx="10" fill="#F0F9FF" stroke="#BAE6FD" stroke-width="1" />
+        <text x="16" y="28" fill="#0369A1" font-size="13" font-weight="800" class="font-kr">🔍 성능 분석 결론</text>
+        <text x="16" y="52" fill="#0C4A6E" font-size="13" font-weight="500" class="font-kr">Luna는 경량 모델임에도 <tspan font-weight="800">플래그십 대비 98% 이상의 추론 정확도</tspan>를 유지하며,</text>
+        <text x="16" y="72" fill="#0C4A6E" font-size="13" font-weight="500" class="font-kr">압도적인 응답 속도(145 TPS)로 사용자 대기 시간을 대폭 단축시킵니다.</text>
+      </g>
+
+      <line x1="24" y1="645" x2="552" y2="645" stroke="#F1F5F9" stroke-width="1" />
+      <text x="24" y="675" fill="#94A3B8" font-size="12" class="font-kr">※ 공인 벤치마크(MMLU, HumanEval) 및 실측 Latency 기준</text>
+    </g>
+
+
+    <!-- ─────────────────────────────────────────────────────────────────
+         [패널 3] 비즈니스 도입 전략 & 임원 의사결정 제언 (Dark Charcoal)
+         ───────────────────────────────────────────────────────────────── -->
+    <g transform="translate(1216, 0)">
+      <rect x="0" y="0" width="576" height="740" rx="18" fill="#181B22" filter="url(#card-shadow)" />
+      
+      <!-- 카드 헤더 -->
+      <circle cx="28" cy="36" r="5" fill="#FDA4AF" />
+      <text x="44" y="42" fill="#FFFFFF" font-size="19" font-weight="800" class="font-kr">비즈니스 도입 전략 &amp; 제언</text>
+      <rect x="448" y="22" width="104" height="26" rx="4" fill="#FFFFFF" fill-opacity="0.1" />
+      <text x="500" y="39" fill="#CBD5E1" font-size="12" font-weight="700" text-anchor="middle" class="font-mono">Action Plan</text>
+      <line x1="24" y1="62" x2="552" y2="62" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1.5" />
+
+      <!-- 전략 1: 85% Luna 전진배치 -->
+      <g transform="translate(24, 80)">
+        <rect x="0" y="0" width="528" height="120" rx="12" fill="#A50034" fill-opacity="0.2" stroke="#FDA4AF" stroke-opacity="0.4" stroke-width="1" />
+        <text x="18" y="32" fill="#FDA4AF" font-size="16" font-weight="800" class="font-kr">1️⃣ 85% 업무: GPT-5.6 Luna 전진 배치</text>
+        <text x="18" y="62" fill="#E2E8F0" font-size="13.5" font-weight="500" class="font-kr">• 사내 임직원 공통 AI 어시스턴트 및 고객 상담 챗봇</text>
+        <text x="18" y="84" fill="#E2E8F0" font-size="13.5" font-weight="500" class="font-kr">• 대용량 문서 요약, 이메일 초안 작성 및 1차 데이터 분류</text>
+        <text x="18" y="104" fill="#94A3B8" font-size="12" class="font-kr">→ 초저비용(80% 절감)과 초고속 응답으로 전사 사용자 체감 극대화</text>
+      </g>
+
+      <!-- 전략 2: 15% 4.1 심층검증 -->
+      <g transform="translate(24, 216)">
+        <rect x="0" y="0" width="528" height="120" rx="12" fill="#FFFFFF" fill-opacity="0.05" stroke="#FFFFFF" stroke-opacity="0.1" stroke-width="1" />
+        <text x="18" y="32" fill="#FFFFFF" font-size="16" font-weight="800" class="font-kr">2️⃣ 15% 업무: GPT-4.1 선별 호출 (심층 검증)</text>
+        <text x="18" y="62" fill="#CBD5E1" font-size="13.5" font-weight="500" class="font-kr">• 법률 계약서, 특허 문서 정밀 검토 및 리스크 분석</text>
+        <text x="18" y="84" fill="#CBD5E1" font-size="13.5" font-weight="500" class="font-kr">• 복합 재무 데이터 모델링 및 고난도 시스템 아키텍처 설계</text>
+        <text x="18" y="104" fill="#94A3B8" font-size="12" class="font-kr">→ 최고 수준의 엄밀성이 요구되는 최종 검증 단계에만 정밀 투입</text>
+      </g>
+
+      <!-- 최종 의사결정 제언 박스 -->
+      <g transform="translate(24, 352)">
+        <rect x="0" y="0" width="528" height="270" rx="14" fill="url(#action-box-grad)" stroke="#F43F5E" stroke-opacity="0.5" stroke-width="1.5" />
+        
+        <text x="24" y="38" fill="#FFE4E6" font-size="17" font-weight="900" class="font-kr">🎯 임원 의사결정 제언 (Recommendation)</text>
+        <line x1="24" y1="52" x2="504" y2="52" stroke="#FFFFFF" stroke-opacity="0.1" />
+
+        <text x="24" y="84" fill="#FFFFFF" font-size="14.5" font-weight="700" class="font-kr">1. '지능형 하이브리드 라우팅' 아키텍처 구축</text>
+        <text x="42" y="108" fill="#CBD5E1" font-size="13" class="font-kr">기본 질문은 Luna가 1차 처리하고, 복합 추론이 필요할 때만</text>
+        <text x="42" y="128" fill="#CBD5E1" font-size="13" class="font-kr">GPT-4.1로 자동 승격하여 <tspan fill="#FDA4AF" font-weight="700">품질 저하 없이 비용 78% 절감</tspan></text>
+
+        <text x="24" y="166" fill="#FFFFFF" font-size="14.5" font-weight="700" class="font-kr">2. 2026.Q3 전사 시범 도입 및 ROI 측정</text>
+        <text x="42" y="190" fill="#CBD5E1" font-size="13" class="font-kr">사내 AX 포털 및 주요 3개 파일럿 부서에 Luna 우선 적용 후</text>
+        <text x="42" y="210" fill="#CBD5E1" font-size="13" class="font-kr">월간 비용 절감 추이 및 사용자 만족도 데이터 보고 예정</text>
+
+        <rect x="24" y="228" width="480" height="28" rx="6" fill="#A50034" fill-opacity="0.4" />
+        <text x="264" y="247" fill="#FFE4E6" font-size="12" font-weight="700" text-anchor="middle" class="font-kr">✨ 승인 권고: 하이브리드 AI 인프라 전환 계획안 확정 요청</text>
+      </g>
+
+      <text x="552" y="675" fill="#64748B" font-size="13" font-weight="700" text-anchor="end" class="font-kr">LG AX Innovation Center</text>
+    </g>
+
+  </g>
+
+  <!-- ====================================================================
+       4. 슬라이드 하단 푸터 영역
+       ==================================================================== -->
+  <g transform="translate(64, 1030)">
+    <line x1="0" y1="0" x2="1792" y2="0" stroke="#CBD5E1" stroke-width="1.5" stroke-opacity="0.7" />
+    <text x="0" y="24" fill="#64748B" font-size="13" font-weight="500" class="font-kr">LG Electronics / AX Strategy Task Force • Confidential for Executive Review</text>
+    <text x="1792" y="24" fill="#64748B" font-size="13" font-weight="800" text-anchor="end" class="font-mono">Page 01 / 01 (Executive Brief)</text>
+  </g>
+</svg>

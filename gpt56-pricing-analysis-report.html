@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>[보고서] GPT-5.6 API 가격 인하와 AI 모델 경쟁 패러다임 변화</title>
+  
+  <!-- 구글 폰트: 고품격 비즈니스 산세리프 및 모노스페이스 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       [디자인 시스템]
+       - Style: Deep Slate & Ruby Accent (LG/Enterprise Professional)
+       - Fixed 16:9 Viewport: 1920x1080 고정 스테이지 자동 스케일링
+       ========================================================================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #0B0E14;
+      --bg-card: #141923;
+      --bg-card-hover: #1C2331;
+      --border-color: rgba(255, 255, 255, 0.08);
+      --border-accent: rgba(165, 0, 52, 0.4);
+      
+      --text-main: #F8FAFC;
+      --text-muted: #94A3B8;
+      
+      --accent-red: #A50034;
+      --accent-rose: #FB7185;
+      --accent-blue: #38BDF8;
+      --accent-emerald: #34D399;
+      --accent-amber: #FBBF24;
+
+      --font-main: 'Noto Sans KR', 'Plus Jakarta Sans', sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
+    }
+
+    html, body {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background-color: #000;
+      font-family: var(--font-main);
+      color: var(--text-main);
+      user-select: none;
+    }
+
+    #deck-container {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    #stage {
+      width: 1920px;
+      height: 1080px;
+      position: absolute;
+      transform-origin: center center;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 10% 15%, rgba(165, 0, 52, 0.12) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(56, 189, 248, 0.08) 0%, transparent 45%),
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 100% 100%, 100% 100%, 64px 64px, 64px 64px;
+      overflow: hidden;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8);
+    }
+
+    .slide {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 70px 100px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: scale(0.98);
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: scale(1);
+    }
+
+    /* 상단 배지 및 헤더 */
+    .slide-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(165, 0, 52, 0.15);
+      color: #FDA4AF;
+      border: 1px solid var(--border-accent);
+      margin-bottom: 12px;
+    }
+
+    .badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      box-shadow: 0 0 10px var(--accent-red);
+    }
+
+    .slide-title {
+      font-size: 46px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #FFFFFF 40%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-desc {
+      font-size: 20px;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* 공통 카드 및 그리드 */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 18px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s ease;
+    }
+
+    .card.highlight {
+      border: 1px solid var(--border-accent);
+      background: linear-gradient(135deg, rgba(165,0,52,0.1) 0%, rgba(20,25,35,0.9) 100%);
+    }
+
+    .num-val {
+      font-family: var(--font-mono);
+      font-weight: 800;
+    }
+
+    /* 테이블 스타일 */
+    .report-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .report-table th {
+      text-align: left;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 12px 14px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .report-table td {
+      padding: 14px;
+      font-size: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .save-tag {
+      background: rgba(52, 211, 153, 0.15);
+      color: #34D399;
+      font-weight: 800;
+      font-size: 13px;
+      padding: 3px 8px;
+      border-radius: 4px;
+    }
+
+    /* 하단 푸터 & 네비게이션 */
+    .slide-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 15px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border-color);
+      padding-top: 20px;
+    }
+
+    .nav-hints {
+      font-family: var(--font-mono);
+      font-size: 13px;
+    }
+
+    .key-badge {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 3px 8px;
+      border-radius: 4px;
+      color: #FFF;
+    }
+
+    #controls {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      display: flex;
+      gap: 10px;
+      z-index: 1000;
+    }
+
+    .control-btn {
+      background: rgba(20, 25, 35, 0.85);
+      border: 1px solid var(--border-color);
+      color: var(--text-main);
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      transition: all 0.2s ease;
+    }
+
+    .control-btn:hover {
+      background: var(--accent-red);
+      border-color: var(--accent-red);
+    }
+
+    #edit-indicator {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      background: var(--accent-red);
+      color: #FFF;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 800;
+      z-index: 1000;
+      display: none;
+    }
+
+    [contenteditable="true"] {
+      outline: 2px dashed var(--accent-rose) !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="edit-indicator">✏️ 인라인 편집 모드 (Ctrl+S 로 저장)</div>
+
+  <div id="deck-container">
+    <div id="stage">
+      
+      <!-- ====================================================================
+           슬라이드 1: 표지 및 Executive Summary
+           ==================================================================== -->
+      <section class="slide active" data-slide="1">
+        <div>
+          <div class="slide-badge"><span class="badge-dot"></span> Executive AI Market Brief</div>
+          <h1 class="slide-title" style="font-size: 64px; line-height: 1.15; margin-top: 16px;">
+            OpenAI GPT-5.6 가격 인하와<br><span style="color: var(--accent-rose);">AI 모델 경쟁의 패러다임 전환</span>
+          </h1>
+          <p class="slide-desc" style="font-size: 24px; max-width: 1200px; margin-top: 20px; line-height: 1.6;">
+            경량 모델(Luna) 단가 80% 인하가 촉발한 <strong>'Task 완료당 총비용(Performance per Dollar)'</strong> 중심의 시장 재편과 기업의 최적화 도입 전략
+          </p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;">
+          <div class="card highlight">
+            <div style="font-size: 16px; color: var(--accent-rose); font-weight: 700;">KEY TAKEAWAY 1</div>
+            <div class="num-val" style="font-size: 40px; color: #FFF; margin: 12px 0;">Luna -80%</div>
+            <div style="font-size: 16px; color: var(--text-muted); line-height: 1.5;">
+              입력 $0.20 / 출력 $1.20로 대량 반복 작업 비용이 5분의 1 수준으로 급감
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="font-size: 16px; color: var(--accent-blue); font-weight: 700;">KEY TAKEAWAY 2</div>
+            <div class="num-val" style="font-size: 40px; color: #FFF; margin: 12px 0;">Terra -20%</div>
+            <div style="font-size: 16px; color: var(--text-muted); line-height: 1.5;">
+              균형형 모델의 단가 인하로 마케팅/코딩/챗봇 등 일상 업무 전반의 TCO 절감
+            </div>
+          </div>
+
+          <div class="card">
+            <div style="font-size: 16px; color: var(--accent-emerald); font-weight: 700;">KEY TAKEAWAY 3</div>
+            <div class="num-val" style="font-size: 40px; color: #FFF; margin: 12px 0;">하이브리드 라우팅</div>
+            <div style="font-size: 16px; color: var(--text-muted); line-height: 1.5;">
+              단일 모델 고집을 탈피하고 Luna 80% + Sol 20% 분기 전략으로 78% 비용 절감
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div>위키독스 IT 인사이트 분석 보고서 (@yuncastle)</div>
+          <div class="nav-hints">
+            <span>이동: <span class="key-badge">Space</span> <span class="key-badge">→</span></span>
+            <span>편집: <span class="key-badge">E</span></span>
+            <span>전체화면: <span class="key-badge">F</span></span>
+          </div>
+          <div>01 / 05</div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           슬라이드 2: 가격 인하 상세 내역 및 실무 비용 시뮬레이션
+           ==================================================================== -->
+      <section class="slide" data-slide="2">
+        <div>
+          <div class="slide-badge"><span class="badge-dot"></span> Pricing Breakdown</div>
+          <h2 class="slide-title">GPT-5.6 제품군 단가 변동 및 비용 시뮬레이션</h2>
+          <p class="slide-desc">100만 토큰(1M Tokens) 기준 단가와 월간 1,200만 토큰 처리 시나리오</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; margin-top: 10px;">
+          <!-- 좌측: 가격 변동표 -->
+          <div class="card">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">📋 100만 토큰당 API 단가표</div>
+            <table class="report-table">
+              <thead>
+                <tr>
+                  <th>모델 등급</th>
+                  <th>입력 단가</th>
+                  <th>출력 단가</th>
+                  <th>인하율</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 700;">👑 GPT-5.6 Sol (플래그십)</td>
+                  <td class="num-val">$5.00</td>
+                  <td class="num-val">$30.00</td>
+                  <td><span style="color: var(--text-muted); font-size: 13px;">동결 (0%)</span></td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 700;">⚖️ GPT-5.6 Terra (균형형)</td>
+                  <td class="num-val">$2.50 → <strong style="color: var(--accent-blue);">$2.00</strong></td>
+                  <td class="num-val">$15.00 → <strong style="color: var(--accent-blue);">$12.00</strong></td>
+                  <td><span class="save-tag">▼ 20%</span></td>
+                </tr>
+                <tr style="background: rgba(165,0,52,0.1);">
+                  <td style="font-weight: 800; color: #FDA4AF;">⚡ GPT-5.6 Luna (경량형)</td>
+                  <td class="num-val">$1.00 → <strong style="color: #FDA4AF;">$0.20</strong></td>
+                  <td class="num-val">$6.00 → <strong style="color: #FDA4AF;">$1.20</strong></td>
+                  <td><span class="save-tag" style="background: var(--accent-red); color: #FFF;">▼ 80%</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div style="font-size: 13px; color: var(--text-muted); margin-top: 16px;">
+              ※ 2026년 7월 30일부 적용 / 일반 ChatGPT Plus 구독료($20)는 변동 없음 (API 전용 인하)
+            </div>
+          </div>
+
+          <!-- 우측: 월간 비용 시뮬레이션 -->
+          <div class="card">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">📊 월 1,200만 토큰 처리 시 청구액</div>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 6px;">
+                  <span>Luna 기존 가격</span>
+                  <span class="num-val">$22.00</span>
+                </div>
+                <div style="height: 24px; background: #334155; border-radius: 6px; width: 100%; display: flex; align-items: center; padding-left: 12px; font-size: 12px; font-weight: 700;">
+                  기존 요금 (100%)
+                </div>
+              </div>
+
+              <div>
+                <div style="display: flex; justify-content: space-between; font-size: 15px; margin-bottom: 6px;">
+                  <span style="color: var(--accent-rose); font-weight: 700;">Luna 변경 후 가격</span>
+                  <span class="num-val" style="color: var(--accent-rose);">$4.40 (-80%)</span>
+                </div>
+                <div style="height: 24px; background: rgba(255,255,255,0.1); border-radius: 6px; width: 100%; position: relative;">
+                  <div style="height: 100%; width: 20%; background: var(--accent-red); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 800;">
+                    $4.40
+                  </div>
+                </div>
+              </div>
+
+              <div style="background: rgba(0,0,0,0.3); padding: 14px; border-radius: 10px; font-size: 14px; color: #CBD5E1; line-height: 1.5;">
+                💡 <strong>기업 관점 시사점:</strong> 월 10억 토큰 소모 서비스 기준, 월 $2,200에서 <strong>$440로 절감</strong>되어 연간 수천만 원의 비용이 세이브됩니다.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div>GPT-5.6 Pricing Breakdown</div>
+          <div>02 / 05</div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           슬라이드 3: 세 가지 모델 등급별 역할 분담
+           ==================================================================== -->
+      <section class="slide" data-slide="3">
+        <div>
+          <div class="slide-badge"><span class="badge-dot"></span> Model Segmentation</div>
+          <h2 class="slide-title">Sol · Terra · Luna 역할 및 업무 적합도</h2>
+          <p class="slide-desc">작업의 복잡도와 처리 빈도에 따른 명확한 티어 구분</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 10px;">
+          <!-- Sol -->
+          <div class="card">
+            <div>
+              <div style="font-size: 28px; margin-bottom: 12px;">👑</div>
+              <h3 style="font-size: 24px; font-weight: 800; color: #FFF;">GPT-5.6 Sol</h3>
+              <div style="font-size: 14px; color: var(--accent-amber); margin-top: 4px; font-weight: 700;">최상위 플래그십 ($5 / $30)</div>
+              <ul style="margin-top: 20px; font-size: 15px; color: var(--text-muted); line-height: 1.8; padding-left: 18px;">
+                <li>복잡한 다단계 논리 추론</li>
+                <li>고난도 코딩 및 디버깅</li>
+                <li>전문 분석 보고서 / 법률 / 보안 검토</li>
+                <li>장시간 자율 에이전트 실행</li>
+              </ul>
+            </div>
+            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-color); font-size: 13px; color: #CBD5E1;">
+              🎯 <strong>전략:</strong> 고도의 정확도가 필수적인 5~10% 핵심 업무에 선별 배치
+            </div>
+          </div>
+
+          <!-- Terra -->
+          <div class="card">
+            <div>
+              <div style="font-size: 28px; margin-bottom: 12px;">⚖️</div>
+              <h3 style="font-size: 24px; font-weight: 800; color: #FFF;">GPT-5.6 Terra</h3>
+              <div style="font-size: 14px; color: var(--accent-blue); margin-top: 4px; font-weight: 700;">성능/비용 균형형 ($2 / $12)</div>
+              <ul style="margin-top: 20px; font-size: 15px; color: var(--text-muted); line-height: 1.8; padding-left: 18px;">
+                <li>블로그 및 마케팅 콘텐츠 작성</li>
+                <li>일반 업무 코딩 및 데이터 정리</li>
+                <li>고객 상담 챗봇 본문 생성</li>
+                <li>사내 지식 검색(RAG) 응답</li>
+              </ul>
+            </div>
+            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-color); font-size: 13px; color: #CBD5E1;">
+              🎯 <strong>전략:</strong> 단일 모델로 폭넓은 사내 업무를 커버할 때 최우선 검토
+            </div>
+          </div>
+
+          <!-- Luna -->
+          <div class="card highlight">
+            <div>
+              <div style="font-size: 28px; margin-bottom: 12px;">⚡</div>
+              <h3 style="font-size: 24px; font-weight: 800; color: #FDA4AF;">GPT-5.6 Luna</h3>
+              <div style="font-size: 14px; color: var(--accent-emerald); margin-top: 4px; font-weight: 700;">초고속 대량 처리 ($0.20 / $1.20)</div>
+              <ul style="margin-top: 20px; font-size: 15px; color: #E2E8F0; line-height: 1.8; padding-left: 18px;">
+                <li>문장 분류, 태깅, 카테고리화</li>
+                <li>단문 요약 및 키워드 추출</li>
+                <li>대용량 문서 번역 및 전처리</li>
+                <li>실시간 초저지연 응답 챗봇</li>
+              </ul>
+            </div>
+            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--border-accent); font-size: 13px; color: #FDA4AF;">
+              🎯 <strong>전략:</strong> 수십만 번 반복 호출되는 80%+ 대량 파이프라인의 핵심
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div>Model Segmentation &amp; Use Cases</div>
+          <div>03 / 05</div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           슬라이드 4: 빅테크 대량 처리 모델 가격 비교
+           ==================================================================== -->
+      <section class="slide" data-slide="4">
+        <div>
+          <div class="slide-badge"><span class="badge-dot"></span> Competitive Landscape</div>
+          <h2 class="slide-title">글로벌 빅테크 경량/대량 처리 모델 단가 비교</h2>
+          <p class="slide-desc">OpenAI vs Google Gemini vs Anthropic Claude 100만 토큰 기준</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.3fr 1fr; gap: 32px; margin-top: 10px;">
+          <div class="card">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">🏆 초저비용/대량 처리 모델 비교</div>
+            <table class="report-table">
+              <thead>
+                <tr>
+                  <th>모델명</th>
+                  <th>입력 단가 (1M)</th>
+                  <th>출력 단가 (1M)</th>
+                  <th>주요 포지셔닝</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="background: rgba(165,0,52,0.15);">
+                  <td style="font-weight: 800; color: #FDA4AF;">👑 GPT-5.6 Luna</td>
+                  <td class="num-val" style="color: #FDA4AF;">$0.20</td>
+                  <td class="num-val" style="color: #FDA4AF;">$1.20</td>
+                  <td>업계 최저 수준 / 초고속</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 700;">Gemini 3.1 Flash-Lite</td>
+                  <td class="num-val">$0.25</td>
+                  <td class="num-val">$1.50</td>
+                  <td>비용 효율형 작업</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 700;">Gemini 3.5 Flash-Lite</td>
+                  <td class="num-val">$0.30</td>
+                  <td class="num-val">$2.50</td>
+                  <td>에이전트 / 번역 최적화</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 700;">Claude Haiku 4.5</td>
+                  <td class="num-val">$1.00</td>
+                  <td class="num-val">$5.00</td>
+                  <td>정밀 지시 이행형 경량</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="card">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">💡 모델 선택 시 주의점</div>
+            <div style="display: flex; flex-direction: column; gap: 14px; font-size: 15px; color: var(--text-muted); line-height: 1.6;">
+              <div>
+                <strong style="color: #FFF;">1. 토큰 단가 ≠ 실제 총비용</strong><br>
+                모델마다 토큰 분할 방식(Tokenizer)과 캐싱 정책이 다르므로 실측이 필수입니다.
+              </div>
+              <div>
+                <strong style="color: #FFF;">2. 정답률과 재작업 비용</strong><br>
+                단가가 저렴해도 오답으로 인해 재요청이 발생하면 총비용이 증가합니다.
+              </div>
+              <div>
+                <strong style="color: #FFF;">3. 도구 연동(Tool Calling) 능력</strong><br>
+                외부 DB나 API 연동 시 정확한 파라미터 호출 성능을 검증해야 합니다.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div>Competitive Landscape</div>
+          <div>04 / 05</div>
+        </div>
+      </section>
+
+      <!-- ====================================================================
+           슬라이드 5: 기업 도입 전략 및 Action Item
+           ==================================================================== -->
+      <section class="slide" data-slide="5">
+        <div>
+          <div class="slide-badge"><span class="badge-dot"></span> Strategy &amp; Action Plan</div>
+          <h2 class="slide-title">기업의 AX 최적화 도입 전략 (Hybrid Routing)</h2>
+          <p class="slide-desc">비용 78% 절감과 서비스 품질 극대화를 위한 실행 로드맵</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; margin-top: 10px;">
+          <!-- 3단계 파이프라인 -->
+          <div class="card highlight">
+            <div style="font-size: 18px; font-weight: 800; color: #FDA4AF; margin-bottom: 16px;">
+              🔄 3단계 지능형 라우팅 아키텍처
+            </div>
+            
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <div style="background: rgba(255,255,255,0.05); padding: 14px 18px; border-radius: 10px; border-left: 4px solid var(--accent-red);">
+                <div style="font-weight: 800; color: #FFF;">1단계: Luna 전진 배치 (80% 업무)</div>
+                <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">
+                  의도 분류, 키워드 추출, 1차 요약, FAQ 응답 → <strong>초고속·초저비용 즉시 완료</strong>
+                </div>
+              </div>
+
+              <div style="background: rgba(255,255,255,0.05); padding: 14px 18px; border-radius: 10px; border-left: 4px solid var(--accent-blue);">
+                <div style="font-weight: 800; color: #FFF;">2단계: Terra 본문 작성 (15% 업무)</div>
+                <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">
+                  일반 문서 작성, 코딩 보조, 복합 고객 상담 → <strong>품질과 비용 균형</strong>
+                </div>
+              </div>
+
+              <div style="background: rgba(255,255,255,0.05); padding: 14px 18px; border-radius: 10px; border-left: 4px solid var(--accent-amber);">
+                <div style="font-weight: 800; color: #FFF;">3단계: Sol 심층 검증 (5% 업무)</div>
+                <div style="font-size: 14px; color: var(--text-muted); margin-top: 4px;">
+                  법률/보안 정밀 분석, 아키텍처 최종 승인 → <strong>무결점 품질 확보</strong>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 액션 아이템 -->
+          <div class="card">
+            <div style="font-size: 18px; font-weight: 800; margin-bottom: 16px;">🎯 권장 실행 과제 (Action Items)</div>
+            <div style="display: flex; flex-direction: column; gap: 16px; font-size: 15px;">
+              <div>
+                <strong style="color: var(--accent-rose);">1. 사내 API 호출 현황 전수 조사</strong>
+                <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 4px;">
+                  고가 모델(GPT-4/Sol)로 단순 처리 중인 작업을 선별해 Luna로 즉시 전환
+                </p>
+              </div>
+
+              <div>
+                <strong style="color: var(--accent-blue);">2. 지능형 라우팅 게이트웨이 구축</strong>
+                <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 4px;">
+                  프롬프트 복잡도에 따라 Luna/Terra/Sol로 자동 분기하는 미들웨어 적용
+                </p>
+              </div>
+
+              <div>
+                <strong style="color: var(--accent-emerald);">3. Task당 총비용 KPI 관리</strong>
+                <p style="color: var(--text-muted); font-size: 13.5px; margin-top: 4px;">
+                  단순 토큰 가격 대신 '업무 1건 완수당 실제 투입 비용'을 핵심 지표로 설정
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="slide-footer">
+          <div>Strategic Recommendations &amp; Action Plan</div>
+          <div>05 / 05</div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- 컨트롤 버튼 -->
+  <div id="controls">
+    <button class="control-btn" id="prev-btn" title="이전 (←)">◀</button>
+    <button class="control-btn" id="next-btn" title="다음 (→)">▶</button>
+    <button class="control-btn" id="fs-btn" title="전체화면 (F)">⛶</button>
+  </div>
+
+  <!-- 자바스크립트: 뷰포트 반응형 스케일링 & 슬라이드 엔진 -->
+  <script>
+    class PresentationEngine {
+      constructor() {
+        this.currentSlide = 0;
+        this.slides = document.querySelectorAll('.slide');
+        this.totalSlides = this.slides.length;
+        this.stage = document.getElementById('stage');
+        this.isEditing = false;
+
+        this.initScaling();
+        this.initEvents();
+        this.updateSlide();
+      }
+
+      initScaling() {
+        const resize = () => {
+          const targetW = 1920;
+          const targetH = 1080;
+          const scale = Math.min(window.innerWidth / targetW, window.innerHeight / targetH);
+          this.stage.style.transform = `scale(${scale})`;
+        };
+        window.addEventListener('resize', resize);
+        resize();
+      }
+
+      updateSlide() {
+        this.slides.forEach((slide, idx) => {
+          if (idx === this.currentSlide) {
+            slide.classList.add('active');
+          } else {
+            slide.classList.remove('active');
+          }
+        });
+      }
+
+      next() {
+        if (this.currentSlide < this.totalSlides - 1) {
+          this.currentSlide++;
+          this.updateSlide();
+        }
+      }
+
+      prev() {
+        if (this.currentSlide > 0) {
+          this.currentSlide--;
+          this.updateSlide();
+        }
+      }
+
+      toggleFullscreen() {
+        if (!document.fullscreenElement) {
+          document.documentElement.requestFullscreen().catch(() => {});
+        } else {
+          document.exitFullscreen().catch(() => {});
+        }
+      }
+
+      toggleEditing() {
+        this.isEditing = !this.isEditing;
+        document.getElementById('edit-indicator').style.display = this.isEditing ? 'block' : 'none';
+        const editables = document.querySelectorAll('h1, h2, h3, p, td, .num-val, li, div');
+        editables.forEach(el => {
+          if (el.children.length === 0) {
+            el.contentEditable = this.isEditing ? 'true' : 'false';
+          }
+        });
+      }
+
+      initEvents() {
+        window.addEventListener('keydown', (e) => {
+          if (this.isEditing && e.key !== 'Escape') return;
+          switch (e.key) {
+            case 'ArrowRight':
+            case ' ':
+            case 'PageDown':
+              e.preventDefault();
+              this.next();
+              break;
+            case 'ArrowLeft':
+            case 'PageUp':
+              e.preventDefault();
+              this.prev();
+              break;
+            case 'Home':
+              e.preventDefault();
+              this.currentSlide = 0;
+              this.updateSlide();
+              break;
+            case 'End':
+              e.preventDefault();
+              this.currentSlide = this.totalSlides - 1;
+              this.updateSlide();
+              break;
+            case 'f':
+            case 'F':
+              this.toggleFullscreen();
+              break;
+            case 'e':
+            case 'E':
+              this.toggleEditing();
+              break;
+          }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => this.next());
+        document.getElementById('prev-btn').addEventListener('click', () => this.prev());
+        document.getElementById('fs-btn').addEventListener('click', () => this.toggleFullscreen());
+      }
+    }
+
+    window.presentation = new PresentationEngine();
+  </script>
+</body>
+</html>
