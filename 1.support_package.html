@@ -13,7 +13,7 @@
     /* ==========================================================================
        [Design OS & Pretendard Typography System]
        - 16:9 슬라이드 정중앙 정렬 및 5:5 완벽 대칭 레이아웃
-       - 도넛 차트 그래픽 + 긍정 요소 vs 개선 과제 구조적 분석
+       - 어색한 곡선 도형 ➜ 세련된 넘버링 인덱스 뱃지 & 버티컬 인포그래픽으로 전면 개편
        - 선명한 딥 블랙(#0F172A, #1E293B) 텍스트 및 프리미엄 하이라이트
        ========================================================================== */
     :root {
@@ -36,11 +36,11 @@
       --color-positive-bg: #ecfdf5;          /* 긍정 연배경 */
       --color-positive-border: #a7f3d0;      /* 긍정 테두리 */
       
-      --color-negative: #b91c1c;             /* 개선 과제 강조 레드/버건디 */
-      --color-negative-bg: #fef2f2;          /* 개선 연배경 */
+      --color-negative: #334155;             /* 개선 과제 뱃지 다크 */
+      --color-negative-bg: #f8fafc;          /* 개선 연배경 */
       
       --color-accent-blue: #1d4ed8;          /* 코퍼레이트 블루 */
-      --color-accent-magenta: #be185d;       /* 보라/핑크 강조 */
+      --color-accent-pink: #db2777;          /* 강조 핑크/마젠타 */
       
       /* 그림자 토큰 */
       --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
@@ -135,7 +135,7 @@
     .slide-header {
       border-bottom: 2px solid #0f172a;
       padding-bottom: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .header-top-row {
@@ -172,7 +172,7 @@
        -------------------------------------------------------------------------- */
     .main-grid {
       display: grid;
-      grid-template-columns: 1fr 1.05fr;
+      grid-template-columns: 1fr 1fr;
       gap: 24px;
       flex: 1;
       align-items: stretch;
@@ -183,7 +183,7 @@
        [공통 섹션 헤더: 뱃지 + 설문문항]
        -------------------------------------------------------------------------- */
     .section-banner-wrap {
-      margin-bottom: 10px;
+      margin-bottom: 12px;
     }
 
     .badge-tag {
@@ -226,7 +226,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       [좌측 패널: 긍정 요소 (도넛 그래픽 + 4개 콜아웃 카드)]
+       [좌측 패널: 긍정 요소 (세련된 넘버링 인포그래픽 카드 리스트)]
        -------------------------------------------------------------------------- */
     .left-panel {
       display: flex;
@@ -234,77 +234,74 @@
       height: 100%;
     }
 
-    .positive-body-layout {
-      display: grid;
-      grid-template-columns: 140px 1fr;
-      gap: 14px;
-      flex: 1;
-      align-items: center;
-    }
-
-    /* 도넛 차트 컨테이너 */
-    .donut-visual-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      height: 100%;
-    }
-
-    /* 4대 긍정 요인 카드 리스트 */
     .positive-cards-list {
       display: flex;
       flex-direction: column;
       gap: 10px;
       justify-content: space-between;
-      height: 100%;
+      flex: 1;
     }
 
-    .positive-item-card {
+    .positive-card-item {
       background: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 8px 12px;
+      border: 1.2px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 10px 14px;
       display: flex;
-      flex-direction: column;
-      gap: 3px;
-      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+      gap: 12px;
+      align-items: flex-start;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      transition: all 0.2s ease;
       position: relative;
     }
 
-    .positive-item-card:hover {
+    .positive-card-item:hover {
       border-color: #86efac;
-      background-color: #fcfdfd;
+      background-color: #f0fdf4;
+    }
+
+    /* 세련된 넘버링 인덱스 배지 */
+    .item-num-badge {
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, #15803d 0%, #166534 100%);
+      color: #ffffff;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 0 2px 4px rgba(21, 128, 61, 0.2);
+    }
+
+    .card-content-area {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
     }
 
     .card-title-row {
       display: flex;
-      align-items: center;
+      align-items: baseline;
+      flex-wrap: wrap;
       gap: 6px;
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--text-heading);
       margin-bottom: 2px;
-    }
-
-    .check-icon-sq {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 15px;
-      height: 15px;
-      background-color: #1e293b;
-      color: #ffffff;
-      border-radius: 3px;
-      font-size: 10px;
-      flex-shrink: 0;
     }
 
     .card-tag-sub {
       font-size: 11px;
       font-weight: 600;
       color: #15803d;
-      margin-left: 4px;
+      background-color: #ecfdf5;
+      padding: 1px 6px;
+      border-radius: 4px;
+      border: 1px solid #d1fae5;
     }
 
     .card-bullet-list {
@@ -312,7 +309,7 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-      padding-left: 20px;
+      padding-left: 14px;
     }
 
     .card-bullet-list li {
@@ -325,15 +322,15 @@
     .card-bullet-list li::before {
       content: "▫";
       position: absolute;
-      left: -14px;
+      left: -12px;
       top: -1px;
       font-size: 11px;
-      color: #475569;
+      color: #64748b;
       font-weight: bold;
     }
 
     .card-bullet-list strong.pink {
-      color: #db2777;
+      color: var(--color-accent-pink);
       font-weight: 700;
     }
 
@@ -354,20 +351,20 @@
     .improvement-container-box {
       background-color: #ffffff;
       border: 1.5px solid #cbd5e1;
-      border-radius: 12px;
-      padding: 14px 18px;
+      border-radius: 10px;
+      padding: 12px 18px;
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       box-shadow: var(--shadow-sm);
-      gap: 8px;
+      gap: 6px;
     }
 
     .improvement-item {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 2px;
     }
 
     .imp-header-row {
@@ -416,12 +413,7 @@
     }
 
     .imp-bullet-list strong.pink {
-      color: #db2777;
-      font-weight: 700;
-    }
-
-    .imp-bullet-list strong.red {
-      color: #dc2626;
+      color: var(--color-accent-pink);
       font-weight: 700;
     }
 
@@ -499,7 +491,7 @@
     <section class="main-grid" aria-label="설문 분석 상세">
       
       <!-- ====================================================================
-           [좌측 영역] 긍정 요소
+           [좌측 영역] 긍정 요소 (정돈된 넘버링 인포그래픽 카드 리스트)
            ==================================================================== -->
       <article class="left-panel">
         
@@ -512,54 +504,14 @@
           </div>
         </div>
 
-        <!-- 본문: 도넛 그래픽 + 4개 카드 -->
-        <div class="positive-body-layout">
+        <!-- 4개 세련된 카드 리스트 (좌우 폭을 시원하게 활용) -->
+        <div class="positive-cards-list">
           
-          <!-- 좌측 도넛 차트 그래픽 -->
-          <div class="donut-visual-container">
-            <svg viewBox="0 0 180 320" width="100%" height="100%">
-              <!-- 도넛 호 세그먼트들 -->
-              <!-- Segment 1: 상단 -->
-              <path d="M 30,70 A 70,70 0 0,1 90,20 L 90,50 A 40,40 0 0,0 50,80 Z" fill="#94A3B8" />
-              <!-- Segment 2: 중상단 -->
-              <path d="M 30,75 A 70,70 0 0,0 20,150 L 50,150 A 40,40 0 0,1 55,85 Z" fill="#64748B" />
-              <!-- Segment 3: 중하단 -->
-              <path d="M 20,155 A 70,70 0 0,0 45,230 L 70,210 A 40,40 0 0,1 50,155 Z" fill="#94A3B8" />
-              <!-- Segment 4: 하단 -->
-              <path d="M 50,235 A 70,70 0 0,0 110,270 L 105,240 A 40,40 0 0,1 75,215 Z" fill="#CBD5E1" />
-
-              <!-- 도넛 내부 포인트 원 -->
-              <circle cx="58" cy="80" r="3" fill="#15803d" />
-              <circle cx="36" cy="148" r="3" fill="#15803d" />
-              <circle cx="52" cy="210" r="3" fill="#15803d" />
-              <circle cx="85" cy="245" r="3" fill="#15803d" />
-
-              <!-- 점선 연결선 (Leader Lines) -->
-              <!-- Line 1 -->
-              <polyline points="58,80 120,40 160,40" fill="none" stroke="#15803d" stroke-width="1.2" stroke-dasharray="3,3" />
-              <circle cx="160" cy="40" r="3" fill="#15803d" />
-
-              <!-- Line 2 -->
-              <polyline points="36,148 120,120 160,120" fill="none" stroke="#15803d" stroke-width="1.2" stroke-dasharray="3,3" />
-              <circle cx="160" cy="120" r="3" fill="#15803d" />
-
-              <!-- Line 3 -->
-              <polyline points="52,210 120,200 160,200" fill="none" stroke="#15803d" stroke-width="1.2" stroke-dasharray="3,3" />
-              <circle cx="160" cy="200" r="3" fill="#15803d" />
-
-              <!-- Line 4 -->
-              <polyline points="85,245 120,270 160,270" fill="none" stroke="#15803d" stroke-width="1.2" stroke-dasharray="3,3" />
-              <circle cx="160" cy="270" r="3" fill="#15803d" />
-            </svg>
-          </div>
-
-          <!-- 우측 4개 핵심 카드 -->
-          <div class="positive-cards-list">
-            
-            <!-- 카드 1: 통계정보, 부품Top10, 부품주문 -->
-            <div class="positive-item-card">
+          <!-- 카드 1: 통계정보, 부품Top10, 부품주문 -->
+          <div class="positive-card-item">
+            <div class="item-num-badge">01</div>
+            <div class="card-content-area">
               <div class="card-title-row">
-                <span class="check-icon-sq">✔</span>
                 <span>통계정보, 부품Top10, 부품주문</span>
               </div>
               <ul class="card-bullet-list">
@@ -568,11 +520,13 @@
                 <li><strong class="pink">여러 부품을 한 번에 주문 목록</strong>에 담을 수 있어 업무 편의성 증대</li>
               </ul>
             </div>
+          </div>
 
-            <!-- 카드 2: Contents -->
-            <div class="positive-item-card">
+          <!-- 카드 2: Contents -->
+          <div class="positive-card-item">
+            <div class="item-num-badge">02</div>
+            <div class="card-content-area">
               <div class="card-title-row">
-                <span class="check-icon-sq">✔</span>
                 <span>Contents</span>
                 <span class="card-tag-sub">기술정보, 서비스매뉴얼, 설명서, 분해도, 스펙, 결선도, 스스로해결</span>
               </div>
@@ -582,11 +536,13 @@
                 <li>핵심 정보가 요약 제공되어 <strong class="pink">현장 검색 시간 감소</strong></li>
               </ul>
             </div>
+          </div>
 
-            <!-- 카드 3: Videos -->
-            <div class="positive-item-card">
+          <!-- 카드 3: Videos -->
+          <div class="positive-card-item">
+            <div class="item-num-badge">03</div>
+            <div class="card-content-area">
               <div class="card-title-row">
-                <span class="check-icon-sq">✔</span>
                 <span>Videos</span>
                 <span class="card-tag-sub">배움마당, YouTube 영상</span>
               </div>
@@ -595,11 +551,13 @@
                 <li><strong class="pink">이미지가 아닌 실제 영상</strong>을 통해 점검 방법을 <strong class="dark">알수있어 도움</strong></li>
               </ul>
             </div>
+          </div>
 
-            <!-- 카드 4: AI 브리핑, LGSC 상세정보 -->
-            <div class="positive-item-card">
+          <!-- 카드 4: AI 브리핑, LGSC 상세정보 -->
+          <div class="positive-card-item">
+            <div class="item-num-badge">04</div>
+            <div class="card-content-area">
               <div class="card-title-row">
-                <span class="check-icon-sq">✔</span>
                 <span>AI 브리핑, LGSC 상세정보</span>
               </div>
               <ul class="card-bullet-list">
@@ -607,7 +565,6 @@
                 <li>제품 이력, 기술정보, 수리사례를 한 화면에서 확인할 수 있어 편리</li>
               </ul>
             </div>
-
           </div>
 
         </div>

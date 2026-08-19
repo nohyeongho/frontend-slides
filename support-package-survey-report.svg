@@ -11,6 +11,11 @@
     <filter id="shadow-box" x="-1%" y="-1%" width="102%" height="103%" filterUnits="userSpaceOnUse">
       <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.05"/>
     </filter>
+
+    <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#15803D" />
+      <stop offset="100%" stop-color="#166534" />
+    </linearGradient>
   </defs>
 
   <!-- 전체 배경 -->
@@ -45,11 +50,11 @@
   <g transform="translate(48, 190)">
 
     <!-- ─────────────────────────────────────────────────────────────────
-         [좌측 패널] 긍정 요소
+         [좌측 패널] 긍정 요소 (넘버링 인덱스 카드 리스트로 대치)
          ───────────────────────────────────────────────────────────────── -->
     <g transform="translate(0, 0)">
       
-      <!-- 상단 뱃지 + 설문 문항 (Y: 0 ~ 50) -->
+      <!-- 상단 뱃지 + 설문 문항 -->
       <rect x="0" y="0" width="105" height="34" rx="4" fill="#15803D" />
       <text x="52.5" y="24" fill="#FFFFFF" font-size="16" font-weight="800" text-anchor="middle" class="font-kr">긍정 요소</text>
 
@@ -57,128 +62,97 @@
         설문문항 <tspan dx="16" font-weight="700">• Support Pack. 주요 기능 중 수리 업무 지원 효과가 높은 기능</tspan>
       </text>
 
-      <!-- 본문 영역 (Y: 90 ~ 820) -->
+      <!-- 4개 세련된 카드 리스트 (폭 880, Y: 90) -->
       <g transform="translate(0, 90)">
         
-        <!-- 좌측 도넛 차트 그래픽 (X: 0 ~ 200) -->
-        <g transform="translate(10, 80)">
-          <!-- Segment 1: 통계정보 (Top) -->
-          <path d="M 50,110 A 100,100 0 0,1 150,30 L 150,75 A 55,55 0 0,0 95,120 Z" fill="#94A3B8" />
-          <!-- Segment 2: Contents (Mid-Top) -->
-          <path d="M 50,115 A 100,100 0 0,0 35,230 L 80,230 A 55,55 0 0,1 100,125 Z" fill="#64748B" />
-          <!-- Segment 3: Videos (Mid-Bottom) -->
-          <path d="M 35,235 A 100,100 0 0,0 75,350 L 115,315 A 55,55 0 0,1 80,235 Z" fill="#94A3B8" />
-          <!-- Segment 4: AI 브리핑 (Bottom) -->
-          <path d="M 80,355 A 100,100 0 0,0 180,410 L 170,365 A 55,55 0 0,1 125,320 Z" fill="#CBD5E1" />
-
-          <!-- 포인트 점 -->
-          <circle cx="102" cy="120" r="5" fill="#15803D" />
-          <circle cx="60" cy="225" r="5" fill="#15803D" />
-          <circle cx="90" cy="320" r="5" fill="#15803D" />
-          <circle cx="140" cy="370" r="5" fill="#15803D" />
-
-          <!-- 점선 연결선 (Leader Lines) -->
-          <!-- Line 1 -->
-          <polyline points="102,120 180,60 250,60" fill="none" stroke="#15803D" stroke-width="1.8" stroke-dasharray="4,4" />
-          <circle cx="250" cy="60" r="4.5" fill="#15803D" />
-
-          <!-- Line 2 -->
-          <polyline points="60,225 180,195 250,195" fill="none" stroke="#15803D" stroke-width="1.8" stroke-dasharray="4,4" />
-          <circle cx="250" cy="195" r="4.5" fill="#15803D" />
-
-          <!-- Line 3 -->
-          <polyline points="90,320 180,335 250,335" fill="none" stroke="#15803D" stroke-width="1.8" stroke-dasharray="4,4" />
-          <circle cx="250" cy="335" r="4.5" fill="#15803D" />
-
-          <!-- Line 4 -->
-          <polyline points="140,370 190,470 250,470" fill="none" stroke="#15803D" stroke-width="1.8" stroke-dasharray="4,4" />
-          <circle cx="250" cy="470" r="4.5" fill="#15803D" />
-        </g>
-
-        <!-- 우측 4개 핵심 카드 (X: 270, 폭 580) -->
-        <g transform="translate(270, 0)">
+        <!-- 카드 1: 통계정보, 부품Top10, 부품주문 (Y: 0, 높이 150) -->
+        <g transform="translate(0, 0)">
+          <rect x="0" y="0" width="880" height="148" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.4" filter="url(#shadow-box)"/>
           
-          <!-- 카드 1: 통계정보, 부품Top10, 부품주문 (Y: 0, 높이 150) -->
-          <g transform="translate(0, 0)">
-            <rect x="0" y="0" width="590" height="150" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" filter="url(#shadow-box)"/>
-            
-            <rect x="18" y="16" width="20" height="20" rx="4" fill="#0F172A"/>
-            <text x="28" y="31" fill="#FFFFFF" font-size="12" font-weight="800" text-anchor="middle">✔</text>
-            <text x="46" y="32" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">통계정보, 부품Top10, 부품주문</text>
+          <rect x="18" y="18" width="44" height="44" rx="8" fill="url(#grad-green)"/>
+          <text x="40" y="47" fill="#FFFFFF" font-size="19" font-weight="800" text-anchor="middle" class="font-kr">01</text>
+          
+          <text x="76" y="45" fill="#0F172A" font-size="20" font-weight="800" class="font-kr">통계정보, 부품Top10, 부품주문</text>
 
-            <g transform="translate(46, 62)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ 기술정보와 부품 <tspan fill="#DB2777" font-weight="800">사용 이력을 통해 수리 방향</tspan>을 신속하게 판단 가능
-              </text>
-              <text x="0" y="28" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ 유사 수리 사례 및 통계 조회를 통해 문제 해결 역량 향상
-              </text>
-              <text x="0" y="56" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ <tspan fill="#DB2777" font-weight="800">여러 부품을 한 번에 주문 목록</tspan>에 담을 수 있어 업무 편의성 증대
-              </text>
-            </g>
+          <g transform="translate(76, 78)">
+            <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ 기술정보와 부품 <tspan fill="#DB2777" font-weight="800">사용 이력을 통해 수리 방향</tspan>을 신속하게 판단 가능
+            </text>
+            <text x="0" y="28" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ 유사 수리 사례 및 통계 조회를 통해 문제 해결 역량 향상
+            </text>
+            <text x="0" y="56" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ <tspan fill="#DB2777" font-weight="800">여러 부품을 한 번에 주문 목록</tspan>에 담을 수 있어 업무 편의성 증대
+            </text>
           </g>
-
-          <!-- 카드 2: Contents (Y: 168, 높이 160) -->
-          <g transform="translate(0, 168)">
-            <rect x="0" y="0" width="590" height="160" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" filter="url(#shadow-box)"/>
-            
-            <rect x="18" y="16" width="20" height="20" rx="4" fill="#0F172A"/>
-            <text x="28" y="31" fill="#FFFFFF" font-size="12" font-weight="800" text-anchor="middle">✔</text>
-            <text x="46" y="32" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">Contents</text>
-            <text x="135" y="31" fill="#15803D" font-size="13" font-weight="600" class="font-kr">기술정보, 서비스매뉴얼, 설명서, 분해도, 스펙, 결선도, 스스로해결</text>
-
-            <g transform="translate(46, 64)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ <tspan fill="#DB2777" font-weight="800">관련 정보를 하나의 화면</tspan>에서 통합 제공
-              </text>
-              <text x="0" y="28" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ 기술정보, 매뉴얼, 설명서 등 다양한 자료를 즉시 확인 가능
-              </text>
-              <text x="0" y="56" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ 핵심 정보가 요약 제공되어 <tspan fill="#DB2777" font-weight="800">현장 검색 시간 감소</tspan>
-              </text>
-            </g>
-          </g>
-
-          <!-- 카드 3: Videos (Y: 346, 높이 140) -->
-          <g transform="translate(0, 346)">
-            <rect x="0" y="0" width="590" height="140" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" filter="url(#shadow-box)"/>
-            
-            <rect x="18" y="16" width="20" height="20" rx="4" fill="#0F172A"/>
-            <text x="28" y="31" fill="#FFFFFF" font-size="12" font-weight="800" text-anchor="middle">✔</text>
-            <text x="46" y="32" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">Videos</text>
-            <text x="115" y="31" fill="#15803D" font-size="13" font-weight="600" class="font-kr">배움마당, YouTube 영상</text>
-
-            <g transform="translate(46, 64)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ 영상 기반의 시각적 가이드를 제공하여 <tspan fill="#DB2777" font-weight="800">저빈도·난수리 제품의 수리에 도움</tspan>
-              </text>
-              <text x="0" y="30" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ <tspan fill="#DB2777" font-weight="800">이미지가 아닌 실제 영상</tspan>을 통해 점검 방법을 <tspan font-weight="800">알수있어 도움</tspan>
-              </text>
-            </g>
-          </g>
-
-          <!-- 카드 4: AI 브리핑, LGSC 상세정보 (Y: 504, 높이 134) -->
-          <g transform="translate(0, 504)">
-            <rect x="0" y="0" width="590" height="134" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2" filter="url(#shadow-box)"/>
-            
-            <rect x="18" y="16" width="20" height="20" rx="4" fill="#0F172A"/>
-            <text x="28" y="31" fill="#FFFFFF" font-size="12" font-weight="800" text-anchor="middle">✔</text>
-            <text x="46" y="32" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">AI 브리핑, LGSC 상세정보</text>
-
-            <g transform="translate(46, 62)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ AI가 핵심 이슈와 우선 확인 항목을 요약 제공하여 신속한 문제 진단 지원
-              </text>
-              <text x="0" y="28" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
-                ▫ 제품 이력, 기술정보, 수리사례를 한 화면에서 확인할 수 있어 편리
-              </text>
-            </g>
-          </g>
-
         </g>
+
+        <!-- 카드 2: Contents (Y: 164, 높이 156) -->
+        <g transform="translate(0, 164)">
+          <rect x="0" y="0" width="880" height="154" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.4" filter="url(#shadow-box)"/>
+          
+          <rect x="18" y="18" width="44" height="44" rx="8" fill="url(#grad-green)"/>
+          <text x="40" y="47" fill="#FFFFFF" font-size="19" font-weight="800" text-anchor="middle" class="font-kr">02</text>
+          
+          <text x="76" y="45" fill="#0F172A" font-size="20" font-weight="800" class="font-kr">Contents</text>
+          
+          <rect x="175" y="25" width="440" height="26" rx="4" fill="#ECFDF5" stroke="#D1FAE5" stroke-width="1"/>
+          <text x="185" y="43" fill="#15803D" font-size="13" font-weight="600" class="font-kr">기술정보, 서비스매뉴얼, 설명서, 분해도, 스펙, 결선도, 스스로해결</text>
+
+          <g transform="translate(76, 80)">
+            <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ <tspan fill="#DB2777" font-weight="800">관련 정보를 하나의 화면</tspan>에서 통합 제공
+            </text>
+            <text x="0" y="28" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ 기술정보, 매뉴얼, 설명서 등 다양한 자료를 즉시 확인 가능
+            </text>
+            <text x="0" y="56" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ 핵심 정보가 요약 제공되어 <tspan fill="#DB2777" font-weight="800">현장 검색 시간 감소</tspan>
+            </text>
+          </g>
+        </g>
+
+        <!-- 카드 3: Videos (Y: 334, 높이 142) -->
+        <g transform="translate(0, 334)">
+          <rect x="0" y="0" width="880" height="142" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.4" filter="url(#shadow-box)"/>
+          
+          <rect x="18" y="18" width="44" height="44" rx="8" fill="url(#grad-green)"/>
+          <text x="40" y="47" fill="#FFFFFF" font-size="19" font-weight="800" text-anchor="middle" class="font-kr">03</text>
+          
+          <text x="76" y="45" fill="#0F172A" font-size="20" font-weight="800" class="font-kr">Videos</text>
+
+          <rect x="156" y="25" width="180" height="26" rx="4" fill="#ECFDF5" stroke="#D1FAE5" stroke-width="1"/>
+          <text x="166" y="43" fill="#15803D" font-size="13" font-weight="600" class="font-kr">배움마당, YouTube 영상</text>
+
+          <g transform="translate(76, 80)">
+            <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ 영상 기반의 시각적 가이드를 제공하여 <tspan fill="#DB2777" font-weight="800">저빈도·난수리 제품의 수리에 도움</tspan>
+            </text>
+            <text x="0" y="30" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ <tspan fill="#DB2777" font-weight="800">이미지가 아닌 실제 영상</tspan>을 통해 점검 방법을 <tspan font-weight="800">알수있어 도움</tspan>
+            </text>
+          </g>
+        </g>
+
+        <!-- 카드 4: AI 브리핑, LGSC 상세정보 (Y: 492, 높이 146) -->
+        <g transform="translate(0, 492)">
+          <rect x="0" y="0" width="880" height="146" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.4" filter="url(#shadow-box)"/>
+          
+          <rect x="18" y="18" width="44" height="44" rx="8" fill="url(#grad-green)"/>
+          <text x="40" y="47" fill="#FFFFFF" font-size="19" font-weight="800" text-anchor="middle" class="font-kr">04</text>
+          
+          <text x="76" y="45" fill="#0F172A" font-size="20" font-weight="800" class="font-kr">AI 브리핑, LGSC 상세정보</text>
+
+          <g transform="translate(76, 80)">
+            <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ AI가 핵심 이슈와 우선 확인 항목을 요약 제공하여 신속한 문제 진단 지원
+            </text>
+            <text x="0" y="28" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
+              ▫ 제품 이력, 기술정보, 수리사례를 한 화면에서 확인할 수 있어 편리
+            </text>
+          </g>
+        </g>
+
       </g>
 
     </g>
@@ -187,9 +161,9 @@
     <!-- ─────────────────────────────────────────────────────────────────
          [우측 패널] 개선 과제
          ───────────────────────────────────────────────────────────────── -->
-    <g transform="translate(914, 0)">
+    <g transform="translate(944, 0)">
       
-      <!-- 상단 뱃지 + 설문 문항 (Y: 0 ~ 50) -->
+      <!-- 상단 뱃지 + 설문 문항 -->
       <rect x="0" y="0" width="105" height="34" rx="4" fill="#334155" />
       <text x="52.5" y="24" fill="#FFFFFF" font-size="16" font-weight="800" text-anchor="middle" class="font-kr">개선 과제</text>
 
@@ -197,24 +171,24 @@
         설문문항 <tspan dx="16" font-weight="700">• Support Pack. 신규 기능에 대한 현장 사용 불편 사항 및 개선 의견</tspan>
       </text>
 
-      <!-- 본문: 둥근 모서리 통합 컨테이너 박스 (Y: 90, 폭 910, 높이 638) -->
+      <!-- 본문: 둥근 모서리 통합 컨테이너 박스 (Y: 90, 폭 880, 높이 638) -->
       <g transform="translate(0, 90)">
-        <rect x="0" y="0" width="910" height="638" rx="14" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.8" filter="url(#shadow-box)"/>
+        <rect x="0" y="0" width="880" height="638" rx="12" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1.8" filter="url(#shadow-box)"/>
 
-        <!-- 5대 개선 항목 리스트 (내부 패딩: X: 28, Y: 24) -->
-        <g transform="translate(28, 24)">
+        <!-- 5대 개선 항목 리스트 -->
+        <g transform="translate(26, 24)">
           
           <!-- 1. 통계정보, 부품Top10, 부품주문 (Y: 0) -->
           <g transform="translate(0, 0)">
             <circle cx="12" cy="12" r="11" fill="#0F172A"/>
             <text x="12" y="16" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle">✔</text>
-            <text x="32" y="18" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">통계정보, 부품Top10, 부품주문</text>
+            <text x="32" y="18" fill="#0F172A" font-size="19" font-weight="800" class="font-kr">통계정보, 부품Top10, 부품주문</text>
 
             <g transform="translate(32, 44)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • 부품 목록에서 표시되어 규격을 구분하기 어려우므로, RING(4/3)처럼 <tspan fill="#DB2777" font-weight="800">부품규격을 함께 표시</tspan>
               </text>
-              <text x="0" y="26" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="26" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • <tspan fill="#DB2777" font-weight="800">난수리 사례에서 사용한 부품 통계</tspan>를 제공하면 어려운 수리를 해결하는 데 도움이 될 것 같다
               </text>
             </g>
@@ -224,13 +198,13 @@
           <g transform="translate(0, 116)">
             <circle cx="12" cy="12" r="11" fill="#0F172A"/>
             <text x="12" y="16" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle">✔</text>
-            <text x="32" y="18" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">Contents</text>
+            <text x="32" y="18" fill="#0F172A" font-size="19" font-weight="800" class="font-kr">Contents</text>
 
             <g transform="translate(32, 44)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • 기술정보는 그림으로 이해하기 어려우므로 <tspan fill="#DB2777" font-weight="800">실제 사진 등록을 요청합니다.</tspan>
               </text>
-              <text x="0" y="26" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="26" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • 현장 활용도가 높은 콘텐츠 중심의 정보 제공 강화 필요
               </text>
             </g>
@@ -240,13 +214,13 @@
           <g transform="translate(0, 232)">
             <circle cx="12" cy="12" r="11" fill="#0F172A"/>
             <text x="12" y="16" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle">✔</text>
-            <text x="32" y="18" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">Videos</text>
+            <text x="32" y="18" fill="#0F172A" font-size="19" font-weight="800" class="font-kr">Videos</text>
 
             <g transform="translate(32, 44)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • 다양한 고장 증상과 수리 사례를 보강하고, <tspan fill="#DB2777" font-weight="800">시스템에어컨 시운전 및 제품별 테스트 영상을 확대</tspan>
               </text>
-              <text x="0" y="26" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="26" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • SM이 사전 준비 없이 현장에서 수리 및 제품 분해·조립이 가능하도록 콘텐츠 지속 업데이트
               </text>
             </g>
@@ -256,13 +230,13 @@
           <g transform="translate(0, 348)">
             <circle cx="12" cy="12" r="11" fill="#0F172A"/>
             <text x="12" y="16" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle">✔</text>
-            <text x="32" y="18" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">AI브리핑</text>
+            <text x="32" y="18" fill="#0F172A" font-size="19" font-weight="800" class="font-kr">AI브리핑</text>
 
             <g transform="translate(32, 44)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • 포털 검색처럼 쉽고, 자유로운 대화 방식으로 <tspan fill="#DB2777" font-weight="800">연속 질문할 수 있도록 검색 기능을 개선</tspan>
               </text>
-              <text x="0" y="26" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="26" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • 일부 증상은 관련 정보가 없거나 데이터 부족 안내가 표시됩니다. <tspan fill="#DB2777" font-weight="800">다양한 수리 사례와 증상 데이터가 지속적으로 반영</tspan>
               </text>
             </g>
@@ -272,13 +246,13 @@
           <g transform="translate(0, 464)">
             <circle cx="12" cy="12" r="11" fill="#0F172A"/>
             <text x="12" y="16" fill="#FFFFFF" font-size="11" font-weight="800" text-anchor="middle">✔</text>
-            <text x="32" y="18" fill="#0F172A" font-size="18.5" font-weight="800" class="font-kr">Qbot</text>
+            <text x="32" y="18" fill="#0F172A" font-size="19" font-weight="800" class="font-kr">Qbot</text>
 
             <g transform="translate(32, 44)">
-              <text x="0" y="0" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="0" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • 부품 사진과 고장 소리를 분석하고, <tspan fill="#DB2777" font-weight="800">난수리 사례 및 실제 사용 부품 통계를 제공</tspan>하여 현장 수리 판단을 지원
               </text>
-              <text x="0" y="26" fill="#0F172A" font-size="15.5" font-weight="500" class="font-kr">
+              <text x="0" y="26" fill="#0F172A" font-size="16" font-weight="500" class="font-kr">
                 • 노하우나 정보등을 댓글형태로 달거나 의견 추가할수 있는 <tspan font-weight="800">기능이있으면 좋을것 같음.</tspan>
               </text>
             </g>
