@@ -13,8 +13,8 @@
     /* ==========================================================================
        [Design OS & Pretendard Typography System]
        - 16:9 슬라이드 정중앙 정렬 및 5:5 완벽 대칭 레이아웃
-       - 고급 BI 대시보드(Tableau/Power BI) 수준의 부드러운 Hover 인터랙션
-       - 데이터, 텍스트, HTML 구조는 100% 원본 유지
+       - 최신 SVG와 100% 완벽 일치 동기화
+       - 선명한 딥 블랙(#0F172A, #1E293B) 텍스트 및 은은한 표 테두리(#CBD5E1) 유지
        ========================================================================== */
     :root {
       /* 색상 토큰 */
@@ -100,15 +100,13 @@
       align-items: center;
       gap: 6px;
       box-shadow: var(--shadow-sm);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.2s ease;
     }
 
     .btn-tool:hover {
       background-color: var(--bg-card);
       border-color: var(--primary-blue);
       color: var(--primary-blue);
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.15);
     }
 
     /* ==========================================================================
@@ -179,14 +177,6 @@
       align-items: center;
       justify-content: flex-start;
       margin-bottom: 8px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-
-    .key-message-bar:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 16px -2px rgba(15, 23, 42, 0.06);
-      border-color: #cbd5e1;
     }
 
     .key-text {
@@ -279,11 +269,6 @@
       color: var(--text-heading);
       font-weight: 600;
       font-size: 13.5px;
-      transition: background-color 0.2s ease;
-    }
-
-    .horizontal-compare-table tbody tr:hover td {
-      background-color: rgba(241, 245, 249, 0.7);
     }
 
     .horizontal-compare-table td.td-label {
@@ -302,10 +287,6 @@
       border-color: var(--accent-red-border);
     }
 
-    .horizontal-compare-table tbody tr:hover td.td-luna-col {
-      background-color: #fae8ed;
-    }
-
     /* 토큰 비용 정보 박스 */
     .actual-cost-info-box {
       background: #f8fafc;
@@ -319,15 +300,6 @@
       margin-top: 2px;
       margin-bottom: 2px;
       box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-
-    .actual-cost-info-box:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 14px -2px rgba(15, 23, 42, 0.07);
-      border-color: #94a3b8;
-      background: #ffffff;
     }
 
     .cost-info-left {
@@ -415,15 +387,6 @@
       font-weight: 600;
       margin-top: 12px;
       margin-bottom: 6px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-
-    .annual-saving-callout:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 18px -3px rgba(193, 9, 51, 0.08);
-      border-color: #f5d6de;
-      background-color: #ffffff;
     }
 
     .annual-saving-callout strong {
@@ -436,7 +399,7 @@
       font-weight: 800;
     }
 
-    /* ② 비용 절감 시각화 듀얼 세로형 막대그래프 (Hover 인터랙션 적용) */
+    /* ② 비용 절감 시각화 듀얼 세로형 막대그래프 (하단 바닥선에 안정적으로 정렬) */
     .chart-section-wrap {
       display: flex;
       flex-direction: column;
@@ -460,15 +423,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-
-    .chart-card-box:hover {
-      transform: translateY(-2px);
-      background-color: #ffffff;
-      box-shadow: 0 8px 16px -2px rgba(15, 23, 42, 0.06);
-      border-color: #cbd5e1;
     }
 
     .chart-card-title {
@@ -488,11 +442,6 @@
       font-weight: 800;
       padding: 2px 6px;
       border-radius: 4px;
-      transition: transform 0.2s ease;
-    }
-
-    .chart-card-box:hover .badge-reduction {
-      transform: scale(1.05);
     }
 
     .chart-plot-area-mini {
@@ -549,13 +498,6 @@
       align-items: flex-start;
       justify-content: center;
       position: relative;
-      transition: filter 0.2s ease, transform 0.2s ease;
-    }
-
-    .bar-pillar-mini:hover {
-      filter: brightness(1.1);
-      transform: scaleY(1.02);
-      transform-origin: bottom;
     }
 
     .bar-val-badge-mini {
@@ -595,7 +537,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       [우측 영역]
+       [우측 영역] (★ 100만 토큰 카드 글자 대폭 확대)
        -------------------------------------------------------------------------- */
     .right-panel {
       background-color: #ffffff;
@@ -610,7 +552,7 @@
       gap: 10px;
     }
 
-    /* 1. ★ 100만 Token 물리적 규모 (KPI 카드 Hover 효과 적용) */
+    /* 1. ★ 100만 Token 물리적 규모 (글자 대폭 확대) */
     .token-scale-section {
       background-color: #f8fafc;
       border: 1px solid var(--border-subtle);
@@ -653,15 +595,6 @@
       display: flex;
       align-items: center;
       gap: 14px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-    }
-
-    .scale-item-card:hover {
-      transform: translateY(-3px) scale(1.015);
-      box-shadow: 0 10px 22px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
-      border-color: #94a3b8;
     }
 
     .scale-icon-wrap {
@@ -676,12 +609,6 @@
       justify-content: center;
       color: var(--text-heading);
       font-size: 24px;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    .scale-item-card:hover .scale-icon-wrap {
-      background: #e2e8f0;
-      transform: scale(1.06);
     }
 
     .scale-item-text {
@@ -697,7 +624,7 @@
       font-weight: 800;
     }
 
-    /* 2. GPT-4.1 → GPT-5.6 Luna 전환 효과 6대 핵심 카드 (Hover 인터랙션 적용) */
+    /* 2. GPT-4.1 → GPT-5.6 Luna 전환 효과 6대 핵심 카드 */
     .transition-effects-section {
       background-color: #f8fafc;
       border: 1px solid var(--border-subtle);
@@ -732,15 +659,6 @@
       gap: 8px;
       min-height: 138px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-
-    .effect-mini-card:hover {
-      transform: translateY(-3px) scale(1.02);
-      box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.09), 0 4px 6px -2px rgba(15, 23, 42, 0.03);
-      border-color: #cbd5e1;
-      background-color: #fcfdfe;
     }
 
     .effect-card-title {
@@ -777,7 +695,7 @@
       margin-top: 2px;
     }
 
-    /* 3. Executive Summary (분석창 Hover 효과 적용) */
+    /* 3. Executive Summary (최신 텍스트 반영) */
     .summary-box-panel {
       background: #f8fafc;
       border: 1.2px solid #cbd5e1;
@@ -787,15 +705,6 @@
       flex-direction: column;
       gap: 6px;
       justify-content: center;
-      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: default;
-    }
-
-    .summary-box-panel:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px -3px rgba(15, 23, 42, 0.08);
-      border-color: #94a3b8;
-      background: #ffffff;
     }
 
     .summary-badge-tag {
@@ -808,11 +717,6 @@
       text-transform: uppercase;
       letter-spacing: 0.04em;
       align-self: flex-start;
-      transition: background-color 0.2s ease;
-    }
-
-    .summary-box-panel:hover .summary-badge-tag {
-      background-color: var(--accent-red);
     }
 
     .summary-panel-text {
@@ -859,13 +763,16 @@
       }
     }
 
-    @media (max-width: 1024px) {
+    @media (max-width: 1100px) {
       .slide-wrapper {
         aspect-ratio: auto;
         height: auto;
       }
       .main-grid {
         grid-template-columns: 1fr;
+      }
+      .transition-cards-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
   </style>
@@ -874,7 +781,7 @@
 
   <!-- 상단 액션 툴바 -->
   <aside class="toolbar" aria-label="보고서 도구 모음">
-    <a href="5.6변경.svg" download="GPT-5.6_Luna_Executive_Report.svg" class="btn-tool" style="text-decoration: none;" title="16:9 고해상도 벡터 SVG 파일을 다운로드합니다">
+    <a href="executive-qbot-luna-report.svg" download="GPT-5.6_Luna_Report_Slide.svg" class="btn-tool" style="text-decoration: none;" title="16:9 고해상도 벡터 SVG 파일을 다운로드합니다">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
       <span>SVG 벡터 다운로드</span>
     </a>
@@ -888,10 +795,10 @@
     </button>
   </aside>
 
-  <!-- 16:9 슬라이드 메인 프레임 -->
+  <!-- 메인 16:9 슬라이드 컨테이너 -->
   <main class="slide-wrapper" id="slide">
     
-    <!-- 1. 상단 슬라이드 헤더 -->
+    <!-- 1. 슬라이드 헤더 -->
     <header class="slide-header">
       <div class="header-left">
         <h1 class="slide-title">유첨.AI모델 변경 운영 효율화</h1>
@@ -900,150 +807,158 @@
       </div>
     </header>
 
-    <!-- 2. 핵심 메시지 띠 (Executive Takeaway) -->
-    <section class="key-message-bar" aria-label="핵심 메시지">
-      <p class="key-text">
-        SM Qbot GPT-4.1 → GPT-5.6 Luna 전환을 통한 <span class="highlight">AI 운영비용 절감</span>
-      </p>
+    <!-- 2. 임원용 핵심 메시지 배너 (Executive Takeaway) -->
+    <section class="key-message-bar" aria-label="핵심 요약 메시지">
+      <div class="key-message-content">
+        <h2 class="key-text">
+          SM Qbot GPT-4.1 → GPT-5.6 Luna 전환을 통한 <span class="highlight">AI 운영비용 절감</span>
+        </h2>
+      </div>
     </section>
 
-    <!-- 3. 메인 콘텐츠 그리드 (좌우 5:5 대칭) -->
-    <section class="main-grid" aria-label="보고서 본문 비교">
+    <!-- 3. 중앙 본문 그리드: 좌측(50%) vs 우측(50%) 완벽 1:1 대칭 -->
+    <section class="main-grid" aria-label="상세 비교 및 성과 지표">
       
-      <!-- ====================================================================
-           [좌측 영역] 비용 비교 분석
-           ==================================================================== -->
+      <!-- [좌측 영역] 모델 비교표 + 토큰 비용 실적 정보 박스 + 연간 절감 문구 + 듀얼 차트 -->
       <article class="left-panel">
         
-        <div class="section-header-wrap">
-          <h2 class="section-main-title">GPT 모델별 Token 비용 비교</h2>
-          <div class="section-sub-tag">Per 1 Million Tokens</div>
+        <!-- ① 모델 비교 테이블 -->
+        <div>
+          <div class="section-header-wrap">
+            <h3 class="section-main-title">GPT 모델별 Token 비용 비교</h3>
+            <div class="section-sub-tag">Per 1 Million Tokens</div>
+          </div>
+
+          <table class="horizontal-compare-table">
+            <thead>
+              <tr>
+                <th style="width: 17%;">구분</th>
+                <th style="width: 21%;">GPT-4.1</th>
+                <th style="width: 21%;">GPT-5.6 Sol</th>
+                <th style="width: 20%;">GPT-5.6 Terra</th>
+                <th style="width: 21%;" class="th-luna-header">GPT-5.6 Luna</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="td-label">Input</td>
+                <td>$2.00</td>
+                <td>$5.00</td>
+                <td>$2.00</td>
+                <td class="td-luna-col">$0.20</td>
+              </tr>
+              <tr>
+                <td class="td-label">Output</td>
+                <td>$8.00</td>
+                <td>$30.00</td>
+                <td>$12.00</td>
+                <td class="td-luna-col">$1.20</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
-        <!-- ① 모델 비교 테이블 -->
-        <table class="horizontal-compare-table">
-          <thead>
-            <tr>
-              <th>구분</th>
-              <th>GPT-4.1</th>
-              <th>GPT-5.6 Sol</th>
-              <th class="th-luna-header">GPT-5.6 Luna</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="td-label">Input (입력)</td>
-              <td>$2.00</td>
-              <td>$0.50</td>
-              <td class="td-luna-col">$0.20</td>
-            </tr>
-            <tr>
-              <td class="td-label">Output (출력)</td>
-              <td>$8.00</td>
-              <td>$2.00</td>
-              <td class="td-luna-col">$0.80</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 실제 SM Qbot 운영 토큰 비용 박스 -->
+        <!-- 토큰 비용 정보 박스 -->
         <div class="actual-cost-info-box">
           <div class="cost-info-left">
             <div class="cost-info-header">
-              <span class="icon-tag">📊</span>
-              <span>SM Qbot 1회 호출 기준 토큰 사용량 & 비용</span>
+              <span class="icon-tag">💳</span>
+              <span>토큰 비용 (2026.05 기준)</span>
             </div>
             <div class="cost-info-items">
               <div class="cost-info-item">
-                <span class="item-label">입력:</span>
-                <span class="item-value">8,600 Token ($0.0017)</span>
+                <span class="item-label">• 상담 :</span>
+                <span class="item-value">12,142,082원</span>
               </div>
               <div class="cost-info-item">
-                <span class="item-label">출력:</span>
-                <span class="item-value">1,500 Token ($0.0012)</span>
+                <span class="item-label">• SM :</span>
+                <span class="item-value">6,763,966원</span>
               </div>
             </div>
           </div>
+
+          <!-- TOTAL -->
           <div class="cost-info-total-wrap">
-            <span class="total-badge-label">1회 호출 총 비용</span>
-            <span class="total-amount-val">$0.0029 (약 4.2원)</span>
+            <span class="total-badge-label">TOTAL</span>
+            <span class="total-amount-val">18,910,820원</span>
           </div>
         </div>
 
-        <!-- 연간 비용 절감 효과 설명 박스 -->
+        <!-- 연간 비용 절감 콜아웃 박스 (최신 텍스트 반영) -->
         <div class="annual-saving-callout">
-          SM Qbot 운영 기준 연간 AI 비용은 약 8,117만원 수준이며, <strong>GPT-5.6 Luna 적용 시 운영비를 크게 절감 할 수 있어 연간 약 6,900만원 규모의 비용 효율화 효과가 기대됨</strong>
+          SM Qbot 운영 기준 연간 AI 비용은 약 <span class="highlight-dark">8,117만원</span> 수준이며,<br>
+          <strong>GPT-5.6 Luna 적용 시 운영비를 크게 절감</strong> 할 수 있어 연간 약 6,900만원 규모의 비용 효율화 효과가 기대됨
         </div>
 
-        <!-- ② 비용 절감 시각화 듀얼 세로형 막대그래프 -->
+        <!-- ② 비용 절감 시각화 듀얼 세로형 막대그래프 (하단 바닥선에 안정적으로 정렬) -->
         <div class="chart-section-wrap">
           <div class="dual-charts-grid">
             
-            <!-- 그래프 1: 1M 토큰당 비용 -->
+            <!-- 1. Input 비용 비교 차트 ($2.00 vs $0.20 -> 90% 절감) -->
             <div class="chart-card-box">
               <div class="chart-card-title">
-                <span>1M 토큰당 비용</span>
-                <span class="badge-reduction">90.0% 절감</span>
+                <span>Input 비용 비교</span>
+                <span class="badge-reduction">90% 절감</span>
               </div>
-              
               <div class="chart-plot-area-mini">
                 <div class="y-axis-labels-mini">
-                  <span>$10</span>
-                  <span>$5</span>
+                  <span>$2.00</span>
+                  <span>$1.00</span>
                   <span>$0</span>
                 </div>
                 <div class="grid-line-mini" style="bottom: 100%;"></div>
                 <div class="grid-line-mini" style="bottom: 50%;"></div>
-                
+                <div class="grid-line-mini" style="bottom: 0;"></div>
+
+                <!-- GPT-4.1 ($2.00) -->
                 <div class="bar-column-mini">
-                  <div class="bar-pillar-mini bar-old" style="height: 60px;">
-                    <span class="bar-val-badge-mini">$10.0</span>
-                  </div>
+                  <span class="bar-val-badge-mini">$2.00</span>
+                  <div class="bar-pillar-mini bar-old" style="height: 48px;" title="GPT-4.1 Input: $2.00"></div>
                 </div>
+
+                <!-- GPT-5.6 Luna ($0.20 - LG Red #C10933) -->
                 <div class="bar-column-mini">
-                  <div class="bar-pillar-mini bar-new" style="height: 6px;">
-                    <span class="bar-val-badge-mini">$1.0</span>
-                  </div>
+                  <span class="bar-val-badge-mini">$0.20</span>
+                  <div class="bar-pillar-mini bar-new" style="height: 5px;" title="GPT-5.6 Luna Input: $0.20 (90% 절감)"></div>
                 </div>
               </div>
-              
               <div class="x-axis-labels-mini">
-                <span class="x-label-mini">GPT-4.1</span>
-                <span class="x-label-mini">5.6 Luna</span>
+                <div class="x-label-mini">GPT-4.1</div>
+                <div class="x-label-mini" style="color: var(--accent-red); font-weight: 800;">Luna</div>
               </div>
             </div>
 
-            <!-- 그래프 2: 연간 환산 운영비 -->
+            <!-- 2. Output 비용 비교 차트 ($8.00 vs $1.20 -> 85% 절감) -->
             <div class="chart-card-box">
               <div class="chart-card-title">
-                <span>연간 환산 운영비</span>
-                <span class="badge-reduction">85.0% 절감</span>
+                <span>Output 비용 비교</span>
+                <span class="badge-reduction">85% 절감</span>
               </div>
-              
               <div class="chart-plot-area-mini">
                 <div class="y-axis-labels-mini">
-                  <span>8천만</span>
-                  <span>4천만</span>
-                  <span>0</span>
+                  <span>$8.00</span>
+                  <span>$4.00</span>
+                  <span>$0</span>
                 </div>
                 <div class="grid-line-mini" style="bottom: 100%;"></div>
                 <div class="grid-line-mini" style="bottom: 50%;"></div>
-                
+                <div class="grid-line-mini" style="bottom: 0;"></div>
+
+                <!-- GPT-4.1 ($8.00) -->
                 <div class="bar-column-mini">
-                  <div class="bar-pillar-mini bar-old" style="height: 60px;">
-                    <span class="bar-val-badge-mini">8,117만</span>
-                  </div>
+                  <span class="bar-val-badge-mini">$8.00</span>
+                  <div class="bar-pillar-mini bar-old" style="height: 48px;" title="GPT-4.1 Output: $8.00"></div>
                 </div>
+
+                <!-- GPT-5.6 Luna ($1.20 - LG Red #C10933) -->
                 <div class="bar-column-mini">
-                  <div class="bar-pillar-mini bar-new" style="height: 9px;">
-                    <span class="bar-val-badge-mini">1,217만</span>
-                  </div>
+                  <span class="bar-val-badge-mini">$1.20</span>
+                  <div class="bar-pillar-mini bar-new" style="height: 8px;" title="GPT-5.6 Luna Output: $1.20 (85% 절감)"></div>
                 </div>
               </div>
-              
               <div class="x-axis-labels-mini">
-                <span class="x-label-mini">GPT-4.1</span>
-                <span class="x-label-mini">5.6 Luna</span>
+                <div class="x-label-mini">GPT-4.1</div>
+                <div class="x-label-mini" style="color: var(--accent-red); font-weight: 800;">Luna</div>
               </div>
             </div>
 
@@ -1052,33 +967,30 @@
 
       </article>
 
-
-      <!-- ====================================================================
-           [우측 영역] 전환 효과 및 추진 방향
-           ==================================================================== -->
+      <!-- [우측 영역] -->
       <article class="right-panel">
         
-        <!-- 1. ★ 100만 Token 물리적 규모 (글자 대폭 확대) -->
+        <!-- 1. 100만 Token의 물리적 규모 -->
         <div class="token-scale-section">
           <div class="token-scale-head">
-            <h2 class="token-scale-main-title">100만 Token의 물리적 규모</h2>
-            <span class="token-scale-sub-desc">1M Token 처리 능력 체감 지표</span>
+            <h3 class="token-scale-main-title">100만 Token의 물리적 규모</h3>
+            <div class="token-scale-sub-desc">1 토큰 = 약 0.75단어 (한글 형태소 단위, AI 기본 처리 단위)</div>
           </div>
-          
+
           <div class="scale-items-grid">
             <div class="scale-item-card">
-              <div class="scale-icon-wrap">📚</div>
+              <div class="scale-icon-wrap">📄</div>
               <div class="scale-item-text">
-                책 약 <strong>3~4권</strong> 분량<br>
-                (약 75만 단어 / 한글 150만자)
+                <strong>A4 용지 기준 약 1,500장</strong><br>
+                분량의 방대한 텍스트 원문
               </div>
             </div>
 
             <div class="scale-item-card">
-              <div class="scale-icon-wrap">💬</div>
+              <div class="scale-icon-wrap">🎧</div>
               <div class="scale-item-text">
-                SM Qbot 상담 <strong>100회~120회</strong><br>
-                (1회당 8.6천 Input + 1.5천 Output)
+                큐봇 1회 평균 3,500 토큰 기준,<br>
+                <strong>약 256건 질의응답을 처리할 수 있는 규모</strong>
               </div>
             </div>
           </div>
@@ -1086,24 +998,24 @@
 
         <!-- 2. GPT-4.1 → GPT-5.6 Luna 전환 효과 6대 핵심 카드 -->
         <div class="transition-effects-section">
-          <h2 class="transition-head-title">GPT-4.1 → GPT-5.6 Luna 전환 효과</h2>
+          <h3 class="transition-head-title">GPT-4.1 → GPT-5.6 Luna 전환 효과</h3>
           
           <div class="transition-cards-grid">
-            <!-- ① 추론 비용 절감 -->
+            <!-- ① 응답 속도 -->
             <div class="effect-mini-card">
-              <div class="effect-card-title"><span>📉</span> <span>추론 비용 절감</span></div>
+              <div class="effect-card-title"><span>⚡</span> <span>응답 속도</span></div>
               <p class="effect-card-desc">
-                토큰당 단가 대폭 인하로<br>
-                <strong class="red">AI 운영비 최대 90% 절감</strong>
+                GPT-4.1 대비 사용자 체감<br>
+                응답속도 대폭 향상
               </p>
             </div>
 
-            <!-- ② 응답 속도 개선 -->
+            <!-- ② 응답 품질 -->
             <div class="effect-mini-card">
-              <div class="effect-card-title"><span>⚡</span> <span>응답 속도 개선</span></div>
+              <div class="effect-card-title"><span>✅</span> <span>응답 품질</span></div>
               <p class="effect-card-desc">
-                경량화 및 최적화 아키텍처로<br>
-                <strong class="blue">체감 대기 시간 단축</strong>
+                기술정보·매뉴얼·수리사례<br>
+                기반 동일 수준 답변 제공
               </p>
             </div>
 
@@ -1111,25 +1023,27 @@
             <div class="effect-mini-card">
               <div class="effect-card-title"><span>🛡️</span> <span>응답 안정성</span></div>
               <p class="effect-card-desc">
-                할루시네이션(환각) 억제
+                출처 기반 답변 강화로<br>
+                보다 안정적인 정보 제공
+              </p>
+              <div class="sub-detail">할루시네이션(환각) 억제</div>
+            </div>
+
+            <!-- ④ 운영 비용 -->
+            <div class="effect-mini-card">
+              <div class="effect-card-title"><span>💰</span> <span>운영 비용</span></div>
+              <p class="effect-card-desc">
+                동일 수준 서비스 제공 시<br>
+                <strong class="red">운영비 최대 90% 절감</strong>
               </p>
             </div>
 
-            <!-- ④ Multi-turn 대화 고도화 -->
+            <!-- ⑤ 사용자 지원 -->
             <div class="effect-mini-card">
-              <div class="effect-card-title"><span>🔄</span> <span>대화 고도화</span></div>
+              <div class="effect-card-title"><span>👥</span> <span>사용자 지원</span></div>
               <p class="effect-card-desc">
-                비용 부담 없이 이전 맥락을 유지하며<br>
-                <strong class="blue">연속 대화 품질 향상</strong>
-              </p>
-            </div>
-
-            <!-- ⑤ 다양한 정보 제공 -->
-            <div class="effect-mini-card">
-              <div class="effect-card-title"><span>📋</span> <span>정보 제공 다양화</span></div>
-              <p class="effect-card-desc">
-                비용 효율화를 기반으로<br>
-                <strong class="blue">다양하고 풍부한 정보</strong> 제공
+                동일 예산 기준 더 많은<br>
+                상담원 및 SM 지원 가능
               </p>
             </div>
 
