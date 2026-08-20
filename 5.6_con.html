@@ -13,7 +13,7 @@
     /* ==========================================================================
        [Design OS & Pretendard Typography System]
        - 16:9 슬라이드 정중앙 정렬 및 5:5 완벽 대칭 레이아웃
-       - 최신 SVG와 100% 완벽 일치 동기화
+       - PPT 보고서 연계 복귀 버튼 추가 (가이드 준수: #F5F5F5 / #D9D9D9 / #666666)
        - 선명한 딥 블랙(#0F172A, #1E293B) 텍스트 및 은은한 표 테두리(#CBD5E1) 유지
        ========================================================================== */
     :root {
@@ -79,7 +79,7 @@
     /* 상단 유틸리티 툴바 */
     .toolbar {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       margin-bottom: 10px;
       align-items: center;
       width: 100%;
@@ -87,12 +87,42 @@
       justify-content: flex-end;
     }
 
+    /* PPT 보고서로 돌아가기 버튼 (디자인 가이드 엄격 준수) */
+    .btn-return-ppt {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      height: 30px;                     /* 28~32px 규격 */
+      padding: 0 12px;
+      font-size: 12px;                  /* 12px 폰트 */
+      font-family: var(--font-family);  /* LG Regular 스타일 */
+      color: #666666;                   /* 텍스트: #666666 */
+      background-color: #F5F5F5;        /* 배경: #F5F5F5 */
+      border: 1px solid #D9D9D9;        /* 테두리: #D9D9D9 */
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      font-weight: 500;
+      line-height: 1;
+      transition: background-color 0.15s ease, border-color 0.15s ease;
+      white-space: nowrap;
+      margin-right: auto;               /* 좌측에 자연스럽게 배치 */
+    }
+
+    .btn-return-ppt:hover {
+      background-color: #EDEDED;        /* Hover 배경: #EDEDED */
+      border-color: #CCCCCC;
+      color: #333333;
+    }
+
     .btn-tool {
       background-color: #ffffff;
       color: var(--text-body);
       border: 1px solid var(--border-subtle);
-      padding: 7px 14px;
-      font-size: 13px;
+      padding: 6px 12px;
+      height: 30px;
+      font-size: 12.5px;
       font-weight: 500;
       border-radius: 6px;
       cursor: pointer;
@@ -399,7 +429,7 @@
       font-weight: 800;
     }
 
-    /* ② 비용 절감 시각화 듀얼 세로형 막대그래프 (하단 바닥선에 안정적으로 정렬) */
+    /* ② 비용 절감 시각화 듀얼 세로형 막대그래프 */
     .chart-section-wrap {
       display: flex;
       flex-direction: column;
@@ -552,7 +582,7 @@
       gap: 10px;
     }
 
-    /* 1. ★ 100만 Token 물리적 규모 (글자 대폭 확대) */
+    /* 1. 100만 Token의 물리적 규모 */
     .token-scale-section {
       background-color: #f8fafc;
       border: 1px solid var(--border-subtle);
@@ -695,7 +725,7 @@
       margin-top: 2px;
     }
 
-    /* 3. Executive Summary (최신 텍스트 반영) */
+    /* 3. Executive Summary */
     .summary-box-panel {
       background: #f8fafc;
       border: 1.2px solid #cbd5e1;
@@ -781,16 +811,21 @@
 
   <!-- 상단 액션 툴바 -->
   <aside class="toolbar" aria-label="보고서 도구 모음">
+    <!-- ★ PPT ↔ HTML 연계 복귀 버튼 (가이드 엄격 준수) -->
+    <button type="button" class="btn-return-ppt" onclick="returnToPpt()" title="보고 계시던 PPT 보고서로 복귀합니다">
+      ← PPT 보고서로 돌아가기
+    </button>
+
     <a href="executive-qbot-luna-report.svg" download="GPT-5.6_Luna_Report_Slide.svg" class="btn-tool" style="text-decoration: none;" title="16:9 고해상도 벡터 SVG 파일을 다운로드합니다">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
       <span>SVG 벡터 다운로드</span>
     </a>
     <button class="btn-tool" onclick="window.print()" title="PDF로 저장하거나 인쇄합니다">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
       <span>PDF / 인쇄 출력</span>
     </button>
     <button class="btn-tool" onclick="toggleFullScreen()" title="화면에 슬라이드를 꽉 차게 띄웁니다">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
       <span>전체화면 발표 모드</span>
     </button>
   </aside>
@@ -1078,8 +1113,23 @@
 
   </main>
 
-  <!-- 프레젠테이션 모드 전체화면 스크립트 -->
+  <!-- 프레젠테이션 및 연계 스크립트 -->
   <script>
+    /* PPT 보고서로 돌아가기 동작 (브라우저 Back 대신 직접 복귀 URL 이동) */
+    function returnToPpt() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const pptUrl = urlParams.get('ppt_url') || urlParams.get('return_url');
+      
+      if (pptUrl) {
+        window.location.href = decodeURIComponent(pptUrl);
+      } else if (document.referrer && (document.referrer.includes('.ppt') || document.referrer.includes('.pptx') || document.referrer.includes('sharepoint') || document.referrer.includes('office'))) {
+        window.location.href = document.referrer;
+      } else {
+        // 기본 Fallback: 사용자가 진입한 PPT 뷰어 또는 루트 경로
+        window.location.href = "https://nohyeongho.github.io/frontend-slides/";
+      }
+    }
+
     function toggleFullScreen() {
       const slide = document.getElementById('slide');
       if (!document.fullscreenElement) {
