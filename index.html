@@ -1,6 +1,4 @@
-
-<!-- saved from url=(0045)https://nohyeongho.github.io/frontend-slides/ -->
-<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"></head><body><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
+<html><head></head><body><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">
   <defs>
     <style>
       @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css');
@@ -8,10 +6,33 @@
 
       .font-kr { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif; letter-spacing: -0.015em; }
       .font-mono { font-family: 'JetBrains Mono', 'Pretendard', monospace; }
+      /* 카드 마우스 호버 시 살짝 떠오르는 인터랙션 효과 (다른 요소 변경 없음) */
+      .card-lift {
+        transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), filter 0.22s ease;
+        cursor: pointer;
+      }
+      .card-lift:hover {
+        transform: translateY(-5px);
+        filter: drop-shadow(0 10px 18px rgba(15, 23, 42, 0.12));
+      }
+
+      /* PPT로 돌아가기 버튼 스타일 */
+      .btn-ppt-return {
+        transition: transform 0.2s ease, filter 0.2s ease;
+        cursor: pointer;
+      }
+      .btn-ppt-return:hover rect {
+        fill: #FFFFFF;
+        stroke: #C10933;
+        filter: drop-shadow(0 4px 8px rgba(193, 9, 51, 0.15));
+      }
+      .btn-ppt-return:hover text {
+        fill: #C10933;
+      }
     </style>
 
     <filter id="shadow-card" x="-1%" y="-1%" width="102%" height="103%" filterUnits="userSpaceOnUse">
-      <fedropshadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.04"></fedropshadow>
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.04"></feDropShadow>
     </filter>
   </defs>
 
@@ -27,15 +48,10 @@
       유첨.AI모델 변경 운영 효율화
     </text>
 
-    <!-- 우측 상단 뱃지 2개 & 날짜 -->
-    <g transform="translate(1824, 0)">
-      
-      
-
-      
-      
-
-      
+    <!-- 우측 상단: PPT로 돌아가기 버튼 (클릭 시 창 닫기) -->
+    <g class="btn-ppt-return" transform="translate(1824, 14)" onclick="closeWindow()">
+      <rect x="-180" y="0" width="180" height="42" rx="8" fill="#F8FAFC" stroke="#CBD5E1" stroke-width="1.2" filter="url(#shadow-card)"></rect>
+      <text x="-90" y="27" fill="#0F172A" font-size="15" font-weight="700" text-anchor="middle" class="font-kr">◀ PPT로 돌아가기</text>
     </g>
 
     <!-- 헤더 하단 라인 -->
@@ -359,4 +375,24 @@
 
   </g>
 </svg>
-<div id="extension-floating-actions" class="extension-floating-actions" draggable="false" style="display: none; user-select: none; position: fixed; cursor: grab;"><button class="extension-floating-actions-close" title="Minimize" aria-label="Minimize" draggable="false" style="width: 18px; height: 18px; border-radius: 50%; background-color: rgb(230, 229, 229); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px; user-select: none;"><svg viewBox="0 0 24 24" width="10" height="10" stroke="black" stroke-width="2.0" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button><div id="extension-floating-actions-inner" class="extension-floating-actions-inner" draggable="false" style="user-select: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0007 2.01562C12.6135 2.01562 13.1102 2.51238 13.1102 3.12516C13.1102 3.59554 12.8174 3.99721 12.4042 4.15864V5.64682H13.2111C16.4851 5.64682 19.2796 7.69923 20.3784 10.5876C21.3899 11.0773 22.0874 12.1135 22.0874 13.3127V14.7248C22.0874 16.0047 21.2927 17.099 20.1698 17.5413C18.9531 20.1664 16.2948 21.9872 13.2111 21.9872H10.7903C7.70659 21.9872 5.04822 20.1663 3.83151 17.5412C2.70871 17.0989 1.91406 16.0047 1.91406 14.7248V13.3127C1.91406 12.1136 2.61151 11.0774 3.62288 10.5876C4.72167 7.69921 7.51634 5.64682 10.7903 5.64682H11.5972V4.15864C11.184 3.99721 10.8912 3.59554 10.8912 3.12516C10.8912 2.51238 11.3879 2.01563 12.0007 2.01562Z" fill="url(#paint0_linear_13253_16367)"></path><path d="M14.825 9.58061C16.9975 9.58061 18.7588 11.3418 18.7588 13.5144V14.2205C18.7588 17.0058 16.5008 19.2638 13.7154 19.2638H10.286C7.50063 19.2638 5.24266 17.0058 5.24266 14.2205V13.5144C5.24266 11.3418 7.00388 9.58061 9.17645 9.58061H14.825ZM9.27732 12.304C8.77596 12.304 8.36953 12.7134 8.36952 13.2185V14.819C8.36953 15.324 8.77596 15.7335 9.27732 15.7335C9.77867 15.7335 10.1851 15.324 10.1851 14.819V13.2185C10.1851 12.7134 9.77867 12.304 9.27732 12.304ZM14.7241 12.304C14.2228 12.304 13.8163 12.7134 13.8163 13.2185V14.819C13.8163 15.324 14.2228 15.7335 14.7241 15.7335C15.2255 15.7335 15.6319 15.324 15.6319 14.819V13.2185C15.6319 12.7134 15.2255 12.304 14.7241 12.304Z" fill="white"></path><defs><lineargradient id="paint0_linear_13253_16367" x1="1.99476" y1="23.8633" x2="18.2082" y2="7.48255" gradientUnits="userSpaceOnUse"><stop stop-color="#7E36FB"></stop><stop offset="0.497754" stop-color="#6137FA"></stop><stop offset="1" stop-color="#DE4CFF"></stop></lineargradient></defs></svg><svg viewBox="0 0 20 24" width="20" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.8746 17.624C13.8746 18.1418 14.2943 18.5615 14.812 18.5615C15.3297 18.5615 15.7494 18.1418 15.7494 17.624C15.7494 17.1063 15.3297 16.6866 14.812 16.6866C14.2943 16.6866 13.8746 17.1063 13.8746 17.624Z" fill="#8E60DC"></path><path d="M8.25 17.624C8.25 18.1418 8.6697 18.5615 9.18743 18.5615C9.70515 18.5615 10.1249 18.1418 10.1249 17.624C10.1249 17.1063 9.70515 16.6866 9.18743 16.6866C8.6697 16.6866 8.25 17.1063 8.25 17.624Z" fill="#8E60DC"></path><path d="M13.8746 11.9995C13.8746 12.5172 14.2943 12.9369 14.812 12.9369C15.3297 12.9369 15.7494 12.5172 15.7494 11.9995C15.7494 11.4818 15.3297 11.0621 14.812 11.0621C14.2943 11.0621 13.8746 11.4818 13.8746 11.9995Z" fill="#8E60DC"></path><path d="M8.25 11.9995C8.25 12.5172 8.6697 12.9369 9.18743 12.9369C9.70515 12.9369 10.1249 12.5172 10.1249 11.9995C10.1249 11.4818 9.70515 11.0621 9.18743 11.0621C8.6697 11.0621 8.25 11.4818 8.25 11.9995Z" fill="#8E60DC"></path><path d="M13.8746 6.37493C13.8746 6.89265 14.2943 7.31235 14.812 7.31235C15.3297 7.31235 15.7494 6.89265 15.7494 6.37493C15.7494 5.8572 15.3297 5.4375 14.812 5.4375C14.2943 5.4375 13.8746 5.8572 13.8746 6.37493Z" fill="#8E60DC"></path><path d="M8.25 6.37493C8.25 6.89265 8.6697 7.31235 9.18743 7.31235C9.70515 7.31235 10.1249 6.89265 10.1249 6.37493C10.1249 5.8572 9.70515 5.4375 9.18743 5.4375C8.6697 5.4375 8.25 5.8572 8.25 6.37493Z" fill="#8E60DC"></path><path d="M13.8746 17.624C13.8746 18.1418 14.2943 18.5615 14.812 18.5615C15.3297 18.5615 15.7494 18.1418 15.7494 17.624C15.7494 17.1063 15.3297 16.6866 14.812 16.6866C14.2943 16.6866 13.8746 17.1063 13.8746 17.624Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 17.624C8.25 18.1418 8.6697 18.5615 9.18743 18.5615C9.70515 18.5615 10.1249 18.1418 10.1249 17.624C10.1249 17.1063 9.70515 16.6866 9.18743 16.6866C8.6697 16.6866 8.25 17.1063 8.25 17.624Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8746 11.9995C13.8746 12.5172 14.2943 12.9369 14.812 12.9369C15.3297 12.9369 15.7494 12.5172 15.7494 11.9995C15.7494 11.4818 15.3297 11.0621 14.812 11.0621C14.2943 11.0621 13.8746 11.4818 13.8746 11.9995Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 11.9995C8.25 12.5172 8.6697 12.9369 9.18743 12.9369C9.70515 12.9369 10.1249 12.5172 10.1249 11.9995C10.1249 11.4818 9.70515 11.0621 9.18743 11.0621C8.6697 11.0621 8.25 11.4818 8.25 11.9995Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8746 6.37493C13.8746 6.89265 14.2943 7.31235 14.812 7.31235C15.3297 7.31235 15.7494 6.89265 15.7494 6.37493C15.7494 5.8572 15.3297 5.4375 14.812 5.4375C14.2943 5.4375 13.8746 5.8572 13.8746 6.37493Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 6.37493C8.25 6.89265 8.6697 7.31235 9.18743 7.31235C9.70515 7.31235 10.1249 6.89265 10.1249 6.37493C10.1249 5.8572 9.70515 5.4375 9.18743 5.4375C8.6697 5.4375 8.25 5.8572 8.25 6.37493Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div><div id="extension-message-overlay" class="extension-message-overlay" draggable="false" style="user-select: none;"><div id="extension-message-dialog" class="extension-message-dialog"><div class="extension-message-dialog-header"><p>확인</p></div><div class="extension-message-dialog-body"><p>익스텐션 버튼을 숨기시겠습니까? <br>다시 표시하려면 브라우저 상단의 LGenie 아이콘을 클릭해 주세요.</p></div><div class="extension-message-dialog-footer"><button id="extension-message-button-primary" class="extension-message-button-primary">확인</button><button id="extension-message-button-secondary" class="extension-message-button-secondary">취소</button></div></div></div></body></html>
+<div id="extension-floating-actions" class="extension-floating-actions" draggable="false" style="display: none; user-select: none; position: fixed; cursor: grab;"><button class="extension-floating-actions-close" title="Minimize" aria-label="Minimize" draggable="false" style="width: 18px; height: 18px; border-radius: 50%; background-color: rgb(230, 229, 229); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px; user-select: none;"><svg viewBox="0 0 24 24" width="10" height="10" stroke="black" stroke-width="2.0" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button><div id="extension-floating-actions-inner" class="extension-floating-actions-inner" draggable="false" style="user-select: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0007 2.01562C12.6135 2.01562 13.1102 2.51238 13.1102 3.12516C13.1102 3.59554 12.8174 3.99721 12.4042 4.15864V5.64682H13.2111C16.4851 5.64682 19.2796 7.69923 20.3784 10.5876C21.3899 11.0773 22.0874 12.1135 22.0874 13.3127V14.7248C22.0874 16.0047 21.2927 17.099 20.1698 17.5413C18.9531 20.1664 16.2948 21.9872 13.2111 21.9872H10.7903C7.70659 21.9872 5.04822 20.1663 3.83151 17.5412C2.70871 17.0989 1.91406 16.0047 1.91406 14.7248V13.3127C1.91406 12.1136 2.61151 11.0774 3.62288 10.5876C4.72167 7.69921 7.51634 5.64682 10.7903 5.64682H11.5972V4.15864C11.184 3.99721 10.8912 3.59554 10.8912 3.12516C10.8912 2.51238 11.3879 2.01563 12.0007 2.01562Z" fill="url(#paint0_linear_13253_16367)"></path><path d="M14.825 9.58061C16.9975 9.58061 18.7588 11.3418 18.7588 13.5144V14.2205C18.7588 17.0058 16.5008 19.2638 13.7154 19.2638H10.286C7.50063 19.2638 5.24266 17.0058 5.24266 14.2205V13.5144C5.24266 11.3418 7.00388 9.58061 9.17645 9.58061H14.825ZM9.27732 12.304C8.77596 12.304 8.36953 12.7134 8.36952 13.2185V14.819C8.36953 15.324 8.77596 15.7335 9.27732 15.7335C9.77867 15.7335 10.1851 15.324 10.1851 14.819V13.2185C10.1851 12.7134 9.77867 12.304 9.27732 12.304ZM14.7241 12.304C14.2228 12.304 13.8163 12.7134 13.8163 13.2185V14.819C13.8163 15.324 14.2228 15.7335 14.7241 15.7335C15.2255 15.7335 15.6319 15.324 15.6319 14.819V13.2185C15.6319 12.7134 15.2255 12.304 14.7241 12.304Z" fill="white"></path><defs><linearGradient id="paint0_linear_13253_16367" x1="1.99476" y1="23.8633" x2="18.2082" y2="7.48255" gradientUnits="userSpaceOnUse"><stop stop-color="#7E36FB"></stop><stop offset="0.497754" stop-color="#6137FA"></stop><stop offset="1" stop-color="#DE4CFF"></stop></linearGradient></defs></svg><svg viewBox="0 0 20 24" width="20" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.8746 17.624C13.8746 18.1418 14.2943 18.5615 14.812 18.5615C15.3297 18.5615 15.7494 18.1418 15.7494 17.624C15.7494 17.1063 15.3297 16.6866 14.812 16.6866C14.2943 16.6866 13.8746 17.1063 13.8746 17.624Z" fill="#8E60DC"></path><path d="M8.25 17.624C8.25 18.1418 8.6697 18.5615 9.18743 18.5615C9.70515 18.5615 10.1249 18.1418 10.1249 17.624C10.1249 17.1063 9.70515 16.6866 9.18743 16.6866C8.6697 16.6866 8.25 17.1063 8.25 17.624Z" fill="#8E60DC"></path><path d="M13.8746 11.9995C13.8746 12.5172 14.2943 12.9369 14.812 12.9369C15.3297 12.9369 15.7494 12.5172 15.7494 11.9995C15.7494 11.4818 15.3297 11.0621 14.812 11.0621C14.2943 11.0621 13.8746 11.4818 13.8746 11.9995Z" fill="#8E60DC"></path><path d="M8.25 11.9995C8.25 12.5172 8.6697 12.9369 9.18743 12.9369C9.70515 12.9369 10.1249 12.5172 10.1249 11.9995C10.1249 11.4818 9.70515 11.0621 9.18743 11.0621C8.6697 11.0621 8.25 11.4818 8.25 11.9995Z" fill="#8E60DC"></path><path d="M13.8746 6.37493C13.8746 6.89265 14.2943 7.31235 14.812 7.31235C15.3297 7.31235 15.7494 6.89265 15.7494 6.37493C15.7494 5.8572 15.3297 5.4375 14.812 5.4375C14.2943 5.4375 13.8746 5.8572 13.8746 6.37493Z" fill="#8E60DC"></path><path d="M8.25 6.37493C8.25 6.89265 8.6697 7.31235 9.18743 7.31235C9.70515 7.31235 10.1249 6.89265 10.1249 6.37493C10.1249 5.8572 9.70515 5.4375 9.18743 5.4375C8.6697 5.4375 8.25 5.8572 8.25 6.37493Z" fill="#8E60DC"></path><path d="M13.8746 17.624C13.8746 18.1418 14.2943 18.5615 14.812 18.5615C15.3297 18.5615 15.7494 18.1418 15.7494 17.624C15.7494 17.1063 15.3297 16.6866 14.812 16.6866C14.2943 16.6866 13.8746 17.1063 13.8746 17.624Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 17.624C8.25 18.1418 8.6697 18.5615 9.18743 18.5615C9.70515 18.5615 10.1249 18.1418 10.1249 17.624C10.1249 17.1063 9.70515 16.6866 9.18743 16.6866C8.6697 16.6866 8.25 17.1063 8.25 17.624Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8746 11.9995C13.8746 12.5172 14.2943 12.9369 14.812 12.9369C15.3297 12.9369 15.7494 12.5172 15.7494 11.9995C15.7494 11.4818 15.3297 11.0621 14.812 11.0621C14.2943 11.0621 13.8746 11.4818 13.8746 11.9995Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 11.9995C8.25 12.5172 8.6697 12.9369 9.18743 12.9369C9.70515 12.9369 10.1249 12.5172 10.1249 11.9995C10.1249 11.4818 9.70515 11.0621 9.18743 11.0621C8.6697 11.0621 8.25 11.4818 8.25 11.9995Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8746 6.37493C13.8746 6.89265 14.2943 7.31235 14.812 7.31235C15.3297 7.31235 15.7494 6.89265 15.7494 6.37493C15.7494 5.8572 15.3297 5.4375 14.812 5.4375C14.2943 5.4375 13.8746 5.8572 13.8746 6.37493Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 6.37493C8.25 6.89265 8.6697 7.31235 9.18743 7.31235C9.70515 7.31235 10.1249 6.89265 10.1249 6.37493C10.1249 5.8572 9.70515 5.4375 9.18743 5.4375C8.6697 5.4375 8.25 5.8572 8.25 6.37493Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div><div id="extension-message-overlay" class="extension-message-overlay" draggable="false" style="user-select: none;"><div id="extension-message-dialog" class="extension-message-dialog"><div class="extension-message-dialog-header"><p>확인</p></div><div class="extension-message-dialog-body"><p>익스텐션 버튼을 숨기시겠습니까? <br>다시 표시하려면 브라우저 상단의 LGenie 아이콘을 클릭해 주세요.</p></div><div class="extension-message-dialog-footer"><button id="extension-message-button-primary" class="extension-message-button-primary">확인</button><button id="extension-message-button-secondary" class="extension-message-button-secondary">취소</button></div></div></div>
+  <!-- 창 닫기 및 PPT 복귀 스크립트 -->
+  <script>
+    function closeWindow() {
+      // 1. window.close() 시도 (새 창 또는 팝업으로 열린 경우 즉시 닫힘)
+      window.open('', '_self', '');
+      window.close();
+
+      // 2. 브라우저 보안으로 차단된 경우 이전 화면/PPT로 복귀
+      setTimeout(function() {
+        if (!window.closed) {
+          if (document.referrer) {
+            window.location.href = document.referrer;
+          } else {
+            history.back();
+          }
+        }
+      }, 100);
+    }
+  </script>
+</body></html>
