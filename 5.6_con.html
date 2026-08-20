@@ -423,6 +423,17 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.15s ease-out, filter 0.15s ease-out;
+    }
+
+    .chart-card-box:hover,
+    .card-hover:hover {
+      transform: translateY(-1px);
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.05));
+    }
+
+    .card-hover {
+      transition: transform 0.15s ease-out, filter 0.15s ease-out;
     }
 
     .chart-card-title {
@@ -595,6 +606,12 @@
       display: flex;
       align-items: center;
       gap: 14px;
+      transition: transform 0.15s ease-out, filter 0.15s ease-out;
+    }
+
+    .scale-item-card:hover {
+      transform: translateY(-1px);
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.05));
     }
 
     .scale-icon-wrap {
@@ -659,6 +676,12 @@
       gap: 8px;
       min-height: 138px;
       box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      transition: transform 0.15s ease-out, filter 0.15s ease-out;
+    }
+
+    .effect-mini-card:hover {
+      transform: translateY(-1px);
+      filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.05));
     }
 
     .effect-card-title {

@@ -6,6 +6,17 @@
 
       .font-kr { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif; letter-spacing: -0.015em; }
       .font-mono { font-family: 'JetBrains Mono', 'Pretendard', monospace; }
+
+      .card-hover {
+        transition:
+          transform 0.15s ease-out,
+          filter 0.15s ease-out;
+      }
+
+      .card-hover:hover {
+        transform: translateY(-1px);
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.05));
+      }
     </style>
 
     <filter id="shadow-card" x="-1%" y="-1%" width="102%" height="103%" filterUnits="userSpaceOnUse">
@@ -168,7 +179,7 @@
       <g transform="translate(24, 500)">
         
         <!-- 1. Input 비용 비교 차트 박스 (높이 300px) -->
-        <g transform="translate(0, 0)">
+        <g transform="translate(0, 0)" class="card-hover">
           <rect x="0" y="0" width="412" height="300" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"></rect>
           
           <text x="20" y="30" fill="#0F172A" font-size="14.5" font-weight="700" class="font-kr">Input 비용 비교</text>
@@ -203,7 +214,7 @@
         </g>
 
         <!-- 2. Output 비용 비교 차트 박스 (높이 300px) -->
-        <g transform="translate(436, 0)">
+        <g transform="translate(436, 0)" class="card-hover">
           <rect x="0" y="0" width="412" height="300" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1"></rect>
           
           <text x="20" y="30" fill="#0F172A" font-size="14.5" font-weight="700" class="font-kr">Output 비용 비교</text>
@@ -256,18 +267,22 @@
         <!-- 2개 카드 (높이 84px로 글자 및 패딩 확대) -->
         <g transform="translate(0, 26)">
           <!-- 카드 1 -->
-          <rect x="0" y="0" width="414" height="84" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"></rect>
-          <rect x="14" y="14" width="56" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"></rect>
-          <text x="42" y="51" font-size="28" text-anchor="middle">📄</text>
-          <text x="82" y="38" fill="#0F172A" font-size="17.5" font-weight="800" class="font-kr">A4 용지 기준 약 1,500장</text>
-          <text x="82" y="62" fill="#1E293B" font-size="15" font-weight="500" class="font-kr">분량의 방대한 텍스트 원문</text>
+          <g class="card-hover">
+            <rect x="0" y="0" width="414" height="84" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"></rect>
+            <rect x="14" y="14" width="56" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"></rect>
+            <text x="42" y="51" font-size="28" text-anchor="middle">📄</text>
+            <text x="82" y="38" fill="#0F172A" font-size="17.5" font-weight="800" class="font-kr">A4 용지 기준 약 1,500장</text>
+            <text x="82" y="62" fill="#1E293B" font-size="15" font-weight="500" class="font-kr">분량의 방대한 텍스트 원문</text>
+          </g>
 
           <!-- 카드 2 -->
-          <rect x="434" y="0" width="414" height="84" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"></rect>
-          <rect x="448" y="14" width="56" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"></rect>
-          <text x="476" y="51" font-size="28" text-anchor="middle">🎧</text>
-          <text x="516" y="36" fill="#1E293B" font-size="15" font-weight="500" class="font-kr">큐봇 1회 평균 3,500 토큰 기준,</text>
-          <text x="516" y="62" fill="#0F172A" font-size="17" font-weight="800" class="font-kr">약 256건 질의응답을 처리할 수 있는 규모</text>
+          <g class="card-hover">
+            <rect x="434" y="0" width="414" height="84" rx="8" fill="#F8FAFC" stroke="#E2E8F0" stroke-width="1.2"></rect>
+            <rect x="448" y="14" width="56" height="56" rx="6" fill="#FFFFFF" stroke="#CBD5E1" stroke-width="1"></rect>
+            <text x="476" y="51" font-size="28" text-anchor="middle">🎧</text>
+            <text x="516" y="36" fill="#1E293B" font-size="15" font-weight="500" class="font-kr">큐봇 1회 평균 3,500 토큰 기준,</text>
+            <text x="516" y="62" fill="#0F172A" font-size="17" font-weight="800" class="font-kr">약 256건 질의응답을 처리할 수 있는 규모</text>
+          </g>
         </g>
       </g>
 
@@ -280,46 +295,53 @@
         <!-- 3열 x 2행 카드 (개별 높이 138px) -->
         <g transform="translate(18, 44)">
           <!-- 1. 응답 속도 -->
-          <rect x="0" y="0" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
-          <text x="18" y="32" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">⚡ 응답 속도</text>
-          <text x="18" y="66" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">GPT-4.1 대비 사용자 체감</text>
-          <text x="18" y="92" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">응답속도 대폭 향상</text>
-          
+          <g class="card-hover">
+            <rect x="0" y="0" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
+            <text x="18" y="32" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">⚡ 응답 속도</text>
+            <text x="18" y="66" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">GPT-4.1 대비 사용자 체감</text>
+            <text x="18" y="92" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">응답속도 대폭 향상</text>
+          </g>
 
           <!-- 2. 응답 품질 -->
-          <rect x="277" y="0" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
-          <text x="295" y="32" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">✅ 응답 품질</text>
-          <text x="295" y="66" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">기술정보·매뉴얼·수리사례</text>
-          <text x="295" y="92" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">기반 동일 수준 답변 제공</text>
-          
+          <g class="card-hover">
+            <rect x="277" y="0" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
+            <text x="295" y="32" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">✅ 응답 품질</text>
+            <text x="295" y="66" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">기술정보·매뉴얼·수리사례</text>
+            <text x="295" y="92" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">기반 동일 수준 답변 제공</text>
+          </g>
 
           <!-- 3. 응답 안정성 -->
-          <rect x="554" y="0" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
-          <text x="572" y="32" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">🛡️ 응답 안정성</text>
-          <text x="572" y="66" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">출처 기반 답변 강화로</text>
-          <text x="572" y="92" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">보다 안정적인 정보 제공</text>
-          <text x="572" y="118" fill="#475569" font-size="13" font-weight="500" class="font-kr">할루시네이션(환각) 억제</text>
+          <g class="card-hover">
+            <rect x="554" y="0" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
+            <text x="572" y="32" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">🛡️ 응답 안정성</text>
+            <text x="572" y="66" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">출처 기반 답변 강화로</text>
+            <text x="572" y="92" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">보다 안정적인 정보 제공</text>
+            <text x="572" y="118" fill="#475569" font-size="13" font-weight="500" class="font-kr">할루시네이션(환각) 억제</text>
+          </g>
 
           <!-- 4. 운영 비용 -->
-          <rect x="0" y="152" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
-          <text x="18" y="184" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">💰 운영 비용</text>
-          <text x="18" y="218" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">동일 수준 서비스 제공 시</text>
-          <text x="18" y="244" fill="#C10933" font-size="15" font-weight="800" class="font-kr">운영비 최대 90% 절감</text>
-          
+          <g class="card-hover">
+            <rect x="0" y="152" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
+            <text x="18" y="184" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">💰 운영 비용</text>
+            <text x="18" y="218" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">동일 수준 서비스 제공 시</text>
+            <text x="18" y="244" fill="#C10933" font-size="15" font-weight="800" class="font-kr">운영비 최대 90% 절감</text>
+          </g>
 
           <!-- 5. 사용자 지원 -->
-          <rect x="277" y="152" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
-          <text x="295" y="184" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">👥 사용자 지원</text>
-          <text x="295" y="218" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">동일 예산 기준 더 많은</text>
-          <text x="295" y="244" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">상담원 및 SM 지원 가능</text>
-          
+          <g class="card-hover">
+            <rect x="277" y="152" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
+            <text x="295" y="184" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">👥 사용자 지원</text>
+            <text x="295" y="218" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">동일 예산 기준 더 많은</text>
+            <text x="295" y="244" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">상담원 및 SM 지원 가능</text>
+          </g>
 
           <!-- 6. AI 서비스 확대 -->
-          <rect x="554" y="152" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
-          <text x="572" y="184" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">🚀 AI 서비스 확대</text>
-          <text x="572" y="218" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">비용 부담 감소로 AI 브리핑,</text>
-          <text x="572" y="244" fill="#1D4ED8" font-size="15" font-weight="800" class="font-kr">AI Agent 등 신규 확장</text>
-          
+          <g class="card-hover">
+            <rect x="554" y="152" width="258" height="138" rx="8" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="1.2"></rect>
+            <text x="572" y="184" fill="#0F172A" font-size="16.5" font-weight="800" class="font-kr">🚀 AI 서비스 확대</text>
+            <text x="572" y="218" fill="#1E293B" font-size="14.5" font-weight="500" class="font-kr">비용 부담 감소로 AI 브리핑,</text>
+            <text x="572" y="244" fill="#1D4ED8" font-size="15" font-weight="800" class="font-kr">AI Agent 등 신규 확장</text>
+          </g>
         </g>
       </g>
 
@@ -356,5 +378,4 @@
     </g>
 
   </g>
-</svg>
-<div id="extension-floating-actions" class="extension-floating-actions" draggable="false" style="display: none; user-select: none; position: fixed; cursor: grab;"><button class="extension-floating-actions-close" title="Minimize" aria-label="Minimize" draggable="false" style="width: 18px; height: 18px; border-radius: 50%; background-color: rgb(230, 229, 229); display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0px; user-select: none;"><svg viewBox="0 0 24 24" width="10" height="10" stroke="black" stroke-width="2.0" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button><div id="extension-floating-actions-inner" class="extension-floating-actions-inner" draggable="false" style="user-select: none;"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.0007 2.01562C12.6135 2.01562 13.1102 2.51238 13.1102 3.12516C13.1102 3.59554 12.8174 3.99721 12.4042 4.15864V5.64682H13.2111C16.4851 5.64682 19.2796 7.69923 20.3784 10.5876C21.3899 11.0773 22.0874 12.1135 22.0874 13.3127V14.7248C22.0874 16.0047 21.2927 17.099 20.1698 17.5413C18.9531 20.1664 16.2948 21.9872 13.2111 21.9872H10.7903C7.70659 21.9872 5.04822 20.1663 3.83151 17.5412C2.70871 17.0989 1.91406 16.0047 1.91406 14.7248V13.3127C1.91406 12.1136 2.61151 11.0774 3.62288 10.5876C4.72167 7.69921 7.51634 5.64682 10.7903 5.64682H11.5972V4.15864C11.184 3.99721 10.8912 3.59554 10.8912 3.12516C10.8912 2.51238 11.3879 2.01563 12.0007 2.01562Z" fill="url(#paint0_linear_13253_16367)"></path><path d="M14.825 9.58061C16.9975 9.58061 18.7588 11.3418 18.7588 13.5144V14.2205C18.7588 17.0058 16.5008 19.2638 13.7154 19.2638H10.286C7.50063 19.2638 5.24266 17.0058 5.24266 14.2205V13.5144C5.24266 11.3418 7.00388 9.58061 9.17645 9.58061H14.825ZM9.27732 12.304C8.77596 12.304 8.36953 12.7134 8.36952 13.2185V14.819C8.36953 15.324 8.77596 15.7335 9.27732 15.7335C9.77867 15.7335 10.1851 15.324 10.1851 14.819V13.2185C10.1851 12.7134 9.77867 12.304 9.27732 12.304ZM14.7241 12.304C14.2228 12.304 13.8163 12.7134 13.8163 13.2185V14.819C13.8163 15.324 14.2228 15.7335 14.7241 15.7335C15.2255 15.7335 15.6319 15.324 15.6319 14.819V13.2185C15.6319 12.7134 15.2255 12.304 14.7241 12.304Z" fill="white"></path><defs><linearGradient id="paint0_linear_13253_16367" x1="1.99476" y1="23.8633" x2="18.2082" y2="7.48255" gradientUnits="userSpaceOnUse"><stop stop-color="#7E36FB"></stop><stop offset="0.497754" stop-color="#6137FA"></stop><stop offset="1" stop-color="#DE4CFF"></stop></linearGradient></defs></svg><svg viewBox="0 0 20 24" width="20" height="24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M13.8746 17.624C13.8746 18.1418 14.2943 18.5615 14.812 18.5615C15.3297 18.5615 15.7494 18.1418 15.7494 17.624C15.7494 17.1063 15.3297 16.6866 14.812 16.6866C14.2943 16.6866 13.8746 17.1063 13.8746 17.624Z" fill="#8E60DC"></path><path d="M8.25 17.624C8.25 18.1418 8.6697 18.5615 9.18743 18.5615C9.70515 18.5615 10.1249 18.1418 10.1249 17.624C10.1249 17.1063 9.70515 16.6866 9.18743 16.6866C8.6697 16.6866 8.25 17.1063 8.25 17.624Z" fill="#8E60DC"></path><path d="M13.8746 11.9995C13.8746 12.5172 14.2943 12.9369 14.812 12.9369C15.3297 12.9369 15.7494 12.5172 15.7494 11.9995C15.7494 11.4818 15.3297 11.0621 14.812 11.0621C14.2943 11.0621 13.8746 11.4818 13.8746 11.9995Z" fill="#8E60DC"></path><path d="M8.25 11.9995C8.25 12.5172 8.6697 12.9369 9.18743 12.9369C9.70515 12.9369 10.1249 12.5172 10.1249 11.9995C10.1249 11.4818 9.70515 11.0621 9.18743 11.0621C8.6697 11.0621 8.25 11.4818 8.25 11.9995Z" fill="#8E60DC"></path><path d="M13.8746 6.37493C13.8746 6.89265 14.2943 7.31235 14.812 7.31235C15.3297 7.31235 15.7494 6.89265 15.7494 6.37493C15.7494 5.8572 15.3297 5.4375 14.812 5.4375C14.2943 5.4375 13.8746 5.8572 13.8746 6.37493Z" fill="#8E60DC"></path><path d="M8.25 6.37493C8.25 6.89265 8.6697 7.31235 9.18743 7.31235C9.70515 7.31235 10.1249 6.89265 10.1249 6.37493C10.1249 5.8572 9.70515 5.4375 9.18743 5.4375C8.6697 5.4375 8.25 5.8572 8.25 6.37493Z" fill="#8E60DC"></path><path d="M13.8746 17.624C13.8746 18.1418 14.2943 18.5615 14.812 18.5615C15.3297 18.5615 15.7494 18.1418 15.7494 17.624C15.7494 17.1063 15.3297 16.6866 14.812 16.6866C14.2943 16.6866 13.8746 17.1063 13.8746 17.624Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 17.624C8.25 18.1418 8.6697 18.5615 9.18743 18.5615C9.70515 18.5615 10.1249 18.1418 10.1249 17.624C10.1249 17.1063 9.70515 16.6866 9.18743 16.6866C8.6697 16.6866 8.25 17.1063 8.25 17.624Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8746 11.9995C13.8746 12.5172 14.2943 12.9369 14.812 12.9369C15.3297 12.9369 15.7494 12.5172 15.7494 11.9995C15.7494 11.4818 15.3297 11.0621 14.812 11.0621C14.2943 11.0621 13.8746 11.4818 13.8746 11.9995Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 11.9995C8.25 12.5172 8.6697 12.9369 9.18743 12.9369C9.70515 12.9369 10.1249 12.5172 10.1249 11.9995C10.1249 11.4818 9.70515 11.0621 9.18743 11.0621C8.6697 11.0621 8.25 11.4818 8.25 11.9995Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M13.8746 6.37493C13.8746 6.89265 14.2943 7.31235 14.812 7.31235C15.3297 7.31235 15.7494 6.89265 15.7494 6.37493C15.7494 5.8572 15.3297 5.4375 14.812 5.4375C14.2943 5.4375 13.8746 5.8572 13.8746 6.37493Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path><path d="M8.25 6.37493C8.25 6.89265 8.6697 7.31235 9.18743 7.31235C9.70515 7.31235 10.1249 6.89265 10.1249 6.37493C10.1249 5.8572 9.70515 5.4375 9.18743 5.4375C8.6697 5.4375 8.25 5.8572 8.25 6.37493Z" stroke="#8E60DC" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></div></div><div id="extension-message-overlay" class="extension-message-overlay" draggable="false" style="user-select: none;"><div id="extension-message-dialog" class="extension-message-dialog"><div class="extension-message-dialog-header"><p>확인</p></div><div class="extension-message-dialog-body"><p>익스텐션 버튼을 숨기시겠습니까? <br>다시 표시하려면 브라우저 상단의 LGenie 아이콘을 클릭해 주세요.</p></div><div class="extension-message-dialog-footer"><button id="extension-message-button-primary" class="extension-message-button-primary">확인</button><button id="extension-message-button-secondary" class="extension-message-button-secondary">취소</button></div></div></div></body></html>
+</svg></body></html>
