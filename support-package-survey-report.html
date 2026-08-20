@@ -13,8 +13,7 @@
     /* ==========================================================================
        [Design OS & Pretendard Typography System]
        - 16:9 슬라이드 정중앙 정렬 및 5:5 완벽 대칭 레이아웃
-       - PPT 보고서 연계 복귀 버튼 추가 (가이드 준수: #F5F5F5 / #D9D9D9 / #666666)
-       - 세련된 넘버링 인덱스 뱃지 & 버티컬 인포그래픽
+       - 도넛 반원 차트 인포그래픽 + 점선 연결선 (원본 형태 정밀 복원)
        - 선명한 딥 블랙(#0F172A, #1E293B) 텍스트 및 프리미엄 하이라이트
        ========================================================================== */
     :root {
@@ -37,7 +36,7 @@
       --color-positive-bg: #ecfdf5;          /* 긍정 연배경 */
       --color-positive-border: #a7f3d0;      /* 긍정 테두리 */
       
-      --color-negative: #334155;             /* 개선 과제 뱃지 다크 */
+      --color-negative: #334155;             /* 개선 과제 다크 뱃지 */
       --color-negative-bg: #f8fafc;          /* 개선 연배경 */
       
       --color-accent-blue: #1d4ed8;          /* 코퍼레이트 블루 */
@@ -80,7 +79,7 @@
     /* 상단 유틸리티 툴바 */
     .toolbar {
       display: flex;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 10px;
       align-items: center;
       width: 100%;
@@ -88,42 +87,12 @@
       justify-content: flex-end;
     }
 
-    /* PPT 보고서로 돌아가기 버튼 (디자인 가이드 엄격 준수) */
-    .btn-return-ppt {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 4px;
-      height: 30px;                     /* 28~32px 규격 */
-      padding: 0 12px;
-      font-size: 12px;                  /* 12px 폰트 */
-      font-family: var(--font-family);  /* LG Regular 스타일 */
-      color: #666666;                   /* 텍스트: #666666 */
-      background-color: #F5F5F5;        /* 배경: #F5F5F5 */
-      border: 1px solid #D9D9D9;        /* 테두리: #D9D9D9 */
-      border-radius: 4px;
-      cursor: pointer;
-      text-decoration: none;
-      font-weight: 500;
-      line-height: 1;
-      transition: background-color 0.15s ease, border-color 0.15s ease;
-      white-space: nowrap;
-      margin-right: auto;               /* 좌측에 자연스럽게 배치 */
-    }
-
-    .btn-return-ppt:hover {
-      background-color: #EDEDED;        /* Hover 배경: #EDEDED */
-      border-color: #CCCCCC;
-      color: #333333;
-    }
-
     .btn-tool {
       background-color: #ffffff;
       color: var(--text-body);
       border: 1px solid var(--border-subtle);
-      padding: 6px 12px;
-      height: 30px;
-      font-size: 12.5px;
+      padding: 7px 14px;
+      font-size: 13px;
       font-weight: 500;
       border-radius: 6px;
       cursor: pointer;
@@ -166,7 +135,7 @@
     .slide-header {
       border-bottom: 2px solid #0f172a;
       padding-bottom: 8px;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .header-top-row {
@@ -203,8 +172,8 @@
        -------------------------------------------------------------------------- */
     .main-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+      grid-template-columns: 1fr 1.05fr;
+      gap: 20px;
       flex: 1;
       align-items: stretch;
       min-height: 0;
@@ -214,7 +183,7 @@
        [공통 섹션 헤더: 뱃지 + 설문문항]
        -------------------------------------------------------------------------- */
     .section-banner-wrap {
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .badge-tag {
@@ -257,7 +226,7 @@
     }
 
     /* --------------------------------------------------------------------------
-       [좌측 패널: 긍정 요소 (세련된 넘버링 인포그래픽 카드 리스트)]
+       [좌측 패널: 긍정 요소 (정밀 반원 도넛 차트 그래픽 + 4개 콜아웃 카드)]
        -------------------------------------------------------------------------- */
     .left-panel {
       display: flex;
@@ -265,74 +234,77 @@
       height: 100%;
     }
 
-    .positive-cards-list {
-      display: flex;
-      flex-direction: column;
+    .positive-body-layout {
+      display: grid;
+      grid-template-columns: 110px 1fr;
       gap: 10px;
-      justify-content: space-between;
       flex: 1;
+      align-items: center;
     }
 
-    .positive-card-item {
-      background: #ffffff;
-      border: 1.2px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
-      transition: all 0.2s ease;
-      position: relative;
-    }
-
-    .positive-card-item:hover {
-      border-color: #86efac;
-      background-color: #f0fdf4;
-    }
-
-    /* 세련된 넘버링 인덱스 배지 */
-    .item-num-badge {
-      flex-shrink: 0;
-      width: 32px;
-      height: 32px;
-      background: linear-gradient(135deg, #15803d 0%, #166534 100%);
-      color: #ffffff;
-      border-radius: 6px;
+    /* 도넛 차트 컨테이너 */
+    .donut-visual-container {
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 13px;
-      font-weight: 800;
-      box-shadow: 0 2px 4px rgba(21, 128, 61, 0.2);
+      position: relative;
+      height: 100%;
     }
 
-    .card-content-area {
-      flex: 1;
+    /* 4대 긍정 요인 카드 리스트 */
+    .positive-cards-list {
       display: flex;
       flex-direction: column;
-      gap: 3px;
+      gap: 8px;
+      justify-content: space-between;
+      height: 100%;
+    }
+
+    .positive-item-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
+      position: relative;
+    }
+
+    .positive-item-card:hover {
+      border-color: #86efac;
+      background-color: #fcfdfd;
     }
 
     .card-title-row {
       display: flex;
-      align-items: baseline;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 6px;
-      font-size: 14px;
+      font-size: 13.5px;
       font-weight: 800;
       color: var(--text-heading);
       margin-bottom: 2px;
+    }
+
+    .check-icon-sq {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 15px;
+      height: 15px;
+      background-color: #1e293b;
+      color: #ffffff;
+      border-radius: 3px;
+      font-size: 10px;
+      flex-shrink: 0;
     }
 
     .card-tag-sub {
       font-size: 11px;
       font-weight: 600;
       color: #15803d;
-      background-color: #ecfdf5;
-      padding: 1px 6px;
-      border-radius: 4px;
-      border: 1px solid #d1fae5;
+      margin-left: 4px;
     }
 
     .card-bullet-list {
@@ -340,7 +312,7 @@
       display: flex;
       flex-direction: column;
       gap: 2px;
-      padding-left: 14px;
+      padding-left: 18px;
     }
 
     .card-bullet-list li {
@@ -382,7 +354,7 @@
     .improvement-container-box {
       background-color: #ffffff;
       border: 1.5px solid #cbd5e1;
-      border-radius: 10px;
+      border-radius: 12px;
       padding: 12px 18px;
       flex: 1;
       display: flex;
@@ -490,21 +462,16 @@
 
   <!-- 상단 액션 툴바 -->
   <aside class="toolbar" aria-label="보고서 도구 모음">
-    <!-- ★ PPT ↔ HTML 연계 복귀 버튼 (가이드 엄격 준수) -->
-    <button type="button" class="btn-return-ppt" onclick="returnToPpt()" title="보고 계시던 PPT 보고서로 복귀합니다">
-      ← PPT 보고서로 돌아가기
-    </button>
-
     <a href="support-package-survey-report.svg" download="Support_Package_Survey_Report.svg" class="btn-tool" style="text-decoration: none;" title="16:9 고해상도 벡터 SVG 파일을 다운로드합니다">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
       <span>SVG 벡터 다운로드</span>
     </a>
     <button class="btn-tool" onclick="window.print()" title="PDF로 저장하거나 인쇄합니다">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
       <span>PDF / 인쇄 출력</span>
     </button>
     <button class="btn-tool" onclick="toggleFullScreen()" title="화면에 슬라이드를 꽉 차게 띄웁니다">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path></svg>
       <span>전체화면 발표 모드</span>
     </button>
   </aside>
@@ -527,7 +494,7 @@
     <section class="main-grid" aria-label="설문 분석 상세">
       
       <!-- ====================================================================
-           [좌측 영역] 긍정 요소 (정돈된 넘버링 인포그래픽 카드 리스트)
+           [좌측 영역] 긍정 요소 (정밀 반원 도넛 아크 + 4개 카드 원본 복원)
            ==================================================================== -->
       <article class="left-panel">
         
@@ -540,14 +507,57 @@
           </div>
         </div>
 
-        <!-- 4개 세련된 카드 리스트 (좌우 폭을 시원하게 활용) -->
-        <div class="positive-cards-list">
+        <!-- 본문: 도넛 그래픽 + 4개 카드 -->
+        <div class="positive-body-layout">
           
-          <!-- 카드 1: 통계정보, 부품Top10, 부품주문 -->
-          <div class="positive-card-item">
-            <div class="item-num-badge">01</div>
-            <div class="card-content-area">
+          <!-- 좌측 정밀 도넛 아크 그래픽 -->
+          <div class="donut-visual-container">
+            <svg viewBox="0 0 130 360" width="100%" height="100%">
+              <!-- 중심점: (0, 180), 외경 R=120, 내경 r=75 -->
+              <!-- Segment 1 (Top): 각도 -65° ~ -24° (94A3B8) -->
+              <path d="M 50.7,71.2 A 120,120 0 0,1 109.6,131.2 L 68.5,149.5 A 75,75 0 0,0 31.7,112.0 Z" fill="#94A3B8" />
+              
+              <!-- Segment 2 (Mid-Top): 각도 -18° ~ 22° (64748B - 짙은 회색) -->
+              <path d="M 114.1,142.9 A 120,120 0 0,1 111.3,224.9 L 69.5,208.1 A 75,75 0 0,0 71.3,156.8 Z" fill="#64748B" />
+              
+              <!-- Segment 3 (Mid-Bottom): 각도 28° ~ 68° (94A3B8) -->
+              <path d="M 105.9,236.3 A 120,120 0 0,1 45.0,291.3 L 28.1,249.6 A 75,75 0 0,0 66.2,215.2 Z" fill="#94A3B8" />
+              
+              <!-- Segment 4 (Bottom): 각도 74° ~ 110° (CBD5E1) -->
+              <path d="M 33.1,295.4 A 120,120 0 0,1 -41.0,292.8 L -25.7,250.5 A 75,75 0 0,0 20.7,252.1 Z" fill="#CBD5E1" />
+
+              <!-- 도넛 내부 포인트 원 -->
+              <circle cx="68" cy="115" r="3.5" fill="#15803D" />
+              <circle cx="92" cy="182" r="3.5" fill="#15803D" />
+              <circle cx="66" cy="245" r="3.5" fill="#15803D" />
+              <circle cx="8" cy="275" r="3.5" fill="#15803D" />
+
+              <!-- 점선 연결선 (Leader Lines) -->
+              <!-- Line 1 -->
+              <polyline points="68,115 100,42 125,42" fill="none" stroke="#15803D" stroke-width="1.2" stroke-dasharray="3,3" />
+              <circle cx="125" cy="42" r="3" fill="#15803D" />
+
+              <!-- Line 2 -->
+              <polyline points="92,182 110,132 125,132" fill="none" stroke="#15803D" stroke-width="1.2" stroke-dasharray="3,3" />
+              <circle cx="125" cy="132" r="3" fill="#15803D" />
+
+              <!-- Line 3 -->
+              <polyline points="66,245 105,225 125,225" fill="none" stroke="#15803D" stroke-width="1.2" stroke-dasharray="3,3" />
+              <circle cx="125" cy="225" r="3" fill="#15803D" />
+
+              <!-- Line 4 -->
+              <polyline points="8,275 90,320 125,320" fill="none" stroke="#15803D" stroke-width="1.2" stroke-dasharray="3,3" />
+              <circle cx="125" cy="320" r="3" fill="#15803D" />
+            </svg>
+          </div>
+
+          <!-- 우측 4개 핵심 카드 -->
+          <div class="positive-cards-list">
+            
+            <!-- 카드 1: 통계정보, 부품Top10, 부품주문 -->
+            <div class="positive-item-card">
               <div class="card-title-row">
+                <span class="check-icon-sq">✔</span>
                 <span>통계정보, 부품Top10, 부품주문</span>
               </div>
               <ul class="card-bullet-list">
@@ -556,13 +566,11 @@
                 <li><strong class="pink">여러 부품을 한 번에 주문 목록</strong>에 담을 수 있어 업무 편의성 증대</li>
               </ul>
             </div>
-          </div>
 
-          <!-- 카드 2: Contents -->
-          <div class="positive-card-item">
-            <div class="item-num-badge">02</div>
-            <div class="card-content-area">
+            <!-- 카드 2: Contents -->
+            <div class="positive-item-card">
               <div class="card-title-row">
+                <span class="check-icon-sq">✔</span>
                 <span>Contents</span>
                 <span class="card-tag-sub">기술정보, 서비스매뉴얼, 설명서, 분해도, 스펙, 결선도, 스스로해결</span>
               </div>
@@ -572,13 +580,11 @@
                 <li>핵심 정보가 요약 제공되어 <strong class="pink">현장 검색 시간 감소</strong></li>
               </ul>
             </div>
-          </div>
 
-          <!-- 카드 3: Videos -->
-          <div class="positive-card-item">
-            <div class="item-num-badge">03</div>
-            <div class="card-content-area">
+            <!-- 카드 3: Videos -->
+            <div class="positive-item-card">
               <div class="card-title-row">
+                <span class="check-icon-sq">✔</span>
                 <span>Videos</span>
                 <span class="card-tag-sub">배움마당, YouTube 영상</span>
               </div>
@@ -587,13 +593,11 @@
                 <li><strong class="pink">이미지가 아닌 실제 영상</strong>을 통해 점검 방법을 <strong class="dark">알수있어 도움</strong></li>
               </ul>
             </div>
-          </div>
 
-          <!-- 카드 4: AI 브리핑, LGSC 상세정보 -->
-          <div class="positive-card-item">
-            <div class="item-num-badge">04</div>
-            <div class="card-content-area">
+            <!-- 카드 4: AI 브리핑, LGSC 상세정보 -->
+            <div class="positive-item-card">
               <div class="card-title-row">
+                <span class="check-icon-sq">✔</span>
                 <span>AI 브리핑, LGSC 상세정보</span>
               </div>
               <ul class="card-bullet-list">
@@ -601,6 +605,7 @@
                 <li>제품 이력, 기술정보, 수리사례를 한 화면에서 확인할 수 있어 편리</li>
               </ul>
             </div>
+
           </div>
 
         </div>
@@ -681,7 +686,7 @@
             </div>
             <ul class="imp-bullet-list">
               <li>부품 사진과 고장 소리를 분석하고, <strong class="pink">난수리 사례 및 실제 사용 부품 통계를 제공</strong>하여 현장 수리 판단을 지원</li>
-              <li>노하우나 정보등을 댓글형태로 달거나 의견 추가할수 있는 <tspan font-weight="800">기능이있으면 좋을것 같음.</tspan></li>
+              <li>노하우나 정보등을 댓글형태로 달거나 의견 추가할수 있는 기능이있으면 좋을것 같음.</li>
             </ul>
           </div>
 
@@ -693,23 +698,8 @@
 
   </main>
 
-  <!-- 프레젠테이션 및 연계 스크립트 -->
+  <!-- 프레젠테이션 모드 전체화면 스크립트 -->
   <script>
-    /* PPT 보고서로 돌아가기 동작 (브라우저 Back 대신 직접 복귀 URL 이동) */
-    function returnToPpt() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const pptUrl = urlParams.get('ppt_url') || urlParams.get('return_url');
-      
-      if (pptUrl) {
-        window.location.href = decodeURIComponent(pptUrl);
-      } else if (document.referrer && (document.referrer.includes('.ppt') || document.referrer.includes('.pptx') || document.referrer.includes('sharepoint') || document.referrer.includes('office'))) {
-        window.location.href = document.referrer;
-      } else {
-        // 기본 Fallback: 사용자가 진입한 PPT 뷰어 또는 루트 경로
-        window.location.href = "https://nohyeongho.github.io/frontend-slides/";
-      }
-    }
-
     function toggleFullScreen() {
       const slide = document.getElementById('slide');
       if (!document.fullscreenElement) {
