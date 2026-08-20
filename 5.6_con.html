@@ -13,8 +13,8 @@
     /* ==========================================================================
        [Design OS & Pretendard Typography System]
        - 16:9 슬라이드 정중앙 정렬 및 5:5 완벽 대칭 레이아웃
-       - 최신 SVG와 100% 완벽 일치 동기화
-       - 선명한 딥 블랙(#0F172A, #1E293B) 텍스트 및 은은한 표 테두리(#CBD5E1) 유지
+       - 최신 SVG 및 보고서 원본과 100% 완벽 일치 동기화
+       - 고급 BI 대시보드 인터랙션 (Micro-interactions & Smooth Transitions)
        ========================================================================== */
     :root {
       /* 색상 토큰 */
@@ -42,10 +42,15 @@
       --bar-old: #485563;                    /* GPT-4.1 막대 색상 */
       --bar-new: #C10933;                    /* GPT-5.6 Luna LG Red 막대 */
       
-      /* 그림자 토큰 */
+      /* 인터랙션 그림자 토큰 */
       --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.05), 0 1px 2px rgba(15, 23, 42, 0.03);
       --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.07), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
       --shadow-lg: 0 10px 15px -3px rgba(15, 23, 42, 0.08), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
+      --shadow-hover: 0 14px 28px -4px rgba(15, 23, 42, 0.12), 0 6px 10px -2px rgba(15, 23, 42, 0.06);
+      --shadow-red-hover: 0 14px 28px -4px rgba(193, 9, 51, 0.18), 0 6px 10px -2px rgba(193, 9, 51, 0.08);
+      
+      /* 애니메이션 타이밍 */
+      --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
       
       /* 타이포그래피 (Pretendard 최우선 적용) */
       --font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
@@ -93,20 +98,27 @@
       border: 1px solid var(--border-subtle);
       padding: 7px 14px;
       font-size: 13px;
-      font-weight: 500;
+      font-weight: 600;
       border-radius: 6px;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       box-shadow: var(--shadow-sm);
-      transition: all 0.2s ease;
+      transition: var(--transition-smooth);
+      text-decoration: none;
     }
 
     .btn-tool:hover {
-      background-color: var(--bg-card);
+      background-color: #ffffff;
       border-color: var(--primary-blue);
       color: var(--primary-blue);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-tool:active {
+      transform: translateY(0);
     }
 
     /* ==========================================================================
@@ -127,6 +139,11 @@
       overflow: hidden;
       border: 1px solid rgba(226, 232, 240, 0.8);
       margin: 0 auto;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .slide-wrapper:hover {
+      box-shadow: 0 20px 35px -5px rgba(15, 23, 42, 0.12), 0 8px 12px -4px rgba(15, 23, 42, 0.06);
     }
 
     /* --------------------------------------------------------------------------
@@ -177,6 +194,14 @@
       align-items: center;
       justify-content: flex-start;
       margin-bottom: 8px;
+      transition: var(--transition-smooth);
+      cursor: default;
+    }
+
+    .key-message-bar:hover {
+      transform: translateY(-1.5px);
+      box-shadow: 0 4px 12px rgba(193, 9, 51, 0.08);
+      border-color: var(--accent-red-border);
     }
 
     .key-text {
@@ -216,6 +241,12 @@
       box-shadow: var(--shadow-sm);
       height: 100%;
       gap: 6px;
+      transition: var(--transition-smooth);
+    }
+
+    .left-panel:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 6px 16px -2px rgba(15, 23, 42, 0.08);
     }
 
     .section-header-wrap {
@@ -237,13 +268,21 @@
       font-weight: 500;
     }
 
-    /* ① 모델 비교 테이블 */
+    /* ① 모델 비교 테이블 (인터랙티브 Hover 스타일 적용) */
     .horizontal-compare-table {
       width: 100%;
       border-collapse: collapse;
       margin-top: 4px;
       text-align: center;
       border: 1.5px solid var(--border-table);
+      border-radius: 6px;
+      overflow: hidden;
+      transition: var(--transition-smooth);
+    }
+
+    .horizontal-compare-table:hover {
+      border-color: #94a3b8;
+      box-shadow: 0 4px 10px rgba(15, 23, 42, 0.05);
     }
 
     .horizontal-compare-table th {
@@ -253,6 +292,7 @@
       font-weight: 700;
       padding: 5px 3px;
       border: 1px solid var(--border-table);
+      transition: var(--transition-smooth);
     }
 
     .horizontal-compare-table th.th-luna-header {
@@ -263,12 +303,26 @@
       letter-spacing: -0.01em;
     }
 
+    .horizontal-compare-table tr {
+      transition: var(--transition-smooth);
+    }
+
+    .horizontal-compare-table tr:hover td {
+      background-color: #f1f5f9;
+    }
+
+    .horizontal-compare-table tr:hover td.td-luna-col {
+      background-color: #ffe4e8;
+      color: #9f0729;
+    }
+
     .horizontal-compare-table td {
       padding: 5px 3px;
       border: 1px solid var(--border-table);
       color: var(--text-heading);
       font-weight: 600;
       font-size: 13.5px;
+      transition: var(--transition-smooth);
     }
 
     .horizontal-compare-table td.td-label {
@@ -287,7 +341,7 @@
       border-color: var(--accent-red-border);
     }
 
-    /* 토큰 비용 정보 박스 */
+    /* 토큰 비용 정보 박스 (Hover 반응) */
     .actual-cost-info-box {
       background: #f8fafc;
       border: 1px solid var(--border-subtle);
@@ -300,6 +354,16 @@
       margin-top: 2px;
       margin-bottom: 2px;
       box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+      transition: var(--transition-smooth);
+      cursor: default;
+    }
+
+    .actual-cost-info-box:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+      border-color: #cbd5e1;
+      border-left-color: var(--primary-blue);
+      background-color: #ffffff;
     }
 
     .cost-info-left {
@@ -374,7 +438,7 @@
       letter-spacing: -0.01em;
     }
 
-    /* 연간 비용 절감 효과 설명 박스 */
+    /* 연간 비용 절감 효과 설명 박스 (Hover 반응) */
     .annual-saving-callout {
       background-color: #f1f5f9;
       border: 1px solid #cbd5e1;
@@ -387,6 +451,16 @@
       font-weight: 600;
       margin-top: 12px;
       margin-bottom: 6px;
+      transition: var(--transition-smooth);
+      cursor: default;
+    }
+
+    .annual-saving-callout:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(193, 9, 51, 0.12);
+      border-color: var(--accent-red-border);
+      border-left-width: 6px;
+      background-color: #fcf4f6;
     }
 
     .annual-saving-callout strong {
@@ -399,7 +473,7 @@
       font-weight: 800;
     }
 
-    /* ② 비용 절감 시각화 듀얼 세로형 막대그래프 (하단 바닥선에 안정적으로 정렬) */
+    /* ② 비용 절감 시각화 듀얼 세로형 막대그래프 (Hover 인터랙션 적용) */
     .chart-section-wrap {
       display: flex;
       flex-direction: column;
@@ -419,10 +493,19 @@
       background: #f8fafc;
       border: 1px solid var(--border-subtle);
       border-radius: 8px;
-      padding: 6px 10px 4px 10px;
+      padding: 8px 12px 6px 12px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: var(--transition-smooth);
+      cursor: default;
+    }
+
+    .chart-card-box:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+      background-color: #ffffff;
     }
 
     .chart-card-title {
@@ -442,298 +525,384 @@
       font-weight: 800;
       padding: 2px 6px;
       border-radius: 4px;
+      transition: var(--transition-smooth);
+    }
+
+    .chart-card-box:hover .badge-reduction {
+      transform: scale(1.06);
+      box-shadow: 0 2px 6px rgba(177, 18, 58, 0.3);
     }
 
     .chart-plot-area-mini {
       display: flex;
-      height: 70px;
+      height: 72px;
       position: relative;
-      border-left: 1.5px solid #0f172a;
-      border-bottom: 1.5px solid #0f172a;
-      margin-left: 34px;
-      margin-right: 6px;
-      margin-bottom: 2px;
-      align-items: flex-end;
-      justify-content: space-around;
-      padding: 0 10px;
+      border-bottom: 2px solid #334155;
+      padding-top: 14px;
     }
 
-    .y-axis-labels-mini {
-      position: absolute;
-      left: -38px;
-      top: 0;
-      bottom: 0;
+    .chart-col-pair {
+      flex: 1;
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      font-size: 10px;
-      font-weight: 600;
-      color: var(--text-heading);
-      text-align: right;
-      width: 32px;
-      line-height: 1;
+      justify-content: space-around;
+      align-items: flex-end;
+      height: 100%;
+      padding: 0 4px;
     }
 
-    .grid-line-mini {
-      position: absolute;
-      left: 0;
-      right: 0;
-      border-top: 1px dashed #cbd5e1;
-      pointer-events: none;
-    }
-
-    .bar-column-mini {
+    .bar-col-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      width: 50px;
+      width: 44%;
+      height: 100%;
+      justify-content: flex-end;
       position: relative;
-      z-index: 1;
+      cursor: pointer;
     }
 
-    .bar-pillar-mini {
+    .bar-value-text {
+      font-size: 10.5px;
+      font-weight: 800;
+      color: var(--text-heading);
+      margin-bottom: 2px;
+      white-space: nowrap;
+      transition: var(--transition-smooth);
+    }
+
+    .bar-col-item:hover .bar-value-text {
+      transform: translateY(-2px) scale(1.1);
+      color: var(--accent-red);
+    }
+
+    .bar-rect-shape {
       width: 100%;
       border-radius: 3px 3px 0 0;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      position: relative;
+      transition: var(--transition-smooth);
+      transform-origin: bottom;
     }
 
-    .bar-val-badge-mini {
-      position: absolute;
-      top: -16px;
-      font-size: 11.5px;
-      font-weight: 700;
-      color: var(--text-heading);
+    .bar-col-item:hover .bar-rect-shape {
+      transform: scaleY(1.04);
+      filter: brightness(1.12);
     }
 
-    .bar-pillar-mini.bar-old {
-      background-color: #485563;
+    .bar-old {
+      background-color: var(--bar-old);
     }
 
-    .bar-pillar-mini.bar-new {
+    .bar-new {
       background-color: var(--bar-new);
     }
 
-    .bar-pillar-mini.bar-new .bar-val-badge-mini {
-      color: var(--accent-red);
-      font-weight: 800;
+    .bar-col-item:hover .bar-new {
+      box-shadow: 0 0 10px rgba(193, 9, 51, 0.4);
     }
 
-    .x-axis-labels-mini {
+    .chart-labels-row {
       display: flex;
       justify-content: space-around;
-      margin-left: 34px;
-      margin-right: 6px;
-    }
-
-    .x-label-mini {
-      width: 50px;
-      text-align: center;
-      font-size: 11px;
+      margin-top: 3px;
+      font-size: 10.5px;
       font-weight: 700;
       color: var(--text-heading);
+      text-align: center;
+    }
+
+    .chart-labels-row span {
+      width: 44%;
     }
 
     /* --------------------------------------------------------------------------
-       [우측 영역]
+       [우측 영역: 100만 Token 카드 + 6대 효과 카드 + Summary (고급 BI 인터랙션)]
        -------------------------------------------------------------------------- */
     .right-panel {
-      background-color: #ffffff;
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 12px 14px;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
-      box-shadow: var(--shadow-sm);
-      height: 100%;
-      gap: 10px;
-    }
-
-    /* 1. ★ 100만 Token 물리적 규모 (글자 대폭 확대) */
-    .token-scale-section {
-      background-color: #f8fafc;
-      border: 1px solid var(--border-subtle);
-      border-radius: 6px;
-      padding: 10px 14px;
-    }
-
-    .token-scale-head {
-      margin-bottom: 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-
-    .token-scale-main-title {
-      font-size: 16.5px;
-      font-weight: 800;
-      color: var(--text-heading);
-      letter-spacing: -0.02em;
-    }
-
-    .token-scale-sub-desc {
-      font-size: 12.5px;
-      color: var(--text-body);
-      font-weight: 600;
-    }
-
-    .scale-items-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 4px;
-    }
-
-    .scale-item-card {
-      background-color: #ffffff;
-      border: 1.2px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 10px 14px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .scale-icon-wrap {
-      flex-shrink: 0;
-      width: 46px;
-      height: 46px;
-      background: #f1f5f9;
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--text-heading);
-      font-size: 24px;
-    }
-
-    .scale-item-text {
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text-heading);
-      line-height: 1.4;
-    }
-
-    .scale-item-text strong {
-      font-size: 16px;
-      color: var(--text-heading);
-      font-weight: 800;
-    }
-
-    /* 2. GPT-4.1 → GPT-5.6 Luna 전환 효과 6대 핵심 카드 */
-    .transition-effects-section {
-      background-color: #f8fafc;
-      border: 1px solid var(--border-subtle);
-      border-radius: 8px;
-      padding: 16px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .transition-head-title {
-      font-size: 17.5px;
-      font-weight: 800;
-      color: var(--text-heading);
-      letter-spacing: -0.02em;
-    }
-
-    .transition-cards-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .effect-mini-card {
-      background-color: #ffffff;
-      border: 1px solid #e2e8f0;
-      border-radius: 8px;
-      padding: 16px 16px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
       gap: 8px;
-      min-height: 138px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+      height: 100%;
     }
 
-    .effect-card-title {
-      font-size: 16px;
+    /* 1. 100만 Token 기준 주요 효과 카드 (KPI Cards) */
+    .kpi-row-card {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 6px 12px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      transition: var(--transition-smooth);
+      cursor: default;
+    }
+
+    .kpi-row-card:hover {
+      transform: translateY(-3px) scale(1.01);
+      box-shadow: var(--shadow-hover);
+      border-color: #cbd5e1;
+    }
+
+    .kpi-row-title {
+      font-size: 13.5px;
       font-weight: 800;
       color: var(--text-heading);
       display: flex;
       align-items: center;
       gap: 6px;
-      letter-spacing: -0.01em;
+    }
+
+    .kpi-cards-grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .kpi-stat-sub-card {
+      background-color: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 52px;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+    }
+
+    .kpi-stat-sub-card:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: var(--shadow-md);
+      border-color: #94a3b8;
+      background-color: #ffffff;
+    }
+
+    .kpi-stat-sub-card.highlight-luna {
+      background-color: #fcf4f6;
+      border-color: #f5d6de;
+    }
+
+    .kpi-stat-sub-card.highlight-luna:hover {
+      border-color: var(--accent-red);
+      box-shadow: var(--shadow-red-hover);
+      background-color: #ffffff;
+    }
+
+    .kpi-icon-square {
+      width: 34px;
+      height: 34px;
+      border-radius: 6px;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+      box-shadow: 0 1px 2px rgba(15, 23, 42, 0.05);
+      transition: var(--transition-smooth);
+    }
+
+    .kpi-stat-sub-card:hover .kpi-icon-square {
+      transform: scale(1.1) rotate(4deg);
+      border-color: var(--primary-blue);
+    }
+
+    .kpi-stat-sub-card.highlight-luna:hover .kpi-icon-square {
+      border-color: var(--accent-red);
+    }
+
+    .kpi-icon-square.icon-luna {
+      background: var(--accent-red);
+      color: #ffffff;
+      border-color: var(--accent-red);
+    }
+
+    .kpi-content-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .kpi-stat-label {
+      font-size: 11px;
+      font-weight: 700;
+      color: #475569;
+    }
+
+    .kpi-stat-main-num {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+
+    .kpi-stat-main-num.red-accent {
+      color: var(--accent-red);
+    }
+
+    .kpi-stat-sub-desc {
+      font-size: 10px;
+      font-weight: 600;
+      color: #475569;
+      line-height: 1.2;
+    }
+
+    /* 2. GPT-5.6 전환 6대 효과 분석 카드 (Micro-interactions) */
+    .effects-section-container {
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 8px;
+      padding: 8px 12px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      flex: 1;
+      transition: var(--transition-smooth);
+    }
+
+    .effects-section-container:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 6px 18px -2px rgba(15, 23, 42, 0.08);
+    }
+
+    .effects-section-title {
+      font-size: 13.5px;
+      font-weight: 800;
+      color: var(--text-heading);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .effects-grid-6 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      flex: 1;
+    }
+
+    .effect-mini-card {
+      background-color: #f8fafc;
+      border: 1px solid var(--border-subtle);
+      border-radius: 6px;
+      padding: 6px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      justify-content: flex-start;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+      position: relative;
+    }
+
+    .effect-mini-card:hover {
+      transform: translateY(-4px) scale(1.025);
+      background-color: #ffffff;
+      border-color: #93c5fd;
+      box-shadow: 0 10px 20px -3px rgba(15, 23, 42, 0.1);
+    }
+
+    .effect-card-title {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-heading);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: var(--transition-smooth);
+    }
+
+    .effect-card-title span:first-child {
+      display: inline-block;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .effect-mini-card:hover .effect-card-title span:first-child {
+      transform: scale(1.25) translateY(-1px);
     }
 
     .effect-card-desc {
-      font-size: 14px;
+      font-size: 10.5px;
       color: var(--text-body);
-      line-height: 1.55;
+      line-height: 1.35;
       font-weight: 500;
-      letter-spacing: -0.015em;
     }
 
     .effect-card-desc strong.red {
       color: var(--accent-red);
-      font-weight: 800;
+      font-weight: 700;
     }
 
     .effect-card-desc strong.blue {
       color: var(--primary-blue);
-      font-weight: 800;
+      font-weight: 700;
     }
 
-    .effect-card-desc .sub-detail {
-      font-size: 12.5px;
-      color: #64748b;
-      margin-top: 2px;
+    .effect-card-desc strong.dark {
+      color: #0f172a;
+      font-weight: 700;
     }
 
-    /* 3. Executive Summary (최신 텍스트 반영) */
+    /* 3. Executive Summary (요약 박스) */
     .summary-box-panel {
-      background: #f8fafc;
-      border: 1.2px solid #cbd5e1;
+      background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+      color: #ffffff;
       border-radius: 8px;
-      padding: 16px 20px;
+      padding: 10px 16px;
+      box-shadow: var(--shadow-md);
+      position: relative;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      justify-content: center;
+      gap: 3px;
+      transition: var(--transition-smooth);
+      cursor: default;
+    }
+
+    .summary-box-panel:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px -2px rgba(15, 23, 42, 0.25);
     }
 
     .summary-badge-tag {
-      font-size: 11px;
-      font-weight: 800;
-      color: #ffffff;
-      background-color: #0f172a;
-      padding: 3px 8px;
-      border-radius: 4px;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      display: inline-block;
       align-self: flex-start;
+      background-color: var(--accent-red);
+      color: #ffffff;
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 2px 7px;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
+      transition: var(--transition-smooth);
+    }
+
+    .summary-box-panel:hover .summary-badge-tag {
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(193, 9, 51, 0.4);
     }
 
     .summary-panel-text {
-      font-size: 14px;
-      color: var(--text-heading);
-      line-height: 1.55;
-      font-weight: 600;
+      font-size: 11.5px;
+      line-height: 1.45;
+      color: #e2e8f0;
+      font-weight: 400;
+    }
+
+    .summary-panel-text strong {
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     .summary-sub-note {
-      font-size: 12.5px;
-      color: #475569;
-      font-weight: 500;
-      border-top: 1px solid #e2e8f0;
-      padding-top: 8px;
-      margin-top: 4px;
-      line-height: 1.5;
+      font-size: 10px;
+      color: #94a3b8;
+      margin-top: 1px;
+      line-height: 1.25;
     }
 
     /* --------------------------------------------------------------------------
@@ -755,7 +924,7 @@
         height: 100vh;
         aspect-ratio: auto;
         border-radius: 0;
-        padding: 20px 28px;
+        padding: 20px 30px;
       }
       @page {
         size: landscape;
@@ -763,7 +932,7 @@
       }
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1024px) {
       .slide-wrapper {
         aspect-ratio: auto;
         height: auto;
@@ -771,19 +940,20 @@
       .main-grid {
         grid-template-columns: 1fr;
       }
-      .transition-cards-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
     }
   </style>
 </head>
 <body>
 
-  <!-- 상단 액션 툴바 -->
+  <!-- 상단 액션 툴바 (인터랙티브 기능 탑재) -->
   <aside class="toolbar" aria-label="보고서 도구 모음">
-    <a href="executive-qbot-luna-report.svg" download="GPT-5.6_Luna_Report_Slide.svg" class="btn-tool" style="text-decoration: none;" title="16:9 고해상도 벡터 SVG 파일을 다운로드합니다">
+    <a href="support-package-survey-report.html" class="btn-tool" title="Support Package 현장 반응 설문 보고서로 이동합니다">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg>
+      <span>Support Package 설문 보고서 ➜</span>
+    </a>
+    <a href="5.6변경.svg" download="GPT5.6_Luna_Report.svg" class="btn-tool" title="16:9 고해상도 벡터 SVG 파일을 다운로드합니다">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-      <span>SVG 벡터 다운로드</span>
+      <span>SVG 다운로드</span>
     </a>
     <button class="btn-tool" onclick="window.print()" title="PDF로 저장하거나 인쇄합니다">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
@@ -795,170 +965,150 @@
     </button>
   </aside>
 
-  <!-- 메인 16:9 슬라이드 컨테이너 -->
+  <!-- 16:9 슬라이드 메인 프레임 -->
   <main class="slide-wrapper" id="slide">
     
-    <!-- 1. 슬라이드 헤더 -->
+    <!-- 1. 상단 슬라이드 헤더 -->
     <header class="slide-header">
       <div class="header-left">
         <h1 class="slide-title">유첨.AI모델 변경 운영 효율화</h1>
       </div>
       <div class="header-right">
+        <!-- 우측 상단 메타 영역 -->
       </div>
     </header>
 
-    <!-- 2. 임원용 핵심 메시지 배너 (Executive Takeaway) -->
-    <section class="key-message-bar" aria-label="핵심 요약 메시지">
-      <div class="key-message-content">
-        <h2 class="key-text">
-          SM Qbot GPT-4.1 → GPT-5.6 Luna 전환을 통한 <span class="highlight">AI 운영비용 절감</span>
-        </h2>
+    <!-- 2. 핵심 메시지 바 (Executive Takeaway) -->
+    <section class="key-message-bar" aria-label="핵심 메시지">
+      <div class="key-text">
+        SM Qbot GPT-4.1 → GPT-5.6 Luna 전환을 통한 <span class="highlight">AI 운영비용 절감</span>
       </div>
     </section>
 
-    <!-- 3. 중앙 본문 그리드: 좌측(50%) vs 우측(50%) 완벽 1:1 대칭 -->
-    <section class="main-grid" aria-label="상세 비교 및 성과 지표">
+    <!-- 3. 중앙 메인 본문 2열 그리드 (좌우 5:5 대칭) -->
+    <section class="main-grid" aria-label="보고서 상세 데이터">
       
-      <!-- [좌측 영역] 모델 비교표 + 토큰 비용 실적 정보 박스 + 연간 절감 문구 + 듀얼 차트 -->
+      <!-- ====================================================================
+           [좌측 영역] 모델 비교표 + 토큰 비용 + 연간 절감 콜아웃 + 듀얼 막대그래프
+           ==================================================================== -->
       <article class="left-panel">
         
-        <!-- ① 모델 비교 테이블 -->
-        <div>
-          <div class="section-header-wrap">
-            <h3 class="section-main-title">GPT 모델별 Token 비용 비교</h3>
-            <div class="section-sub-tag">Per 1 Million Tokens</div>
-          </div>
-
-          <table class="horizontal-compare-table">
-            <thead>
-              <tr>
-                <th style="width: 17%;">구분</th>
-                <th style="width: 21%;">GPT-4.1</th>
-                <th style="width: 21%;">GPT-5.6 Sol</th>
-                <th style="width: 20%;">GPT-5.6 Terra</th>
-                <th style="width: 21%;" class="th-luna-header">GPT-5.6 Luna</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="td-label">Input</td>
-                <td>$2.00</td>
-                <td>$5.00</td>
-                <td>$2.00</td>
-                <td class="td-luna-col">$0.20</td>
-              </tr>
-              <tr>
-                <td class="td-label">Output</td>
-                <td>$8.00</td>
-                <td>$30.00</td>
-                <td>$12.00</td>
-                <td class="td-luna-col">$1.20</td>
-              </tr>
-            </tbody>
-          </table>
+        <!-- 상단 헤더 타이틀 -->
+        <div class="section-header-wrap">
+          <h2 class="section-main-title">GPT 모델별 Token 비용 비교</h2>
+          <div class="section-sub-tag">Per 1 Million Tokens</div>
         </div>
 
-        <!-- 토큰 비용 정보 박스 -->
+        <!-- ① 모델 비교 가로 테이블 -->
+        <table class="horizontal-compare-table">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>GPT-4.1</th>
+              <th>GPT-5.6 Sol</th>
+              <th class="th-luna-header">GPT-5.6 Luna</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="td-label">Input</td>
+              <td>$3.00</td>
+              <td>$0.50</td>
+              <td class="td-luna-col">$0.30</td>
+            </tr>
+            <tr>
+              <td class="td-label">Output</td>
+              <td>$12.00</td>
+              <td>$2.00</td>
+              <td class="td-luna-col">$1.20</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 실제 토큰 비용 상세 정보 박스 -->
         <div class="actual-cost-info-box">
           <div class="cost-info-left">
             <div class="cost-info-header">
-              <span class="icon-tag">💳</span>
-              <span>토큰 비용 (2026.05 기준)</span>
+              <span class="icon-tag">📌</span>
+              <span>1회 질의 기준 (평균)</span>
             </div>
             <div class="cost-info-items">
               <div class="cost-info-item">
-                <span class="item-label">• 상담 :</span>
-                <span class="item-value">12,142,082원</span>
+                <span class="item-label">Input</span>
+                <span class="item-value">약 2,300 Token</span>
               </div>
               <div class="cost-info-item">
-                <span class="item-label">• SM :</span>
-                <span class="item-value">6,763,966원</span>
+                <span class="item-label">Output</span>
+                <span class="item-value">약 1,100 Token</span>
               </div>
             </div>
           </div>
-
-          <!-- TOTAL -->
           <div class="cost-info-total-wrap">
             <span class="total-badge-label">TOTAL</span>
-            <span class="total-amount-val">18,910,820원</span>
+            <span class="total-amount-val">약 3,400 Token</span>
           </div>
         </div>
 
-        <!-- 연간 비용 절감 콜아웃 박스 (최신 텍스트 반영) -->
+        <!-- 연간 비용 절감 효과 설명 박스 -->
         <div class="annual-saving-callout">
-          SM Qbot 운영 기준 연간 AI 비용은 약 <span class="highlight-dark">8,117만원</span> 수준이며,<br>
-          <strong>GPT-5.6 Luna 적용 시 운영비를 크게 절감</strong> 할 수 있어 연간 약 6,900만원 규모의 비용 효율화 효과가 기대됨
+          <div class="highlight-dark" style="margin-bottom: 2px;">
+            SM Qbot 운영 기준 연간 AI 비용은 약 8,117만원 수준이며,
+          </div>
+          <div>
+            <strong>GPT-5.6 Luna 적용 시 운영비를 크게 절감</strong> 할 수 있어
+            <strong>연간 약 6,900만원 규모의 비용 효율화 효과</strong>가 기대됨
+          </div>
         </div>
 
-        <!-- ② 비용 절감 시각화 듀얼 세로형 막대그래프 (하단 바닥선에 안정적으로 정렬) -->
+        <!-- ② 듀얼 세로형 막대그래프 영역 -->
         <div class="chart-section-wrap">
           <div class="dual-charts-grid">
             
-            <!-- 1. Input 비용 비교 차트 ($2.00 vs $0.20 -> 90% 절감) -->
+            <!-- 그래프 1: 1회 질의 비용 (원) -->
             <div class="chart-card-box">
               <div class="chart-card-title">
-                <span>Input 비용 비교</span>
-                <span class="badge-reduction">90% 절감</span>
+                <span>1회 질의 비용 (원)</span>
+                <span class="badge-reduction">▼ 90.0%</span>
               </div>
               <div class="chart-plot-area-mini">
-                <div class="y-axis-labels-mini">
-                  <span>$2.00</span>
-                  <span>$1.00</span>
-                  <span>$0</span>
-                </div>
-                <div class="grid-line-mini" style="bottom: 100%;"></div>
-                <div class="grid-line-mini" style="bottom: 50%;"></div>
-                <div class="grid-line-mini" style="bottom: 0;"></div>
-
-                <!-- GPT-4.1 ($2.00) -->
-                <div class="bar-column-mini">
-                  <span class="bar-val-badge-mini">$2.00</span>
-                  <div class="bar-pillar-mini bar-old" style="height: 48px;" title="GPT-4.1 Input: $2.00"></div>
-                </div>
-
-                <!-- GPT-5.6 Luna ($0.20 - LG Red #C10933) -->
-                <div class="bar-column-mini">
-                  <span class="bar-val-badge-mini">$0.20</span>
-                  <div class="bar-pillar-mini bar-new" style="height: 5px;" title="GPT-5.6 Luna Input: $0.20 (90% 절감)"></div>
+                <div class="chart-col-pair">
+                  <div class="bar-col-item">
+                    <span class="bar-value-text">28.0원</span>
+                    <div class="bar-rect-shape bar-old" style="height: 52px;"></div>
+                  </div>
+                  <div class="bar-col-item">
+                    <span class="bar-value-text" style="color: var(--accent-red);">2.8원</span>
+                    <div class="bar-rect-shape bar-new" style="height: 6px;"></div>
+                  </div>
                 </div>
               </div>
-              <div class="x-axis-labels-mini">
-                <div class="x-label-mini">GPT-4.1</div>
-                <div class="x-label-mini" style="color: var(--accent-red); font-weight: 800;">Luna</div>
+              <div class="chart-labels-row">
+                <span>GPT-4.1</span>
+                <span style="color: var(--accent-red); font-weight: 800;">5.6 Luna</span>
               </div>
             </div>
 
-            <!-- 2. Output 비용 비교 차트 ($8.00 vs $1.20 -> 85% 절감) -->
+            <!-- 그래프 2: 연간 환산 비용 (백만원) -->
             <div class="chart-card-box">
               <div class="chart-card-title">
-                <span>Output 비용 비교</span>
-                <span class="badge-reduction">85% 절감</span>
+                <span>연간 환산 비용 (백만원)</span>
+                <span class="badge-reduction">▼ 85.0%</span>
               </div>
               <div class="chart-plot-area-mini">
-                <div class="y-axis-labels-mini">
-                  <span>$8.00</span>
-                  <span>$4.00</span>
-                  <span>$0</span>
-                </div>
-                <div class="grid-line-mini" style="bottom: 100%;"></div>
-                <div class="grid-line-mini" style="bottom: 50%;"></div>
-                <div class="grid-line-mini" style="bottom: 0;"></div>
-
-                <!-- GPT-4.1 ($8.00) -->
-                <div class="bar-column-mini">
-                  <span class="bar-val-badge-mini">$8.00</span>
-                  <div class="bar-pillar-mini bar-old" style="height: 48px;" title="GPT-4.1 Output: $8.00"></div>
-                </div>
-
-                <!-- GPT-5.6 Luna ($1.20 - LG Red #C10933) -->
-                <div class="bar-column-mini">
-                  <span class="bar-val-badge-mini">$1.20</span>
-                  <div class="bar-pillar-mini bar-new" style="height: 8px;" title="GPT-5.6 Luna Output: $1.20 (85% 절감)"></div>
+                <div class="chart-col-pair">
+                  <div class="bar-col-item">
+                    <span class="bar-value-text">81.2백만</span>
+                    <div class="bar-rect-shape bar-old" style="height: 52px;"></div>
+                  </div>
+                  <div class="bar-col-item">
+                    <span class="bar-value-text" style="color: var(--accent-red);">12.2백만</span>
+                    <div class="bar-rect-shape bar-new" style="height: 9px;"></div>
+                  </div>
                 </div>
               </div>
-              <div class="x-axis-labels-mini">
-                <div class="x-label-mini">GPT-4.1</div>
-                <div class="x-label-mini" style="color: var(--accent-red); font-weight: 800;">Luna</div>
+              <div class="chart-labels-row">
+                <span>GPT-4.1</span>
+                <span style="color: var(--accent-red); font-weight: 800;">5.6 Luna</span>
               </div>
             </div>
 
@@ -967,55 +1117,72 @@
 
       </article>
 
-      <!-- [우측 영역] -->
+      <!-- ====================================================================
+           [우측 영역] 100만 Token 카드 + 6대 효과 카드 + Summary
+           ==================================================================== -->
       <article class="right-panel">
         
-        <!-- 1. 100만 Token의 물리적 규모 -->
-        <div class="token-scale-section">
-          <div class="token-scale-head">
-            <h3 class="token-scale-main-title">100만 Token의 물리적 규모</h3>
-            <div class="token-scale-sub-desc">1 토큰 = 약 0.75단어 (한글 형태소 단위, AI 기본 처리 단위)</div>
+        <!-- 1. 100만 Token 기준 주요 효과 카드 (KPI 카드) -->
+        <div class="kpi-row-card">
+          <div class="kpi-row-title">
+            <span>✨</span>
+            <span>100만 Token 기준 주요 효과</span>
           </div>
-
-          <div class="scale-items-grid">
-            <div class="scale-item-card">
-              <div class="scale-icon-wrap">📄</div>
-              <div class="scale-item-text">
-                <strong>A4 용지 기준 약 1,500장</strong><br>
-                분량의 방대한 텍스트 원문
+          <div class="kpi-cards-grid-3">
+            
+            <div class="kpi-stat-sub-card">
+              <div class="kpi-icon-square">📥</div>
+              <div class="kpi-content-wrap">
+                <span class="kpi-stat-label">Prompt (입력)</span>
+                <span class="kpi-stat-main-num red-accent">90.0% 절감</span>
+                <span class="kpi-stat-sub-desc">$3.00 ➔ $0.30</span>
               </div>
             </div>
 
-            <div class="scale-item-card">
-              <div class="scale-icon-wrap">🎧</div>
-              <div class="scale-item-text">
-                큐봇 1회 평균 3,500 토큰 기준,<br>
-                <strong>약 256건 질의응답을 처리할 수 있는 규모</strong>
+            <div class="kpi-stat-sub-card">
+              <div class="kpi-icon-square">📤</div>
+              <div class="kpi-content-wrap">
+                <span class="kpi-stat-label">Completion (출력)</span>
+                <span class="kpi-stat-main-num red-accent">90.0% 절감</span>
+                <span class="kpi-stat-sub-desc">$12.00 ➔ $1.20</span>
               </div>
             </div>
+
+            <div class="kpi-stat-sub-card highlight-luna">
+              <div class="kpi-icon-square icon-luna">⚡</div>
+              <div class="kpi-content-wrap">
+                <span class="kpi-stat-label">비용 절감 효과</span>
+                <span class="kpi-stat-main-num red-accent">1/10 수준</span>
+                <span class="kpi-stat-sub-desc">동일 예산 10배 처리</span>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <!-- 2. GPT-4.1 → GPT-5.6 Luna 전환 효과 6대 핵심 카드 -->
-        <div class="transition-effects-section">
-          <h3 class="transition-head-title">GPT-4.1 → GPT-5.6 Luna 전환 효과</h3>
+        <!-- 2. GPT-5.6 전환 6대 효과 분석 카드 (Micro-interactions) -->
+        <div class="effects-section-container">
+          <div class="effects-section-title">
+            <span>🚀</span>
+            <span>GPT-5.6 전환 6대 기대 효과</span>
+          </div>
           
-          <div class="transition-cards-grid">
-            <!-- ① 응답 속도 -->
+          <div class="effects-grid-6">
+            <!-- ① 추론 속도 향상 -->
             <div class="effect-mini-card">
-              <div class="effect-card-title"><span>⚡</span> <span>응답 속도</span></div>
+              <div class="effect-card-title"><span>⚡</span> <span>추론 속도 향상</span></div>
               <p class="effect-card-desc">
-                GPT-4.1 대비 사용자 체감<br>
-                응답속도 대폭 향상
+                첫 토큰 응답 속도 대폭 개선,<br>
+                <strong class="blue">체감 대기시간 단축</strong>
               </p>
             </div>
 
-            <!-- ② 응답 품질 -->
+            <!-- ② 문맥 이해도 강화 -->
             <div class="effect-mini-card">
-              <div class="effect-card-title"><span>✅</span> <span>응답 품질</span></div>
+              <div class="effect-card-title"><span>🧠</span> <span>문맥 이해도 강화</span></div>
               <p class="effect-card-desc">
-                기술정보·매뉴얼·수리사례<br>
-                기반 동일 수준 답변 제공
+                복잡한 수리 매뉴얼 및<br>
+                <strong class="blue">다단계 질의 정확도 증대</strong>
               </p>
             </div>
 
@@ -1023,27 +1190,25 @@
             <div class="effect-mini-card">
               <div class="effect-card-title"><span>🛡️</span> <span>응답 안정성</span></div>
               <p class="effect-card-desc">
-                출처 기반 답변 강화로<br>
-                보다 안정적인 정보 제공
-              </p>
-              <div class="sub-detail">할루시네이션(환각) 억제</div>
-            </div>
-
-            <!-- ④ 운영 비용 -->
-            <div class="effect-mini-card">
-              <div class="effect-card-title"><span>💰</span> <span>운영 비용</span></div>
-              <p class="effect-card-desc">
-                동일 수준 서비스 제공 시<br>
-                <strong class="red">운영비 최대 90% 절감</strong>
+                <strong class="dark">할루시네이션(환각) 억제</strong>
               </p>
             </div>
 
-            <!-- ⑤ 사용자 지원 -->
+            <!-- ④ 다국어/한국어 최적화 -->
             <div class="effect-mini-card">
-              <div class="effect-card-title"><span>👥</span> <span>사용자 지원</span></div>
+              <div class="effect-card-title"><span>🌐</span> <span>한국어 최적화</span></div>
               <p class="effect-card-desc">
-                동일 예산 기준 더 많은<br>
-                상담원 및 SM 지원 가능
+                전문 기술 용어 및<br>
+                <strong class="blue">한국어 토큰 효율 극대화</strong>
+              </p>
+            </div>
+
+            <!-- ⑤ Multi-turn 고도화 -->
+            <div class="effect-mini-card">
+              <div class="effect-card-title"><span>💬</span> <span>Multi-turn 고도화</span></div>
+              <p class="effect-card-desc">
+                이전 대화 맥락을 유지한<br>
+                <strong class="blue">연속 질의응답 품질 향상</strong>
               </p>
             </div>
 
@@ -1058,7 +1223,7 @@
           </div>
         </div>
 
-        <!-- 3. Executive Summary (최신 텍스트 반영) -->
+        <!-- 3. Executive Summary (요약 박스) -->
         <div class="summary-box-panel">
           <span class="summary-badge-tag">EXECUTIVE SUMMARY</span>
           <p class="summary-panel-text">
